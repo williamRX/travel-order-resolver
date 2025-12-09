@@ -1,0 +1,1608 @@
+ID,Sentence,VALIDITY
+1,Je veux aller de Paris à Lyon demain matin.,VALID
+2,comment me rendre a bordeaux depuis tours ?,VALID
+3,Trajet paris → lille svp.,VALID
+4,J’aimerais aller de Marseille jusqu'à Nice.,VALID
+5,Je pars de nantes pour rejoindre paris.,VALID
+6,de toulouse vers montpellier quels trains sont dispo ?,VALID
+7,Je souhaite me rendre à Rennes en partance de Caen.,VALID
+8,Départ lyon arrivée marseille merci.,VALID
+9,Peux-tu me trouver un train pour Dijon depuis Paris ?,VALID
+10,Je dois aller a metz en partant de strasbourg.,VALID
+11,depart marseille dest lyon,VALID
+12,Aller simple de Brest à Quimper.,VALID
+13,J’aimerais un itinéraire Bordeaux Poitiers.,VALID
+14,je pars de lille pour aller à roubaix,VALID
+15,Montre moi un train entre nîmes et avignon,VALID
+16,Je voudrais aller de troyes à paris en passant par nogent.,VALID
+17,depuis paris direction orléans,VALID
+18,Je veux aller a limoge depuis toulouz,VALID
+19,De pau a toulouse je veux un train rapide.,VALID
+20,train clermont ferrand vers paris ?,VALID
+21,"Arrivée Strasbourg, départ Nancy.",VALID
+22,Je pars de dijon pour aller a Besançon.,VALID
+23,Itinéraire : marseile -> toulon,VALID
+24,Je dois aller à Reims depuis Paris pour un rdv.,VALID
+25,Trajet départ tours destination saumur.,VALID
+26,J’aimerai rejoindre Arras depuis Amiens.,VALID
+27,Peux-tu me calculer un trajet caen paris ?,VALID
+28,aller de grenoble direction chambery.,VALID
+29,Je veux quitter lens pour aller à lille.,VALID
+30,donne moi un trajet depuis paris jusqu'a limoges,VALID
+31,je vais de versailles à paris montparnasse,VALID
+32,dep marne-la-vallee → dest paris est,VALID
+33,Je pars de dijon arrivée nancy.,VALID
+34,Je cherche un train pour montelimar depuis valence.,VALID
+35,aller a perpignan depuis montpellier st roch,VALID
+36,J'aimerais partir de ST ETIENNE pour aller à lyon,VALID
+37,Train strasbourg paris ce soir ?,VALID
+38,DE MARSEILLE A PARIS,VALID
+39,je veux aller de saint-malo a rennes,VALID
+40,aller de bordeaux à paris avec mes deux chiens,VALID
+41,Je voudrais rejoindre Tarbes depuis Pau.,VALID
+42,paris → marne la vallee chessy,VALID
+43,"Direction Lille, départ Amiens.",VALID
+44,Je pars de Tours pour aller au Mans.,VALID
+45,Un billet Montpellier → Nîmes svp,VALID
+46,je souhaite aller a bayonne depuis biaritz,VALID
+47,depuis reims vers strasbourg trajet ?,VALID
+48,Je voudrais aller de Toulon à Marseille.,VALID
+49,"Départ Clermont-Ferrand, arrivée Vichy.",VALID
+50,Trajet saintes → rochefort merci,VALID
+51,je cherche un train de limoges vers poitiers,VALID
+52,Je pars de besançon pour rejoindre dijon,VALID
+53,aller albi -> toulouse,VALID
+54,Je veux aller à orleans depuis paris bercy,VALID
+55,"Depuis Nancy, je voudrais aller a Metz.",VALID
+56,aller a paris en partant de marseille st charles,VALID
+57,De lille à bordeaux quel train existe ?,VALID
+58,itinéraire de nice pour marseille,VALID
+59,je veux rejoindre angers depuis nantes ce soir,VALID
+60,aller de lyon part dieu a geneve,VALID
+61,Direction Poitiers depuis Angoulême.,VALID
+62,Je pars de cognac pour aller à saintes.,VALID
+63,depuis quimper je veux aller à brest,VALID
+64,train paris versailles maintenant,VALID
+65,Aller Toulouse - Tarbes merci,VALID
+66,J’aimerais aller de Dunkerque à Calais.,VALID
+67,Je vais de Toulon jusqu’à Cannes.,VALID
+68,Je cherche un itinéraire depuis Grenoble vers Gap.,VALID
+69,je voudré alé de Montpelié a Nime,VALID
+70,"De Metz à Luxembourg, quel train ?",VALID
+71,J'adore paris c'est une belle ville.,INVALID
+72,Bordeaux c'est loin je crois.,INVALID
+73,Albert et Paris viennent ce soir dîner.,INVALID
+74,Je suis à Lyon.,INVALID
+75,Paris Marseille c’est un bon match de foot.,INVALID
+76,Peux-tu m'expliquer l’histoire de Lille ?,INVALID
+77,Je veux aller quelque part mais je sais pas où.,INVALID
+78,Train train train lalala.,INVALID
+79,J’ai perdu mon billet hier.,INVALID
+80,Est-ce que la SNCF est ouverte dimanche ?,INVALID
+81,je dois appeler ma mère à bordeaux,INVALID
+82,Je vais acheter un vélo pour paris,INVALID
+83,Donne-moi une liste de gares françaises.,INVALID
+84,vers où aller ?,INVALID
+85,J’ai envie de voyager un jour peut-être.,INVALID
+86,le train c'est trop cher,INVALID
+87,BONJOUR,INVALID
+88,je veux aller la bas,INVALID
+89,paris florence ce sont mes amis,INVALID
+90,quelle heure est-il à lyon ?,INVALID
+91,Je veux partir mais aucune destination précise.,INVALID
+92,As-tu des infos sur les retards SNCF ?,INVALID
+93,Je lis un article sur Marseille.,INVALID
+94,Je ne veux pas prendre le train aujourd’hui.,INVALID
+95,J’aimerais cuisiner des pâtes à la carbonara.,INVALID
+96,depart ??? dest ???,INVALID
+97,je veux aller de chez moi à l'école,INVALID
+98,Caen… ou peut-être Rouen… je sais pas,INVALID
+99,Quel temps fait-il à Dijon ?,INVALID
+100,Je n’aime pas les TGV.,INVALID
+101,"Montpellier est joli, voilà.",INVALID
+102,Peux-tu trouver un itinéraire ?,INVALID
+103,Mon chat s'appelle Marseille,INVALID
+104,paris c'est mon chien,INVALID
+105,Je pars bientôt en vacances mais je ne sais pas où.,INVALID
+106,route marseille paris voiture,INVALID
+107,traiiin trajet paris lolz,INVALID
+108,aller de * * * * *,INVALID
+109,mon copain paris veut venir ce soir,INVALID
+110,TEST DATA 123456,INVALID
+111,J'ai entendu que Toulouse est belle mais je ne voyage pas.,INVALID
+112,Je ne vais nulle part aujourd’hui.,INVALID
+113,Peux-tu me raconter l’histoire des trains ?,INVALID
+114,J’aime les gares anciennes.,INVALID
+115,Paris sera toujours Paris.,INVALID
+116,Ma destination préférée c’est la mer.,INVALID
+117,Pourquoi les trains sont rouges ?,INVALID
+118,Je voudrais juste dormir.,INVALID
+119,Quel est le meilleur sandwich à Lyon ?,INVALID
+120,Je mange un croissant à Marseille.,INVALID
+121,Est-ce que Dijon fait du bon pain d'épices ?,INVALID
+122,Je veux juste marcher un peu dehors.,INVALID
+123,Ceci n'est pas une phrase de trajet.,INVALID
+124,J'aime le mot Bordeaux.,INVALID
+125,Regarde cette vidéo sur Nantes.,INVALID
+126,Mon chien a mangé mon ticket.,INVALID
+127,Je suis perdu mais je ne sais pas où.,INVALID
+128,Peux-tu me rappeler de boire de l’eau ?,INVALID
+129,Je veux aller très loin un jour mais pas maintenant.,INVALID
+130,Nice est jolie en été.,INVALID
+131,"Je vais peut-être, éventuellement, songer à partir.",INVALID
+132,Les trains font trop de bruit.,INVALID
+133,Je suis fatigué.,INVALID
+134,Est-ce que Rouen est une bonne ville pour étudier ?,INVALID
+135,Lille ça s'écrit comment déjà ?,INVALID
+136,Je dois acheter un cadeau.,INVALID
+137,Le ciel est bleu à Marseille.,INVALID
+138,Je prends ma voiture aujourd’hui.,INVALID
+139,Je n’ai pas envie de sortir.,INVALID
+140,Qu’est-ce qu’un TGV exactement ?,INVALID
+141,Paris est-elle une capitale ?,INVALID
+142,Je fais la cuisine.,INVALID
+143,Je vais au sport.,INVALID
+144,C’est quoi la définition d’un train ?,INVALID
+145,Je suis déjà arrivé.,INVALID
+146,Un jour j’irai peut-être à Rennes.,INVALID
+147,Je n’ai pas de destination.,INVALID
+148,Je dois marcher jusqu'au supermarché.,INVALID
+149,Je vais juste dehors pour prendre l’air.,INVALID
+150,Peux-tu écrire un poème sur Lyon ?,INVALID
+151,Je veux parler de Marseille mais pas y aller.,INVALID
+152,Ce texte est un test.,INVALID
+153,Je suis dans mon salon.,INVALID
+154,J'ai du travail à faire.,INVALID
+155,Peux-tu traduire ce mot ?,INVALID
+156,Je veux aller bien dans ma vie.,INVALID
+157,Il fait froid.,INVALID
+158,Je regarde Netflix.,INVALID
+159,Le train c’est cool mais bref.,INVALID
+160,Peux-tu me donner un synonyme de Paris ?,INVALID
+161,Je n’ai pas décidé si je voyage.,INVALID
+162,Faut-il un billet pour voyager en avion ?,INVALID
+163,J’aime écouter de la musique.,INVALID
+164,Je suis juste curieux.,INVALID
+165,Je dois ranger ma chambre.,INVALID
+166,J’attends un message.,INVALID
+167,Ceci est une phrase totalement hors sujet.,INVALID
+169,trajet depuis rouen vers le havre stp,VALID
+170,aller de mulhouse a colmar rapidement,VALID
+171,je pars de annecy pour rejoindre geneve,VALID
+172,depuis angouleme direction bordeaux,VALID
+173,je voudré aller de niort a la rochelle,VALID
+174,trajet saint nazaire nantes svp,VALID
+175,de cherbourg vers caen quel train,VALID
+176,je veu partir de laval pour aller au mans,VALID
+177,aller a chartres depuis orleans,VALID
+178,depuis troyes je veu aller a reims,VALID
+179,trajet evreux vers rouen merci,VALID
+180,je pars de meaux pour rejoindre paris est,VALID
+181,de compiegne a creil train rapide,VALID
+182,aller de beauvais vers paris nord,VALID
+183,je voudré alé de lens a arras,VALID
+184,depuis calais direction dunkerque,VALID
+185,trajet boulogne sur mer vers calais,VALID
+186,je veu aller de douai a valenciennes,VALID
+187,depuis cambrai je pars vers lille,VALID
+188,aller de maubeuge a valenciennes,VALID
+189,de hazebrouck vers lille flandres,VALID
+190,je voudré rejoindre bethune depuis lens,VALID
+191,trajet depuis armentieres vers lille,VALID
+192,je pars de saint omer pour aller a calais,VALID
+193,aller de berck sur mer a boulogne,VALID
+194,depuis abbeville direction amiens,VALID
+195,je veu alé de montdidier a compiegne,VALID
+196,trajet depuis soissons vers laon,VALID
+197,de chateau thierry a reims train,VALID
+198,je voudré aller de epernay a chalons en champagne,VALID
+199,depuis verdun je pars vers metz,VALID
+200,aller de bar le duc a nancy,VALID
+201,de epinal vers nancy quel train,VALID
+202,je veu rejoindre saint die depuis epinal,VALID
+203,trajet depuis remiremont vers epinal,VALID
+204,je pars de thionville pour aller a luxembourg,VALID
+205,aller de forbach a sarreguemines,VALID
+206,depuis sarrebourg direction strasbourg,VALID
+207,je voudré alé de selestat a colmar,VALID
+208,trajet depuis obernai vers strasbourg,VALID
+209,de saverne a strasbourg train,VALID
+210,je veu aller de haguenau a strasbourg,VALID
+211,depuis wissembourg direction strasbourg,VALID
+212,aller de bitche vers sarreguemines,VALID
+213,je pars de phalsbourg pour rejoindre strasbourg,VALID
+214,trajet depuis molsheim vers strasbourg,VALID
+215,de sélestat a colmar rapidement,VALID
+216,je voudré aller de guebwiller a mulhouse,VALID
+217,depuis thann je veu aller a mulhouse,VALID
+218,aller de belfort vers mulhouse,VALID
+219,de montbeliard a belfort train,VALID
+220,je pars de lons le saunier pour aller a besancon,VALID
+221,trajet depuis dole vers dijon,VALID
+222,je veu rejoindre auxerre depuis dijon,VALID
+223,depuis sens direction paris,VALID
+224,aller de joigny a auxerre,VALID
+225,de cosne sur loire a nevers,VALID
+226,je voudré alé de decize a nevers,VALID
+227,trajet depuis moulins vers vichy,VALID
+228,je pars de roanne pour aller a saint etienne,VALID
+229,depuis firminy direction saint etienne,VALID
+230,aller de montbrison a roanne,VALID
+231,de thiers vers clermont ferrand,VALID
+232,je veu aller de riom a clermont ferrand,VALID
+233,trajet depuis issoire vers clermont,VALID
+234,je voudré rejoindre le puy en velay depuis brioude,VALID
+235,depuis langogne je pars vers le puy,VALID
+236,aller de mende a marvejols,VALID
+237,de florac vers mende train,VALID
+238,je veu alé de ales a nimes,VALID
+239,trajet depuis uzes vers nimes,VALID
+240,je pars de beaucaire pour rejoindre arles,VALID
+241,depuis tarascon direction arles,VALID
+242,aller de salon de provence a aix,VALID
+243,de pertuis vers aix en provence,VALID
+244,je voudré aller de manosque a digne,VALID
+245,trajet depuis sisteron vers gap,VALID
+246,je veu rejoindre embrun depuis gap,VALID
+247,depuis briancon direction gap,VALID
+248,aller de guillestre vers gap,VALID
+249,de serre poncon a gap train,VALID
+250,je pars de bourg saint maurice pour aller a albertville,VALID
+251,trajet depuis moutiers vers albertville,VALID
+252,je veu alé de albertville a chambery,VALID
+253,depuis aix les bains direction chambery,VALID
+254,aller de rumilly vers annecy,VALID
+255,de bellegarde a annecy train,VALID
+256,je voudré aller de seyssel a bellegarde,VALID
+257,trajet depuis culoz vers bellegarde,VALID
+258,je pars de ambérieu pour rejoindre bourg en bresse,VALID
+259,depuis macon je veu aller a villefranche,VALID
+260,aller de trevoux vers villefranche,VALID
+261,de belleville a villefranche train,VALID
+262,je veu rejoindre tarare depuis villefranche,VALID
+263,trajet depuis thizy vers roanne,VALID
+264,je voudré alé de montbrison a feurs,VALID
+265,depuis boen direction montbrison,VALID
+266,aller de saint just sur loire a montbrison,VALID
+267,de saint etienne a firminy rapidement,VALID
+268,je pars de rive de gier pour aller a saint etienne,VALID
+269,trajet depuis givors vers lyon,VALID
+270,je veu aller de vienne a lyon,VALID
+271,depuis roussillon direction vienne,VALID
+272,aller de tain l'hermitage vers valence,VALID
+273,de tournon a valence train,VALID
+274,je voudré rejoindre privas depuis valence,VALID
+275,trajet depuis le teil vers montelimar,VALID
+276,je pars de pierrelatte pour aller a montelimar,VALID
+277,depuis orange je veu aller a avignon,VALID
+278,aller de carpentras vers avignon,VALID
+279,de cavaillon a avignon train,VALID
+280,je veu alé de apt vers avignon,VALID
+281,trajet depuis pernes vers avignon,VALID
+282,je voudré aller de l'isle sur sorgue a avignon,VALID
+283,depuis bollene direction orange,VALID
+284,aller de pont saint esprit vers orange,VALID
+285,de bagnols sur ceze a ales,VALID
+286,je pars de sumene pour rejoindre ales,VALID
+287,trajet depuis anduze vers ales,VALID
+288,je veu aller de quissac a nimes,VALID
+289,depuis sommieres direction nimes,VALID
+290,aller de vauvert vers nimes,VALID
+291,de aigues mortes a nimes train,VALID
+292,je voudré rejoindre montpellier depuis nimes,VALID
+293,trajet depuis lunel vers montpellier,VALID
+294,je pars de frontignan pour aller a sete,VALID
+295,depuis meze direction sete,VALID
+296,aller de pezenas vers beziers,VALID
+297,de valras plage a beziers train,VALID
+298,je veu alé de servian vers beziers,VALID
+299,trajet depuis capestang vers beziers,VALID
+300,je voudré aller de narbonne a beziers,VALID
+301,depuis lezignan corbieres direction narbonne,VALID
+302,aller de carcassonne vers narbonne,VALID
+303,de limoux a carcassonne train,VALID
+304,je pars de quillan pour rejoindre limoux,VALID
+305,trajet depuis couiza vers quillan,VALID
+306,je veu aller de esperaza a quillan,VALID
+307,depuis axat direction quillan,VALID
+308,aller de belcaire vers quillan,VALID
+309,de mirepoix a pamiers train,VALID
+310,je voudré rejoindre foix depuis pamiers,VALID
+311,trajet depuis varilhes vers foix,VALID
+312,je pars de tarascon sur ariege pour aller a foix,VALID
+313,depuis luzenac direction ax les thermes,VALID
+314,aller de merens vers ax les thermes,VALID
+315,de l'hopital vers ax train,VALID
+316,je veu alé de saint girons a foix,VALID
+317,trajet depuis massat vers saint girons,VALID
+318,je voudré aller de seix vers saint girons,VALID
+319,depuis oust direction saint girons,VALID
+320,aller de la bastide de serou vers foix,VALID
+321,de saint lizier a saint girons train,VALID
+322,je pars de mazeres pour rejoindre pamiers,VALID
+323,trajet depuis saverdun vers pamiers,VALID
+324,je veu aller de calmont vers pamiers,VALID
+325,depuis le fossat direction pamiers,VALID
+326,aller de varilhes vers pamiers,VALID
+327,de montaut vers pamiers train,VALID
+328,je voudré rejoindre toulouse depuis pamiers,VALID
+329,trajet depuis auterive vers toulouse,VALID
+330,je pars de cintegabelle pour aller a toulouse,VALID
+331,depuis muret direction toulouse,VALID
+332,aller de portet sur garonne vers toulouse,VALID
+333,de muret a toulouse train,VALID
+334,je veu alé de carbonne vers muret,VALID
+335,trajet depuis cazeres vers muret,VALID
+336,je voudré aller de martres vers cazeres,VALID
+337,depuis saint martory direction cazeres,VALID
+338,aller de salies du salat vers saint martory,VALID
+339,de boussens a saint martory train,VALID
+340,je pars de saint gaudens pour rejoindre montrejeau,VALID
+341,trajet depuis luchon vers montrejeau,VALID
+342,je veu aller de bagneres de luchon a montrejeau,VALID
+343,depuis salechan direction luchon,VALID
+344,aller de cierp gaud vers salechan,VALID
+345,de marignac vers luchon train,VALID
+346,je voudré rejoindre tarbes depuis luchon,VALID
+347,trajet depuis lannemezan vers tarbes,VALID
+348,je pars de capvern pour aller a lannemezan,VALID
+349,depuis bagnères de bigorre direction tarbes,VALID
+350,aller de lourdes vers tarbes,VALID
+351,de pierrefitte nestalas a lourdes train,VALID
+352,je veu alé de argeles gazost vers lourdes,VALID
+353,trajet depuis luz saint sauveur vers lourdes,VALID
+354,je voudré aller de barèges vers luz,VALID
+355,depuis gavarnie direction luz,VALID
+356,aller de gedre vers luz,VALID
+357,de cauterets a pierrefitte train,VALID
+358,je pars de argeles vers pierrefitte,VALID
+359,trajet depuis oloron sainte marie vers pau,VALID
+360,je veu rejoindre pau depuis oloron,VALID
+361,depuis bedous direction oloron,VALID
+362,aller de accous vers bedous,VALID
+363,de cette eygun a accous train,VALID
+364,je voudré aller de laruns vers oloron,VALID
+365,trajet depuis eaux bonnes vers laruns,VALID
+366,je pars de eaux chaudes pour aller a laruns,VALID
+367,depuis arudy direction oloron,VALID
+368,aller de buzy vers pau,VALID
+369,de gan vers pau train,VALID
+370,je veu alé de lons vers pau,VALID
+371,trajet depuis artix vers pau,VALID
+372,je voudré aller de orthez vers pau,VALID
+373,depuis salies de bearn direction orthez,VALID
+374,aller de puyoo vers orthez,VALID
+375,de sauveterre de bearn a orthez train,VALID
+376,je pars de navarrenx pour rejoindre orthez,VALID
+377,trajet depuis mauléon vers orthez,VALID
+378,je veu aller de tardets vers mauléon,VALID
+379,depuis osses direction mauléon,VALID
+380,aller de saint jean pied de port vers osses,VALID
+381,de saint palais a mauléon train,VALID
+382,je voudré rejoindre bayonne depuis mauléon,VALID
+383,trajet depuis hasparren vers bayonne,VALID
+384,je pars de cambo les bains pour aller a bayonne,VALID
+385,depuis espelette direction cambo,VALID
+386,aller de itxassou vers espelette,VALID
+387,de souraide a espelette train,VALID
+388,je veu alé de ainhoa vers espelette,VALID
+389,trajet depuis sare vers ainhoa,VALID
+390,je voudré aller de urrugne vers saint jean de luz,VALID
+391,depuis ciboure direction saint jean de luz,VALID
+392,aller de hendaye vers irun,VALID
+393,de biriatou a hendaye train,VALID
+394,je pars de bidart pour rejoindre biarritz,VALID
+395,trajet depuis anglet vers biarritz,VALID
+396,je veu aller de bayonne vers biarritz,VALID
+397,depuis bayonne je pars vers dax,VALID
+398,aller de labenne vers dax,VALID
+399,de capbreton a dax train,VALID
+400,je voudré rejoindre mont de marsan depuis dax,VALID
+401,trajet depuis ygos vers mont de marsan,VALID
+402,je pars de morcenx pour aller a mont de marsan,VALID
+403,depuis tartas direction mont de marsan,VALID
+404,aller de roquefort vers mont de marsan,VALID
+405,de villeneuve de marsan a mont de marsan train,VALID
+406,je veu alé de hagetmau vers mont de marsan,VALID
+407,trajet depuis amou vers dax,VALID
+408,je voudré aller de peyrehorade vers dax,VALID
+409,depuis orthevielle direction peyrehorade,VALID
+410,aller de port de lanes vers peyrehorade,VALID
+411,de sorde l'abbaye a peyrehorade train,VALID
+412,je pars de salies de salat pour rejoindre toulouse,VALID
+413,trajet depuis boussens vers toulouse,VALID
+414,je veu aller de carbonne vers toulouse,VALID
+415,depuis muret je pars vers toulouse,VALID
+416,aller de portet vers toulouse,VALID
+417,de cintegabelle a toulouse train,VALID
+418,je voudré rejoindre castres depuis toulouse,VALID
+419,trajet depuis mazamet vers castres,VALID
+420,je pars de labruguiere pour aller a mazamet,VALID
+421,depuis revel direction mazamet,VALID
+422,aller de sorèze vers revel,VALID
+423,de durfort vers sorèze train,VALID
+424,je veu alé de saissac vers mazamet,VALID
+425,trajet depuis lescure vers mazamet,VALID
+426,je voudré aller de brassac vers mazamet,VALID
+427,depuis anglès direction brassac,VALID
+428,aller de la salvetat vers anglès,VALID
+429,de rouairoux a la salvetat train,VALID
+430,je pars de lacabarède pour rejoindre la salvetat,VALID
+431,trajet depuis mazamet vers albi,VALID
+432,je veu aller de gaillac vers albi,VALID
+433,depuis lisle sur tarn direction gaillac,VALID
+434,aller de rabac vers lisle,VALID
+435,de cadalen a rabac train,VALID
+436,je voudré rejoindre cordes depuis albi,VALID
+437,trajet depuis vaour vers cordes,VALID
+438,je pars de penne pour aller a vaour,VALID
+439,depuis pampelonne direction vaour,VALID
+440,aller de tanus vers pampelonne,VALID
+441,de le rieu vers tanus train,VALID
+442,je veu alé de naucelle vers tanus,VALID
+443,trajet depuis rignac vers naucelle,VALID
+444,je voudré aller de belmont vers rignac,VALID
+445,depuis salmiech direction belmont,VALID
+446,aller de la salvetat peyrales vers salmiech,VALID
+447,de la bastide vers la salvetat train,VALID
+448,je pars de montlaur pour rejoindre la bastide,VALID
+449,trajet depuis valence d'albigeois vers montlaur,VALID
+450,je veu aller de pampelonne vers valence,VALID
+451,depuis monestiés direction pampelonne,VALID
+452,aller de combefa vers monestiés,VALID
+453,de trebas vers combefa train,VALID
+454,je voudré rejoindre carmaux depuis trebas,VALID
+455,trajet depuis blaye vers carmaux,VALID
+456,je pars de mirandol pour aller a blaye,VALID
+457,depuis pampelonne direction mirandol,VALID
+458,aller de valence vers mirandol,VALID
+459,de monestiés a valence train,VALID
+460,je veu alé de combefa vers monestiés,VALID
+461,trajet depuis trebas vers combefa,VALID
+462,je voudré aller de carmaux vers trebas,VALID
+463,depuis blaye les mines direction carmaux,VALID
+464,aller de mirandol bourgnounac vers blaye,VALID
+465,de pampelonne a mirandol train,VALID
+466,je pars de valence d'albigeois pour rejoindre pampelonne,VALID
+467,trajet depuis monestiés vers pampelonne,VALID
+468,je veu aller de combefa vers monestiés,VALID
+469,depuis trebas direction combefa,VALID
+470,aller de carmaux vers trebas,VALID
+471,de blaye les mines a carmaux train,VALID
+472,je voudré rejoindre albi depuis carmaux,VALID
+473,trajet depuis gaillac vers albi,VALID
+474,je pars de lisle sur tarn pour aller a gaillac,VALID
+475,depuis rabac direction lisle,VALID
+476,aller de cadalen vers rabac,VALID
+477,de tanus a cadalen train,VALID
+478,je veu alé de naucelle vers tanus,VALID
+479,trajet depuis rignac vers naucelle,VALID
+480,je voudré aller de belmont vers rignac,VALID
+481,depuis salmiech direction belmont,VALID
+482,aller de la salvetat peyrales vers salmiech,VALID
+483,de la bastide sur vers la salvetat train,VALID
+484,je pars de montlaur pour rejoindre la bastide,VALID
+485,trajet depuis valence d'albigeois vers montlaur,VALID
+486,je veu aller de pampelonne vers valence,VALID
+487,depuis monestiés direction pampelonne,VALID
+488,aller de combefa vers monestiés,VALID
+489,de trebas a combefa train,VALID
+490,je voudré rejoindre carmaux depuis trebas,VALID
+491,trajet depuis blaye les mines vers carmaux,VALID
+492,je pars de mirandol bourgnounac pour aller a blaye,VALID
+493,depuis pampelonne direction mirandol,VALID
+494,aller de valence d'albigeois vers pampelonne,VALID
+495,de monestiés a valence train,VALID
+496,je veu alé de combefa vers monestiés,VALID
+497,trajet depuis trebas vers combefa,VALID
+498,je voudré aller de carmaux vers trebas,VALID
+499,depuis blaye les mines direction carmaux,VALID
+500,aller de mirandol bourgnounac vers blaye,VALID
+501,de pampelonne a mirandol train,VALID
+502,je pars de valence d'albigeois pour rejoindre pampelonne,VALID
+503,trajet depuis monestiés vers pampelonne,VALID
+504,je veu aller de combefa vers monestiés,VALID
+505,depuis trebas direction combefa,VALID
+506,aller de carmaux vers trebas,VALID
+507,de blaye les mines a carmaux train,VALID
+508,je voudré rejoindre albi depuis carmaux,VALID
+509,trajet depuis gaillac vers albi,VALID
+510,je pars de lisle sur tarn pour aller a gaillac,VALID
+511,depuis rabac direction lisle,VALID
+512,aller de cadalen vers rabac,VALID
+513,de tanus a cadalen train,VALID
+514,je veu alé de naucelle vers tanus,VALID
+515,trajet depuis rignac vers naucelle,VALID
+516,je voudré aller de belmont vers rignac,VALID
+517,depuis salmiech direction belmont,VALID
+518,aller de la salvetat peyrales vers salmiech,VALID
+519,de la bastide sur vers la salvetat train,VALID
+520,je pars de montlaur pour rejoindre la bastide,VALID
+521,trajet depuis valence d'albigeois vers montlaur,VALID
+522,je veu aller de pampelonne vers valence,VALID
+523,depuis monestiés direction pampelonne,VALID
+524,aller de combefa vers monestiés,VALID
+525,de trebas a combefa train,VALID
+526,je voudré rejoindre carmaux depuis trebas,VALID
+527,trajet depuis blaye les mines vers carmaux,VALID
+528,je pars de mirandol bourgnounac pour aller a blaye,VALID
+529,depuis pampelonne direction mirandol,VALID
+530,aller de valence d'albigeois vers pampelonne,VALID
+531,de monestiés a valence train,VALID
+532,je veu alé de combefa vers monestiés,VALID
+533,trajet depuis trebas vers combefa,VALID
+534,je voudré aller de carmaux vers trebas,VALID
+535,depuis blaye les mines direction carmaux,VALID
+536,aller de mirandol bourgnounac vers blaye,VALID
+537,de pampelonne a mirandol train,VALID
+538,je pars de valence d'albigeois pour rejoindre pampelonne,VALID
+539,trajet depuis monestiés vers pampelonne,VALID
+540,je veu aller de combefa vers monestiés,VALID
+541,depuis trebas direction combefa,VALID
+542,aller de carmaux vers trebas,VALID
+543,de blaye les mines a carmaux train,VALID
+544,je voudré rejoindre albi depuis carmaux,VALID
+545,trajet depuis gaillac vers albi,VALID
+546,je pars de lisle sur tarn pour aller a gaillac,VALID
+547,depuis rabac direction lisle,VALID
+548,aller de cadalen vers rabac,VALID
+549,de tanus a cadalen train,VALID
+550,je veu alé de naucelle vers tanus,VALID
+551,trajet depuis rignac vers naucelle,VALID
+552,je voudré aller de belmont vers rignac,VALID
+553,depuis salmiech direction belmont,VALID
+554,aller de la salvetat peyrales vers salmiech,VALID
+555,de la bastide sur vers la salvetat train,VALID
+556,je pars de montlaur pour rejoindre la bastide,VALID
+557,trajet depuis valence d'albigeois vers montlaur,VALID
+558,je veu aller de pampelonne vers valence,VALID
+559,depuis monestiés direction pampelonne,VALID
+560,aller de combefa vers monestiés,VALID
+561,de trebas a combefa train,VALID
+562,je voudré rejoindre carmaux depuis trebas,VALID
+563,trajet depuis blaye les mines vers carmaux,VALID
+564,je pars de mirandol bourgnounac pour aller a blaye,VALID
+565,depuis pampelonne direction mirandol,VALID
+566,aller de valence d'albigeois vers pampelonne,VALID
+567,de monestiés a valence train,VALID
+568,je veu alé de combefa vers monestiés,VALID
+569,trajet depuis trebas vers combefa,VALID
+570,je voudré aller de carmaux vers trebas,VALID
+571,depuis blaye les mines direction carmaux,VALID
+572,aller de mirandol bourgnounac vers blaye,VALID
+573,de pampelonne a mirandol train,VALID
+574,je pars de valence d'albigeois pour rejoindre pampelonne,VALID
+575,trajet depuis monestiés vers pampelonne,VALID
+576,je veu aller de combefa vers monestiés,VALID
+577,depuis trebas direction combefa,VALID
+578,aller de carmaux vers trebas,VALID
+579,de blaye les mines a carmaux train,VALID
+580,je voudré rejoindre albi depuis carmaux,VALID
+581,trajet depuis gaillac vers albi,VALID
+582,je pars de lisle sur tarn pour aller a gaillac,VALID
+583,depuis rabac direction lisle,VALID
+584,aller de cadalen vers rabac,VALID
+585,de tanus a cadalen train,VALID
+586,je veu alé de naucelle vers tanus,VALID
+587,trajet depuis rignac vers naucelle,VALID
+588,je voudré aller de belmont vers rignac,VALID
+589,depuis salmiech direction belmont,VALID
+590,aller de la salvetat peyrales vers salmiech,VALID
+591,de la bastide sur vers la salvetat train,VALID
+592,je pars de montlaur pour rejoindre la bastide,VALID
+593,trajet depuis valence d'albigeois vers montlaur,VALID
+594,je veu aller de pampelonne vers valence,VALID
+595,depuis monestiés direction pampelonne,VALID
+596,aller de combefa vers monestiés,VALID
+597,de trebas a combefa train,VALID
+598,je voudré rejoindre carmaux depuis trebas,VALID
+599,trajet depuis blaye les mines vers carmaux,VALID
+600,je pars de mirandol bourgnounac pour aller a blaye,VALID
+601,depuis pampelonne direction mirandol,VALID
+602,aller de valence d'albigeois vers pampelonne,VALID
+603,de monestiés a valence train,VALID
+604,je veu alé de combefa vers monestiés,VALID
+605,trajet depuis trebas vers combefa,VALID
+606,je voudré aller de carmaux vers trebas,VALID
+607,depuis blaye les mines direction carmaux,VALID
+608,aller de mirandol bourgnounac vers blaye,VALID
+609,de pampelonne a mirandol train,VALID
+610,je pars de valence d'albigeois pour rejoindre pampelonne,VALID
+611,trajet depuis monestiés vers pampelonne,VALID
+612,je veu aller de combefa vers monestiés,VALID
+613,depuis trebas direction combefa,VALID
+614,aller de carmaux vers trebas,VALID
+615,de blaye les mines a carmaux train,VALID
+616,je voudré rejoindre albi depuis carmaux,VALID
+617,trajet depuis gaillac vers albi,VALID
+618,je pars de lisle sur tarn pour aller a gaillac,VALID
+619,depuis rabac direction lisle,VALID
+620,aller de cadalen vers rabac,VALID
+621,de tanus a cadalen train,VALID
+622,je veu alé de naucelle vers tanus,VALID
+623,trajet depuis rignac vers naucelle,VALID
+624,je voudré aller de belmont vers rignac,VALID
+625,depuis salmiech direction belmont,VALID
+626,aller de la salvetat peyrales vers salmiech,VALID
+627,de la bastide sur vers la salvetat train,VALID
+628,je pars de montlaur pour rejoindre la bastide,VALID
+629,trajet depuis valence d'albigeois vers montlaur,VALID
+630,je veu aller de pampelonne vers valence,VALID
+631,depuis monestiés direction pampelonne,VALID
+632,aller de combefa vers monestiés,VALID
+633,de trebas a combefa train,VALID
+634,je voudré rejoindre carmaux depuis trebas,VALID
+635,trajet depuis blaye les mines vers carmaux,VALID
+636,je pars de mirandol bourgnounac pour aller a blaye,VALID
+637,depuis pampelonne direction mirandol,VALID
+638,aller de valence d'albigeois vers pampelonne,VALID
+639,de monestiés a valence train,VALID
+640,je veu alé de combefa vers monestiés,VALID
+641,trajet depuis trebas vers combefa,VALID
+642,je voudré aller de carmaux vers trebas,VALID
+643,depuis blaye les mines direction carmaux,VALID
+644,aller de mirandol bourgnounac vers blaye,VALID
+645,de pampelonne a mirandol train,VALID
+646,je pars de valence d'albigeois pour rejoindre pampelonne,VALID
+647,trajet depuis monestiés vers pampelonne,VALID
+648,je veu aller de combefa vers monestiés,VALID
+649,depuis trebas direction combefa,VALID
+650,aller de carmaux vers trebas,VALID
+651,de blaye les mines a carmaux train,VALID
+652,je voudré rejoindre albi depuis carmaux,VALID
+653,trajet depuis gaillac vers albi,VALID
+654,je pars de lisle sur tarn pour aller a gaillac,VALID
+655,depuis rabac direction lisle,VALID
+656,aller de cadalen vers rabac,VALID
+657,de tanus a cadalen train,VALID
+658,je veu alé de naucelle vers tanus,VALID
+659,trajet depuis rignac vers naucelle,VALID
+660,je voudré aller de belmont vers rignac,VALID
+661,depuis salmiech direction belmont,VALID
+662,aller de la salvetat peyrales vers salmiech,VALID
+663,de la bastide sur vers la salvetat train,VALID
+664,je pars de montlaur pour rejoindre la bastide,VALID
+665,trajet depuis valence d'albigeois vers montlaur,VALID
+666,je veu aller de pampelonne vers valence,VALID
+667,depuis monestiés direction pampelonne,VALID
+668,aller de combefa vers monestiés,VALID
+669,Je voudrais aller de PARIS à LYON demain matin,VALID
+670,comment me rendre à BORDEAUX depuis TOURS,VALID
+671,Trajet PARIS → LILLE s'il vous plaît,VALID
+672,J'aimerais aller de Marseille jusqu'à Nice,VALID
+673,Je pars de Nantes pour rejoindre Paris,VALID
+674,de Toulouse vers Montpellier quels trains sont disponibles,VALID
+675,Je souhaite me rendre à Rennes en partance de Caen,VALID
+676,Départ Lyon arrivée Marseille merci,VALID
+677,Peux-tu me trouver un train pour Dijon depuis Paris,VALID
+678,Je dois aller à Metz en partant de Strasbourg,VALID
+679,depart Marseille dest Lyon,VALID
+680,Aller simple de Brest à Quimper,VALID
+681,J'aimerais un itinéraire Bordeaux Poitiers,VALID
+682,je pars de Lille pour aller à Roubaix,VALID
+683,Montre moi un train entre Nîmes et Avignon,VALID
+684,Je voudrais aller de Troyes à Paris en passant par Nogent,VALID
+685,depuis Paris direction Orléans,VALID
+686,Je veux aller à Limoges depuis Toulouse,VALID
+687,De Pau à Toulouse je veux un train rapide,VALID
+688,train Clermont-Ferrand vers Paris,VALID
+689,Arrivée Strasbourg départ Nancy,VALID
+690,Je pars de Dijon pour aller à Besançon,VALID
+691,Itinéraire : Marseille -> Toulon,VALID
+692,Je dois aller à Reims depuis Paris pour un rendez-vous,VALID
+693,Trajet départ Tours destination Saumur,VALID
+694,J'aimerai rejoindre Arras depuis Amiens,VALID
+695,Peux-tu me calculer un trajet Caen Paris,VALID
+696,aller de Grenoble direction Chambéry,VALID
+697,Je veux quitter Lens pour aller à Lille,VALID
+698,donne moi un trajet depuis Paris jusqu'à Limoges,VALID
+699,je vais de Versailles à Paris Montparnasse,VALID
+700,dep Marne-la-Vallée → dest Paris Est,VALID
+701,Je pars de Dijon arrivée Nancy,VALID
+702,Je cherche un train pour Montélimar depuis Valence,VALID
+703,aller à Perpignan depuis Montpellier St Roch,VALID
+704,J'aimerais partir de ST ÉTIENNE pour aller à Lyon,VALID
+705,Train Strasbourg Paris ce soir,VALID
+706,DE MARSEILLE À PARIS,VALID
+707,je veux aller de Saint-Malo à Rennes,VALID
+708,aller de Bordeaux à Paris avec mes deux chiens,VALID
+709,Je voudrais rejoindre Tarbes depuis Pau,VALID
+710,paris → marne la vallée chessy,VALID
+711,Direction Lille départ Amiens,VALID
+712,Je pars de Tours pour aller au Mans,VALID
+713,Un billet Montpellier → Nîmes s'il vous plaît,VALID
+714,je souhaite aller à Bayonne depuis Biarritz,VALID
+715,depuis Reims vers Strasbourg trajet,VALID
+716,Je voudrais aller de Toulon à Marseille,VALID
+717,Départ Clermont-Ferrand arrivée Vichy,VALID
+718,Trajet Saintes → Rochefort merci,VALID
+719,je cherche un train de Limoges vers Poitiers,VALID
+720,Je pars de Besançon pour rejoindre Dijon,VALID
+721,aller Albi -> Toulouse,VALID
+722,Je veux aller à Orléans depuis Paris Bercy,VALID
+723,Depuis Nancy je voudrais aller à Metz,VALID
+724,aller à Paris en partant de Marseille St Charles,VALID
+725,De Lille à Bordeaux quel train existe,VALID
+726,itinéraire de Nice pour Marseille,VALID
+727,je veux rejoindre Angers depuis Nantes ce soir,VALID
+728,aller de Lyon Part-Dieu à Genève,VALID
+729,Direction Poitiers depuis Angoulême,VALID
+730,Je pars de Cognac pour aller à Saintes,VALID
+731,depuis Quimper je veux aller à Brest,VALID
+732,train Paris Versailles maintenant,VALID
+733,Aller Toulouse - Tarbes merci,VALID
+734,J'aimerais aller de Dunkerque à Calais,VALID
+735,Je vais de Toulon jusqu'à Cannes,VALID
+736,Je cherche un itinéraire depuis Grenoble vers Gap,VALID
+737,je voudrais aller de Montpellier à Nîmes,VALID
+738,De Metz à Luxembourg quel train,VALID
+739,Je veux aller de PARIS à LYON demain,VALID
+740,trajet depuis ROUEN vers LE HAVRE stp,VALID
+741,aller de MULHOUSE à COLMAR rapidement,VALID
+742,je pars de ANNECY pour rejoindre GENÈVE,VALID
+743,depuis ANGOULEME direction BORDEAUX,VALID
+744,je voudrais aller de NIORT à LA ROCHELLE,VALID
+745,trajet SAINT NAZAIRE NANTES svp,VALID
+746,de CHERBOURG vers CAEN quel train,VALID
+747,je veux partir de LAVAL pour aller au MANS,VALID
+748,aller à CHARTRES depuis ORLÉANS,VALID
+749,depuis TROYES je veux aller à REIMS,VALID
+750,trajet ÉVREUX vers ROUEN merci,VALID
+751,je pars de MEAUX pour rejoindre PARIS EST,VALID
+752,de COMPIÈGNE à CREIL train rapide,VALID
+753,aller de BEAUVAIS vers PARIS NORD,VALID
+754,je voudrais aller de LENS à ARRAS,VALID
+755,depuis CALAIS direction DUNKERQUE,VALID
+756,trajet BOULOGNE SUR MER vers CALAIS,VALID
+757,je veux aller de DOUAI à VALENCIENNES,VALID
+758,depuis CAMBRAI je pars vers LILLE,VALID
+759,aller de MAUBEUGE à VALENCIENNES,VALID
+760,de HAZEBROUCK vers LILLE FLANDRES,VALID
+761,je voudrais rejoindre BÉTHUNE depuis LENS,VALID
+762,trajet depuis ARMENTIÈRES vers LILLE,VALID
+763,je pars de SAINT OMER pour aller à CALAIS,VALID
+764,aller de BERCK SUR MER à BOULOGNE,VALID
+765,depuis ABBEVILLE direction AMIENS,VALID
+766,je veux aller de MONTDIDIER à COMPIÈGNE,VALID
+767,trajet depuis SOISSONS vers LAON,VALID
+768,de CHÂTEAU THIERRY à REIMS train,VALID
+769,je voudrais aller d'ÉPERNAY à CHÂLONS EN CHAMPAGNE,VALID
+770,depuis VERDUN je pars vers METZ,VALID
+771,aller de BAR LE DUC à NANCY,VALID
+772,de ÉPINAL vers NANCY quel train,VALID
+773,je veux rejoindre SAINT DIE depuis ÉPINAL,VALID
+774,trajet depuis REMIREMONT vers ÉPINAL,VALID
+775,je pars de THIONVILLE pour aller à LUXEMBOURG,VALID
+776,aller de FORBACH à SARREGUEMINES,VALID
+777,depuis SARREBOURG direction STRASBOURG,VALID
+778,je voudrais aller de SÉLESTAT à COLMAR,VALID
+779,trajet depuis OBERNAI vers STRASBOURG,VALID
+780,de SAVERNE à STRASBOURG train,VALID
+781,je veux aller de HAGUENAU à STRASBOURG,VALID
+782,depuis WISSEMBOURG direction STRASBOURG,VALID
+783,aller de BITCHE vers SARREGUEMINES,VALID
+784,je pars de PHALSBOURG pour rejoindre STRASBOURG,VALID
+785,trajet depuis MOLSHEIM vers STRASBOURG,VALID
+786,de SÉLESTAT à COLMAR rapidement,VALID
+787,je voudrais aller de GUEBWILLER à MULHOUSE,VALID
+788,depuis THANN je veux aller à MULHOUSE,VALID
+789,aller de BELFORT vers MULHOUSE,VALID
+790,de MONTBÉLIARD à BELFORT train,VALID
+791,je pars de LONS LE SAUNIER pour aller à BESANÇON,VALID
+792,trajet depuis DOLE vers DIJON,VALID
+793,je veux rejoindre AUXERRE depuis DIJON,VALID
+794,depuis SENS direction PARIS,VALID
+795,aller de JOIGNY à AUXERRE,VALID
+796,de COSNE SUR LOIRE à NEVERS,VALID
+797,je voudrais aller de DÉCIZE à NEVERS,VALID
+798,trajet depuis MOULINS vers VICHY,VALID
+799,je pars de ROANNE pour aller à SAINT ÉTIENNE,VALID
+800,depuis FIRMINY direction SAINT ÉTIENNE,VALID
+801,aller de MONTBRIZON à ROANNE,VALID
+802,de THIERS vers CLERMONT FERRAND,VALID
+803,je veux aller de RIOM à CLERMONT FERRAND,VALID
+804,trajet depuis ISSOIRE vers CLERMONT,VALID
+805,je voudrais rejoindre LE PUY EN VELAY depuis BRIOUDE,VALID
+806,depuis LANGOGNE je pars vers LE PUY,VALID
+807,aller de MENDE à MARVEJOLS,VALID
+808,de FLORAC vers MENDE train,VALID
+809,je veux aller d'ALÈS à NÎMES,VALID
+810,trajet depuis UZÈS vers NÎMES,VALID
+811,je pars de BEAUCAIRE pour rejoindre ARLES,VALID
+812,depuis TARASCON direction ARLES,VALID
+813,aller de SALON DE PROVENCE à AIX,VALID
+814,de PERTUIS vers AIX EN PROVENCE,VALID
+815,je voudrais aller de MANOSQUE à DIGNE,VALID
+816,trajet depuis SISTERON vers GAP,VALID
+817,je veux rejoindre EMBRUN depuis GAP,VALID
+818,depuis BRIANÇON direction GAP,VALID
+819,aller de GUILLESTRE vers GAP,VALID
+820,de SERRÉ PONÇON à GAP train,VALID
+821,je pars de BOURG SAINT MAURICE pour aller à ALBERTVILLE,VALID
+822,trajet depuis MOUTIERS vers ALBERTVILLE,VALID
+823,je veux aller d'ALBERTVILLE à CHAMBÉRY,VALID
+824,depuis AIX LES BAINS direction CHAMBÉRY,VALID
+825,aller de RUMILLY vers ANNECY,VALID
+826,de BELLEGARDE à ANNECY train,VALID
+827,je voudrais aller de SEYSSEL à BELLEGARDE,VALID
+828,trajet depuis CULOZ vers BELLEGARDE,VALID
+829,je pars d'AMBÉRIEU pour rejoindre BOURG EN BRESSE,VALID
+830,depuis MACON je veux aller à VILLEFRANCHE,VALID
+831,aller de TRÉVOUX vers VILLEFRANCHE,VALID
+832,de BELLEVILLE à VILLEFRANCHE train,VALID
+833,je veux rejoindre TARARE depuis VILLEFRANCHE,VALID
+834,trajet depuis THIZY vers ROANNE,VALID
+835,je voudrais aller de MONTBRIZON à FEURS,VALID
+836,depuis BOEN direction MONTBRIZON,VALID
+837,aller de SAINT JUST SUR LOIRE à MONTBRIZON,VALID
+838,de SAINT ÉTIENNE à FIRMINY rapidement,VALID
+839,je pars de RIVE DE GIER pour aller à SAINT ÉTIENNE,VALID
+840,trajet depuis GIVORS vers LYON,VALID
+841,je veux aller de VIENNE à LYON,VALID
+842,depuis ROUSSILLON direction VIENNE,VALID
+843,aller de TAIN L'HERMITAGE vers VALENCE,VALID
+844,de TOURNON à VALENCE train,VALID
+845,je voudrais rejoindre PRIVAS depuis VALENCE,VALID
+846,trajet depuis LE TEIL vers MONTÉLIMAR,VALID
+847,je pars de PIERRELATTE pour aller à MONTÉLIMAR,VALID
+848,depuis ORANGE je veux aller à AVIGNON,VALID
+849,aller de CARPENTRAS vers AVIGNON,VALID
+850,de CAVAILLON à AVIGNON train,VALID
+851,je veux aller d'APT vers AVIGNON,VALID
+852,trajet depuis PERNES vers AVIGNON,VALID
+853,je voudrais aller de L'ISLE SUR SORGUE à AVIGNON,VALID
+854,depuis BOLLÈNE direction ORANGE,VALID
+855,aller de PONT SAINT ESPRIT vers ORANGE,VALID
+856,de BAGNOLS SUR CÈZE à ALÈS,VALID
+857,je pars de SUMÈNE pour rejoindre ALÈS,VALID
+858,trajet depuis ANDUZE vers ALÈS,VALID
+859,je veux aller de QUISSAC à NÎMES,VALID
+860,depuis SOMMIÈRES direction NÎMES,VALID
+861,aller de VAUVERT vers NÎMES,VALID
+862,de AIGUES MORTES à NÎMES train,VALID
+863,je voudrais rejoindre MONTPELLIER depuis NÎMES,VALID
+864,trajet depuis LUNEL vers MONTPELLIER,VALID
+865,je pars de FRONTIGNAN pour aller à SÈTE,VALID
+866,depuis MÈZE direction SÈTE,VALID
+867,aller de PÉZENAS vers BÉZIERS,VALID
+868,de VALRAS PLAGE à BÉZIERS train,VALID
+869,je veux aller de SERVIAN vers BÉZIERS,VALID
+870,trajet depuis CAPESTANG vers BÉZIERS,VALID
+871,je voudrais aller de NARBONNE à BÉZIERS,VALID
+872,depuis LÉZIGNAN CORBIÈRES direction NARBONNE,VALID
+873,aller de CARCASSONNE vers NARBONNE,VALID
+874,de LIMOUX à CARCASSONNE train,VALID
+875,je pars de QUILLAN pour rejoindre LIMOUX,VALID
+876,trajet depuis COUIZA vers QUILLAN,VALID
+877,je veux aller d'ESPÉRAZA à QUILLAN,VALID
+878,depuis AXAT direction QUILLAN,VALID
+879,aller de BELCAIRE vers QUILLAN,VALID
+880,de MIREPOIX à PAMIERS train,VALID
+881,je voudrais rejoindre FOIX depuis PAMIERS,VALID
+882,trajet depuis VARILHES vers FOIX,VALID
+883,je pars de TARASCON SUR ARIÈGE pour aller à FOIX,VALID
+884,depuis LUZENAC direction AX LES THERMES,VALID
+885,aller de MÉRENS vers AX LES THERMES,VALID
+886,de L'HÔPITAL vers AX train,VALID
+887,je veux aller de SAINT GIRONS à FOIX,VALID
+888,trajet depuis MASSAT vers SAINT GIRONS,VALID
+889,je voudrais aller de SEIX vers SAINT GIRONS,VALID
+890,depuis OUST direction SAINT GIRONS,VALID
+891,aller de LA BASTIDE DE SÉROU vers FOIX,VALID
+892,de SAINT LIZIER à SAINT GIRONS train,VALID
+893,je pars de MAZÈRES pour rejoindre PAMIERS,VALID
+894,trajet depuis SAVERDUN vers PAMIERS,VALID
+895,je veux aller de CALMONT vers PAMIERS,VALID
+896,depuis LE FOSSAT direction PAMIERS,VALID
+897,aller de VARILHES vers PAMIERS,VALID
+898,de MONTAUT vers PAMIERS train,VALID
+899,je voudrais rejoindre TOULOUSE depuis PAMIERS,VALID
+900,trajet depuis AUTERIVE vers TOULOUSE,VALID
+901,je pars de CINTÉGABELLE pour aller à TOULOUSE,VALID
+902,depuis MURET direction TOULOUSE,VALID
+903,aller de PORTET SUR GARONNE vers TOULOUSE,VALID
+904,de MURET à TOULOUSE train,VALID
+905,je veux aller de CARBONNE vers MURET,VALID
+906,trajet depuis CAZÈRES vers MURET,VALID
+907,je voudrais aller de MARTRES vers CAZÈRES,VALID
+908,depuis SAINT MARTORY direction CAZÈRES,VALID
+909,aller de SALIES DU SALAT vers SAINT MARTORY,VALID
+910,de BOUSSENS à SAINT MARTORY train,VALID
+911,je pars de SAINT GAUDENS pour rejoindre MONTREJEAU,VALID
+912,trajet depuis LUCHON vers MONTREJEAU,VALID
+913,je veux aller de BAGNÈRES DE LUCHON à MONTREJEAU,VALID
+914,depuis SALÉCHAN direction LUCHON,VALID
+915,aller de CIERP GAUD vers SALÉCHAN,VALID
+916,de MARIGNAC vers LUCHON train,VALID
+917,je voudrais rejoindre TARBES depuis LUCHON,VALID
+918,trajet depuis LANNEMEZAN vers TARBES,VALID
+919,je pars de CAPVERN pour aller à LANNEMEZAN,VALID
+920,depuis BAGNÈRES DE BIGORRE direction TARBES,VALID
+921,aller de LOURDES vers TARBES,VALID
+922,de PIERREFITTE NESTALAS à LOURDES train,VALID
+923,je veux aller d'ARGELÈS GAZOST vers LOURDES,VALID
+924,trajet depuis LUZ SAINT SAUVEUR vers LOURDES,VALID
+925,je voudrais aller de BARÈGES vers LUZ,VALID
+926,depuis GAVARNIE direction LUZ,VALID
+927,aller de GÈDRE vers LUZ,VALID
+928,de CAUTERETS à PIERREFITTE train,VALID
+929,je pars d'ARGELÈS vers PIERREFITTE,VALID
+930,trajet depuis OLORON SAINTE MARIE vers PAU,VALID
+931,je veux rejoindre PAU depuis OLORON,VALID
+932,depuis BÉDOUS direction OLORON,VALID
+933,aller d'ACCOUS vers BÉDOUS,VALID
+934,de CETTE EYGUN à ACCOUS train,VALID
+935,je voudrais aller de LARUNS vers OLORON,VALID
+936,trajet depuis EAUX BONNES vers LARUNS,VALID
+937,je pars d'EAUX CHAUDES pour aller à LARUNS,VALID
+938,depuis ARUDY direction OLORON,VALID
+939,aller de BUZY vers PAU,VALID
+940,de GAN vers PAU train,VALID
+941,je veux aller de LONS vers PAU,VALID
+942,trajet depuis ARTIX vers PAU,VALID
+943,je voudrais aller d'ORTHEZ vers PAU,VALID
+944,depuis SALIES DE BÉARN direction ORTHEZ,VALID
+945,aller de PUYOO vers ORTHEZ,VALID
+946,de SAUVETERRE DE BÉARN à ORTHEZ train,VALID
+947,je pars de NAVARRENX pour rejoindre ORTHEZ,VALID
+948,trajet depuis MAULÉON vers ORTHEZ,VALID
+949,je veux aller de TARDETS vers MAULÉON,VALID
+950,depuis OSSÈS direction MAULÉON,VALID
+951,aller de SAINT JEAN PIED DE PORT vers OSSÈS,VALID
+952,de SAINT PALAIS à MAULÉON train,VALID
+953,je voudrais rejoindre BAYONNE depuis MAULÉON,VALID
+954,trajet depuis HASPARREN vers BAYONNE,VALID
+955,je pars de CAMBO LES BAINS pour aller à BAYONNE,VALID
+956,depuis ESPELETTE direction CAMBO,VALID
+957,aller d'ITXASSOU vers ESPELETTE,VALID
+958,de SOURAÏDE à ESPELETTE train,VALID
+959,je veux aller d'AINHOA vers ESPELETTE,VALID
+960,trajet depuis SARE vers AINHOA,VALID
+961,je voudrais aller d'URRUGNE vers SAINT JEAN DE LUZ,VALID
+962,depuis CIBOURE direction SAINT JEAN DE LUZ,VALID
+963,aller de HENDAYE vers IRUN,VALID
+964,de BIRIATOU à HENDAYE train,VALID
+965,je pars de BIDART pour rejoindre BIARRITZ,VALID
+966,trajet depuis ANGLET vers BIARRITZ,VALID
+967,je veux aller de BAYONNE vers BIARRITZ,VALID
+968,depuis BAYONNE je pars vers DAX,VALID
+969,aller de LABENNE vers DAX,VALID
+970,de CAPBRETON à DAX train,VALID
+971,je voudrais rejoindre MONT DE MARSAN depuis DAX,VALID
+972,trajet depuis YGOS vers MONT DE MARSAN,VALID
+973,je pars de MORCENX pour aller à MONT DE MARSAN,VALID
+974,depuis TARTAS direction MONT DE MARSAN,VALID
+975,aller de ROQUEFORT vers MONT DE MARSAN,VALID
+976,de VILLENEUVE DE MARSAN à MONT DE MARSAN train,VALID
+977,je veux aller d'HAGETMAU vers MONT DE MARSAN,VALID
+978,trajet depuis AMOU vers DAX,VALID
+979,je voudrais aller de PEYREHORADE vers DAX,VALID
+980,depuis ORTHEVIELLE direction PEYREHORADE,VALID
+981,aller de PORT DE LANES vers PEYREHORADE,VALID
+982,de SORDE L'ABBAYE à PEYREHORADE train,VALID
+983,je pars de SALIES DE SALAT pour rejoindre TOULOUSE,VALID
+984,trajet depuis BOUSSENS vers TOULOUSE,VALID
+985,je veux aller de CARBONNE vers TOULOUSE,VALID
+986,depuis MURET je pars vers TOULOUSE,VALID
+987,aller de PORTET vers TOULOUSE,VALID
+988,de CINTÉGABELLE à TOULOUSE train,VALID
+989,je voudrais rejoindre CASTRES depuis TOULOUSE,VALID
+990,trajet depuis MAZAMET vers CASTRES,VALID
+991,je pars de LABRUGUIÈRE pour aller à MAZAMET,VALID
+992,depuis RÉVEL direction MAZAMET,VALID
+993,aller de SORÈZE vers RÉVEL,VALID
+994,de DURFORT vers SORÈZE train,VALID
+995,je veux aller de SAISSAC vers MAZAMET,VALID
+996,trajet depuis LESSURE vers MAZAMET,VALID
+997,je voudrais aller de BRASSAC vers MAZAMET,VALID
+998,depuis ANGLÈS direction BRASSAC,VALID
+999,aller de LA SALVETAT vers ANGLÈS,VALID
+1000,de ROUAIROUX à LA SALVETAT train,VALID
+1001,je pars de LACABARÈDE pour rejoindre LA SALVETAT,VALID
+1002,trajet depuis MAZAMET vers ALBI,VALID
+1003,je veux aller de GAILLAC vers ALBI,VALID
+1004,depuis L'ISLE SUR TARN direction GAILLAC,VALID
+1005,aller de RABASTENS vers L'ISLE,VALID
+1006,de CADALEN à RABASTENS train,VALID
+1007,je voudrais rejoindre CORDES depuis ALBI,VALID
+1008,trajet depuis VAOUR vers CORDES,VALID
+1009,je pars de PENNE pour aller à VAOUR,VALID
+1010,depuis PAMPELONNE direction VAOUR,VALID
+1011,aller de TANUS vers PAMPELONNE,VALID
+1012,de LE RIEU vers TANUS train,VALID
+1013,je veux aller de NAUCELLE vers TANUS,VALID
+1014,trajet depuis RIGNAC vers NAUCELLE,VALID
+1015,je voudrais aller de BELMONT vers RIGNAC,VALID
+1016,depuis SALMIECH direction BELMONT,VALID
+1017,aller de LA SALVETAT PEYRALÈS vers SALMIECH,VALID
+1018,de LA BASTIDE SUR vers LA SALVETAT train,VALID
+1019,je pars de MONTLAUR pour rejoindre LA BASTIDE,VALID
+1020,trajet depuis VALENCE D'ALBIGEOIS vers MONTLAUR,VALID
+1021,je veux aller de PAMPELONNE vers VALENCE,VALID
+1022,depuis MONESTIÉS direction PAMPELONNE,VALID
+1023,aller de COMBEFA vers MONESTIÉS,VALID
+1024,de TRÉBAS vers COMBEFA train,VALID
+1025,je voudrais rejoindre CARMAUX depuis TRÉBAS,VALID
+1026,trajet depuis BLAYE vers CARMAUX,VALID
+1027,je pars de MIRANDOL pour aller à BLAYE,VALID
+1028,depuis PAMPELONNE direction MIRANDOL,VALID
+1029,aller de VALENCE vers MIRANDOL,VALID
+1030,de MONESTIÉS à VALENCE train,VALID
+1031,je veux aller de COMBEFA vers MONESTIÉS,VALID
+1032,trajet depuis TRÉBAS vers COMBEFA,VALID
+1033,je voudrais aller de CARMAUX vers TRÉBAS,VALID
+1034,depuis BLAYE LES MINES direction CARMAUX,VALID
+1035,aller de MIRANDOL BOURGNOUNAC vers BLAYE,VALID
+1036,de PAMPELONNE à MIRANDOL train,VALID
+1037,je pars de VALENCE D'ALBIGEOIS pour rejoindre PAMPELONNE,VALID
+1038,trajet depuis MONESTIÉS vers PAMPELONNE,VALID
+1039,je veux aller de COMBEFA vers MONESTIÉS,VALID
+1040,depuis TRÉBAS direction COMBEFA,VALID
+1041,aller de CARMAUX vers TRÉBAS,VALID
+1042,de BLAYE LES MINES à CARMAUX train,VALID
+1043,je voudrais rejoindre ALBI depuis CARMAUX,VALID
+1044,trajet depuis GAILLAC vers ALBI,VALID
+1045,je pars de L'ISLE SUR TARN pour aller à GAILLAC,VALID
+1046,depuis RABASTENS direction L'ISLE,VALID
+1047,aller de CADALEN vers RABASTENS,VALID
+1048,de TANUS à CADALEN train,VALID
+1049,je veux aller de NAUCELLE vers TANUS,VALID
+1050,trajet depuis RIGNAC vers NAUCELLE,VALID
+1051,je voudrais aller de BELMONT vers RIGNAC,VALID
+1052,depuis SALMIECH direction BELMONT,VALID
+1053,aller de LA SALVETAT PEYRALÈS vers SALMIECH,VALID
+1054,de LA BASTIDE SUR vers LA SALVETAT train,VALID
+1055,je pars de MONTLAUR pour rejoindre LA BASTIDE,VALID
+1056,trajet depuis VALENCE D'ALBIGEOIS vers MONTLAUR,VALID
+1057,je veux aller de PAMPELONNE vers VALENCE,VALID
+1058,depuis MONESTIÉS direction PAMPELONNE,VALID
+1059,aller de COMBEFA vers MONESTIÉS,VALID
+1060,de TRÉBAS vers COMBEFA train,VALID
+1061,je voudrais rejoindre CARMAUX depuis TRÉBAS,VALID
+1062,trajet depuis BLAYE LES MINES vers CARMAUX,VALID
+1063,je pars de MIRANDOL BOURGNOUNAC pour aller à BLAYE,VALID
+1064,depuis PAMPELONNE direction MIRANDOL,VALID
+1065,aller de VALENCE D'ALBIGEOIS vers PAMPELONNE,VALID
+1066,de MONESTIÉS à VALENCE train,VALID
+1067,je veux aller de COMBEFA vers MONESTIÉS,VALID
+1068,trajet depuis TRÉBAS vers COMBEFA,VALID
+1069,je voudrais aller de CARMAUX vers TRÉBAS,VALID
+1070,depuis BLAYE LES MINES direction CARMAUX,VALID
+1071,aller de MIRANDOL BOURGNOUNAC vers BLAYE,VALID
+1072,de PAMPELONNE à MIRANDOL train,VALID
+1073,je pars de VALENCE D'ALBIGEOIS pour rejoindre PAMPELONNE,VALID
+1074,trajet depuis MONESTIÉS vers PAMPELONNE,VALID
+1075,je veux aller de COMBEFA vers MONESTIÉS,VALID
+1076,depuis TRÉBAS direction COMBEFA,VALID
+1077,aller de CARMAUX vers TRÉBAS,VALID
+1078,de BLAYE LES MINES à CARMAUX train,VALID
+1079,je voudrais rejoindre ALBI depuis CARMAUX,VALID
+1080,trajet depuis GAILLAC vers ALBI,VALID
+1081,je pars de L'ISLE SUR TARN pour aller à GAILLAC,VALID
+1082,depuis RABASTENS direction L'ISLE,VALID
+1083,aller de CADALEN vers RABASTENS,VALID
+1084,de TANUS à CADALEN train,VALID
+1085,je veux aller de NAUCELLE vers TANUS,VALID
+1086,trajet depuis RIGNAC vers NAUCELLE,VALID
+1087,je voudrais aller de BELMONT vers RIGNAC,VALID
+1088,depuis SALMIECH direction BELMONT,VALID
+1089,aller de LA SALVETAT PEYRALÈS vers SALMIECH,VALID
+1090,de LA BASTIDE SUR vers LA SALVETAT train,VALID
+1091,je pars de MONTLAUR pour rejoindre LA BASTIDE,VALID
+1092,trajet depuis VALENCE D'ALBIGEOIS vers MONTLAUR,VALID
+1093,je veux aller de PAMPELONNE vers VALENCE,VALID
+1094,depuis MONESTIÉS direction PAMPELONNE,VALID
+1095,aller de COMBEFA vers MONESTIÉS,VALID
+1096,de TRÉBAS vers COMBEFA train,VALID
+1097,je voudrais rejoindre CARMAUX depuis TRÉBAS,VALID
+1098,trajet depuis BLAYE LES MINES vers CARMAUX,VALID
+1099,je pars de MIRANDOL BOURGNOUNAC pour aller à BLAYE,VALID
+1100,depuis PAMPELONNE direction MIRANDOL,VALID
+1101,aller de VALENCE D'ALBIGEOIS vers PAMPELONNE,VALID
+1102,de MONESTIÉS à VALENCE train,VALID
+1103,je veux aller de COMBEFA vers MONESTIÉS,VALID
+1104,trajet depuis TRÉBAS vers COMBEFA,VALID
+1105,je voudrais aller de CARMAUX vers TRÉBAS,VALID
+1106,depuis BLAYE LES MINES direction CARMAUX,VALID
+1107,aller de MIRANDOL BOURGNOUNAC vers BLAYE,VALID
+1108,de PAMPELONNE à MIRANDOL train,VALID
+1109,je pars de VALENCE D'ALBIGEOIS pour rejoindre PAMPELONNE,VALID
+1110,trajet depuis MONESTIÉS vers PAMPELONNE,VALID
+1111,je veux aller de COMBEFA vers MONESTIÉS,VALID
+1112,depuis TRÉBAS direction COMBEFA,VALID
+1113,aller de CARMAUX vers TRÉBAS,VALID
+1114,de BLAYE LES MINES à CARMAUX train,VALID
+1115,je voudrais rejoindre ALBI depuis CARMAUX,VALID
+1116,trajet depuis GAILLAC vers ALBI,VALID
+1117,je pars de L'ISLE SUR TARN pour aller à GAILLAC,VALID
+1118,depuis RABASTENS direction L'ISLE,VALID
+1119,aller de CADALEN vers RABASTENS,VALID
+1120,de TANUS à CADALEN train,VALID
+1121,je veux aller de NAUCELLE vers TANUS,VALID
+1122,trajet depuis RIGNAC vers NAUCELLE,VALID
+1123,je voudrais aller de BELMONT vers RIGNAC,VALID
+1124,depuis SALMIECH direction BELMONT,VALID
+1125,aller de LA SALVETAT PEYRALÈS vers SALMIECH,VALID
+1126,de LA BASTIDE SUR vers LA SALVETAT train,VALID
+1127,je pars de MONTLAUR pour rejoindre LA BASTIDE,VALID
+1128,trajet depuis VALENCE D'ALBIGEOIS vers MONTLAUR,VALID
+1129,je veux aller de PAMPELONNE vers VALENCE,VALID
+1130,depuis MONESTIÉS direction PAMPELONNE,VALID
+1131,aller de COMBEFA vers MONESTIÉS,VALID
+1132,de TRÉBAS vers COMBEFA train,VALID
+1133,je voudrais rejoindre CARMAUX depuis TRÉBAS,VALID
+1134,trajet depuis BLAYE LES MINES vers CARMAUX,VALID
+1135,je pars de MIRANDOL BOURGNOUNAC pour aller à BLAYE,VALID
+1136,depuis PAMPELONNE direction MIRANDOL,VALID
+1137,aller de VALENCE D'ALBIGEOIS vers PAMPELONNE,VALID
+1138,de MONESTIÉS à VALENCE train,VALID
+1139,je veux aller de COMBEFA vers MONESTIÉS,VALID
+1140,trajet depuis TRÉBAS vers COMBEFA,VALID
+1141,je voudrais aller de CARMAUX vers TRÉBAS,VALID
+1142,depuis BLAYE LES MINES direction CARMAUX,VALID
+1143,aller de MIRANDOL BOURGNOUNAC vers BLAYE,VALID
+1144,de PAMPELONNE à MIRANDOL train,VALID
+1145,je pars de VALENCE D'ALBIGEOIS pour rejoindre PAMPELONNE,VALID
+1146,trajet depuis MONESTIÉS vers PAMPELONNE,VALID
+1147,je veux aller de COMBEFA vers MONESTIÉS,VALID
+1148,depuis TRÉBAS direction COMBEFA,VALID
+1149,aller de CARMAUX vers TRÉBAS,VALID
+1150,de BLAYE LES MINES à CARMAUX train,VALID
+1151,je voudrais rejoindre ALBI depuis CARMAUX,VALID
+1152,trajet depuis GAILLAC vers ALBI,VALID
+1153,je pars de L'ISLE SUR TARN pour aller à GAILLAC,VALID
+1154,depuis RABASTENS direction L'ISLE,VALID
+1155,aller de CADALEN vers RABASTENS,VALID
+1156,de TANUS à CADALEN train,VALID
+1157,je veux aller de NAUCELLE vers TANUS,VALID
+1158,trajet depuis RIGNAC vers NAUCELLE,VALID
+1159,je voudrais aller de BELMONT vers RIGNAC,VALID
+1160,depuis SALMIECH direction BELMONT,VALID
+1161,aller de LA SALVETAT PEYRALÈS vers SALMIECH,VALID
+1162,de LA BASTIDE SUR vers LA SALVETAT train,VALID
+1163,je pars de MONTLAUR pour rejoindre LA BASTIDE,VALID
+1164,trajet depuis VALENCE D'ALBIGEOIS vers MONTLAUR,VALID
+1165,je veux aller de PAMPELONNE vers VALENCE,VALID
+1166,depuis MONESTIÉS direction PAMPELONNE,VALID
+1167,aller de COMBEFA vers MONESTIÉS,VALID
+1168,de TRÉBAS vers COMBEFA train,VALID
+1169,je voudrais rejoindre CARMAUX depuis TRÉBAS,VALID
+1170,trajet depuis BLAYE LES MINES vers CARMAUX,VALID
+1171,je pars de MIRANDOL BOURGNOUNAC pour aller à BLAYE,VALID
+1172,depuis PAMPELONNE direction MIRANDOL,VALID
+1173,aller de VALENCE D'ALBIGEOIS vers PAMPELONNE,VALID
+1174,de MONESTIÉS à VALENCE train,VALID
+1175,je veux aller de COMBEFA vers MONESTIÉS,VALID
+1176,trajet depuis TRÉBAS vers COMBEFA,VALID
+1177,je voudrais aller de CARMAUX vers TRÉBAS,VALID
+1178,depuis BLAYE LES MINES direction CARMAUX,VALID
+1179,aller de MIRANDOL BOURGNOUNAC vers BLAYE,VALID
+1180,de PAMPELONNE à MIRANDOL train,VALID
+1181,je pars de VALENCE D'ALBIGEOIS pour rejoindre PAMPELONNE,VALID
+1182,trajet depuis MONESTIÉS vers PAMPELONNE,VALID
+1183,je veux aller de COMBEFA vers MONESTIÉS,VALID
+1184,depuis TRÉBAS direction COMBEFA,VALID
+1185,aller de CARMAUX vers TRÉBAS,VALID
+1186,de BLAYE LES MINES à CARMAUX train,VALID
+1187,je voudrais rejoindre ALBI depuis CARMAUX,VALID
+1188,trajet depuis GAILLAC vers ALBI,VALID
+1189,je pars de L'ISLE SUR TARN pour aller à GAILLAC,VALID
+1190,depuis RABASTENS direction L'ISLE,VALID
+1191,aller de CADALEN vers RABASTENS,VALID
+1192,de TANUS à CADALEN train,VALID
+1193,je veux aller de NAUCELLE vers TANUS,VALID
+1194,trajet depuis RIGNAC vers NAUCELLE,VALID
+1195,je voudrais aller de BELMONT vers RIGNAC,VALID
+1196,depuis SALMIECH direction BELMONT,VALID
+1197,aller de LA SALVETAT PEYRALÈS vers SALMIECH,VALID
+1198,de LA BASTIDE SUR vers LA SALVETAT train,VALID
+1199,je pars de MONTLAUR pour rejoindre LA BASTIDE,VALID
+1200,trajet depuis VALENCE D'ALBIGEOIS vers MONTLAUR,VALID
+1201,je veux aller de PAMPELONNE vers VALENCE,VALID
+1202,depuis MONESTIÉS direction PAMPELONNE,VALID
+1203,aller de COMBEFA vers MONESTIÉS,VALID
+1204,de TRÉBAS vers COMBEFA train,VALID
+1205,je voudrais rejoindre CARMAUX depuis TRÉBAS,VALID
+1206,trajet depuis BLAYE LES MINES vers CARMAUX,VALID
+1207,je pars de MIRANDOL BOURGNOUNAC pour aller à BLAYE,VALID
+1208,depuis PAMPELONNE direction MIRANDOL,VALID
+1209,aller de VALENCE D'ALBIGEOIS vers PAMPELONNE,VALID
+1210,de MONESTIÉS à VALENCE train,VALID
+1211,je veux aller de COMBEFA vers MONESTIÉS,VALID
+1212,trajet depuis TRÉBAS vers COMBEFA,VALID
+1213,je voudrais aller de CARMAUX vers TRÉBAS,VALID
+1214,depuis BLAYE LES MINES direction CARMAUX,VALID
+1215,aller de MIRANDOL BOURGNOUNAC vers BLAYE,VALID
+1216,de PAMPELONNE à MIRANDOL train,VALID
+1217,je pars de VALENCE D'ALBIGEOIS pour rejoindre PAMPELONNE,VALID
+1218,trajet depuis MONESTIÉS vers PAMPELONNE,VALID
+1219,je veux aller de COMBEFA vers MONESTIÉS,VALID
+1220,depuis TRÉBAS direction COMBEFA,VALID
+1221,aller de CARMAUX vers TRÉBAS,VALID
+1222,de BLAYE LES MINES à CARMAUX train,VALID
+1223,je voudrais rejoindre ALBI depuis CARMAUX,VALID
+1224,trajet depuis GAILLAC vers ALBI,VALID
+1225,je pars de L'ISLE SUR TARN pour aller à GAILLAC,VALID
+1226,depuis RABASTENS direction L'ISLE,VALID
+1227,aller de CADALEN vers RABASTENS,VALID
+1228,de TANUS à CADALEN train,VALID
+1229,je veux aller de NAUCELLE vers TANUS,VALID
+1230,trajet depuis RIGNAC vers NAUCELLE,VALID
+1231,je voudrais aller de BELMONT vers RIGNAC,VALID
+1232,depuis SALMIECH direction BELMONT,VALID
+1233,aller de LA SALVETAT PEYRALÈS vers SALMIECH,VALID
+1234,de LA BASTIDE SUR vers LA SALVETAT train,VALID
+1235,je pars de MONTLAUR pour rejoindre LA BASTIDE,VALID
+1236,trajet depuis VALENCE D'ALBIGEOIS vers MONTLAUR,VALID
+1237,je veux aller de PAMPELONNE vers VALENCE,VALID
+1238,depuis MONESTIÉS direction PAMPELONNE,VALID
+1239,aller de COMBEFA vers MONESTIÉS,VALID
+1240,de TRÉBAS vers COMBEFA train,VALID
+1241,je voudrais rejoindre CARMAUX depuis TRÉBAS,VALID
+1242,trajet depuis BLAYE LES MINES vers CARMAUX,VALID
+1243,je pars de MIRANDOL BOURGNOUNAC pour aller à BLAYE,VALID
+1244,depuis PAMPELONNE direction MIRANDOL,VALID
+1245,aller de VALENCE D'ALBIGEOIS vers PAMPELONNE,VALID
+1246,de MONESTIÉS à VALENCE train,VALID
+1247,je veux aller de COMBEFA vers MONESTIÉS,VALID
+1248,trajet depuis TRÉBAS vers COMBEFA,VALID
+1249,je voudrais aller de CARMAUX vers TRÉBAS,VALID
+1250,depuis BLAYE LES MINES direction CARMAUX,VALID
+1251,aller de MIRANDOL BOURGNOUNAC vers BLAYE,VALID
+1252,de PAMPELONNE à MIRANDOL train,VALID
+1253,je pars de VALENCE D'ALBIGEOIS pour rejoindre PAMPELONNE,VALID
+1254,trajet depuis MONESTIÉS vers PAMPELONNE,VALID
+1255,je veux aller de COMBEFA vers MONESTIÉS,VALID
+1256,depuis TRÉBAS direction COMBEFA,VALID
+1257,aller de CARMAUX vers TRÉBAS,VALID
+1258,de BLAYE LES MINES à CARMAUX train,VALID
+1259,je voudrais rejoindre ALBI depuis CARMAUX,VALID
+1260,trajet depuis GAILLAC vers ALBI,VALID
+1261,je pars de L'ISLE SUR TARN pour aller à GAILLAC,VALID
+1262,depuis RABASTENS direction L'ISLE,VALID
+1263,aller de CADALEN vers RABASTENS,VALID
+1264,de TANUS à CADALEN train,VALID
+1265,je veux aller de NAUCELLE vers TANUS,VALID
+1266,trajet depuis RIGNAC vers NAUCELLE,VALID
+1267,je voudrais aller de BELMONT vers RIGNAC,VALID
+1268,depuis SALMIECH direction BELMONT,VALID
+1269,aller de LA SALVETAT PEYRALÈS vers SALMIECH,VALID
+1270,de LA BASTIDE SUR vers LA SALVETAT train,VALID
+1271,je pars de MONTLAUR pour rejoindre LA BASTIDE,VALID
+1272,trajet depuis VALENCE D'ALBIGEOIS vers MONTLAUR,VALID
+1273,je veux aller de PAMPELONNE vers VALENCE,VALID
+1274,depuis MONESTIÉS direction PAMPELONNE,VALID
+1275,aller de COMBEFA vers MONESTIÉS,VALID
+1276,de TRÉBAS vers COMBEFA train,VALID
+1277,je voudrais rejoindre CARMAUX depuis TRÉBAS,VALID
+1278,trajet depuis BLAYE LES MINES vers CARMAUX,VALID
+1279,je pars de MIRANDOL BOURGNOUNAC pour aller à BLAYE,VALID
+1280,depuis PAMPELONNE direction MIRANDOL,VALID
+1281,aller de VALENCE D'ALBIGEOIS vers PAMPELONNE,VALID
+1282,de MONESTIÉS à VALENCE train,VALID
+1283,je veux aller de COMBEFA vers MONESTIÉS,VALID
+1284,trajet depuis TRÉBAS vers COMBEFA,VALID
+1285,je voudrais aller de CARMAUX vers TRÉBAS,VALID
+1286,depuis BLAYE LES MINES direction CARMAUX,VALID
+1287,aller de MIRANDOL BOURGNOUNAC vers BLAYE,VALID
+1288,de PAMPELONNE à MIRANDOL train,VALID
+1289,je pars de VALENCE D'ALBIGEOIS pour rejoindre PAMPELONNE,VALID
+1290,trajet depuis MONESTIÉS vers PAMPELONNE,VALID
+1291,je veux aller de COMBEFA vers MONESTIÉS,VALID
+1292,depuis TRÉBAS direction COMBEFA,VALID
+1293,aller de CARMAUX vers TRÉBAS,VALID
+1294,de BLAYE LES MINES à CARMAUX train,VALID
+1295,je voudrais rejoindre ALBI depuis CARMAUX,VALID
+1296,trajet depuis GAILLAC vers ALBI,VALID
+1297,je pars de L'ISLE SUR TARN pour aller à GAILLAC,VALID
+1298,depuis RABASTENS direction L'ISLE,VALID
+1299,aller de CADALEN vers RABASTENS,VALID
+1300,de TANUS à CADALEN train,VALID
+1301,J'adore Paris c'est une belle ville,INVALID
+1302,Bordeaux c'est loin je crois,INVALID
+1303,Albert et Paris viennent ce soir dîner,INVALID
+1304,Je suis à Lyon,INVALID
+1305,Paris Marseille c'est un bon match de foot,INVALID
+1306,Peux-tu m'expliquer l'histoire de Lille,INVALID
+1307,Je veux aller quelque part mais je sais pas où,INVALID
+1308,Train train train lalala,INVALID
+1309,J'ai perdu mon billet hier,INVALID
+1310,Est-ce que la SNCF est ouverte dimanche,INVALID
+1311,je dois appeler ma mère à Bordeaux,INVALID
+1312,Je vais acheter un vélo pour Paris,INVALID
+1313,Donne-moi une liste de gares françaises,INVALID
+1314,vers où aller,INVALID
+1315,J'ai envie de voyager un jour peut-être,INVALID
+1316,le train c'est trop cher,INVALID
+1317,BONJOUR,INVALID
+1318,je veux aller la bas,INVALID
+1319,paris florence ce sont mes amis,INVALID
+1320,quelle heure est-il à Lyon,INVALID
+1321,Je veux partir mais aucune destination précise,INVALID
+1322,As-tu des infos sur les retards SNCF,INVALID
+1333,Je lis un article sur Marseille,INVALID
+1324,Je ne veux pas prendre le train aujourd'hui,INVALID
+1325,J'aimerais cuisiner des pâtes à la carbonara,INVALID
+1326,depart ??? dest ???,INVALID
+1327,je veux aller de chez moi à l'école,INVALID
+1328,Caen… ou peut-être Rouen… je sais pas,INVALID
+1329,Quel temps fait-il à Dijon,INVALID
+1330,Je n'aime pas les TGV,INVALID
+1331,Montpellier est joli voilà,INVALID
+1332,Peux-tu trouver un itinéraire,INVALID
+1333,Mon chat s'appelle Marseille,INVALID
+1334,paris c'est mon chien,INVALID
+1335,Je pars bientôt en vacances mais je ne sais pas où,INVALID
+1336,route Marseille Paris voiture,INVALID
+1337,traiiin trajet Paris lolz,INVALID
+1338,aller de * * * * *,INVALID
+1339,mon copain Paris veut venir ce soir,INVALID
+1340,TEST DATA 123456,INVALID
+1341,J'ai entendu que Toulouse est belle mais je ne voyage pas,INVALID
+1342,Je ne vais nulle part aujourd'hui,INVALID
+1343,Peux-tu me raconter l'histoire des trains,INVALID
+1344,J'aime les gares anciennes,INVALID
+1345,Paris sera toujours Paris,INVALID
+1346,Ma destination préférée c'est la mer,INVALID
+1347,Pourquoi les trains sont rouges,INVALID
+1348,Je voudrais juste dormir,INVALID
+1349,Quel est le meilleur sandwich à Lyon,INVALID
+1350,Je mange un croissant à Marseille,INVALID
+1351,Est-ce que Dijon fait du bon pain d'épices,INVALID
+1352,Je veux juste marcher un peu dehors,INVALID
+1353,Ceci n'est pas une phrase de trajet,INVALID
+1354,J'aime le mot Bordeaux,INVALID
+1355,Regarde cette vidéo sur Nantes,INVALID
+1356,Mon chien a mangé mon ticket,INVALID
+1357,Je suis perdu mais je ne sais pas où,INVALID
+1358,Peux-tu me rappeler de boire de l'eau,INVALID
+1359,Je veux aller très loin un jour mais pas maintenant,INVALID
+1360,Nice est jolie en été,INVALID
+1361,Je vais peut-être éventuellement songer à partir,INVALID
+1362,Les trains font trop de bruit,INVALID
+1363,Je suis fatigué,INVALID
+1364,Est-ce que Rouen est une bonne ville pour étudier,INVALID
+1365,Lille ça s'écrit comment déjà,INVALID
+1366,Je dois acheter un cadeau,INVALID
+1367,Le ciel est bleu à Marseille,INVALID
+1368,Je prends ma voiture aujourd'hui,INVALID
+1369,Je n'ai pas envie de sortir,INVALID
+1370,Qu'est-ce qu'un TGV exactement,INVALID
+1371,Paris est-elle une capitale,INVALID
+1372,Je fais la cuisine,INVALID
+1373,Je vais au sport,INVALID
+1374,C'est quoi la définition d'un train,INVALID
+1375,Je suis déjà arrivé,INVALID
+1376,Un jour j'irai peut-être à Rennes,INVALID
+1377,Je n'ai pas de destination,INVALID
+1378,Je dois marcher jusqu'au supermarché,INVALID
+1379,Je vais juste dehors pour prendre l'air,INVALID
+1380,Peux-tu écrire un poème sur Lyon,INVALID
+1381,Je veux parler de Marseille mais pas y aller,INVALID
+1382,Ce texte est un test,INVALID
+1383,Je suis dans mon salon,INVALID
+1384,J'ai du travail à faire,INVALID
+1385,Peux-tu traduire ce mot,INVALID
+1386,Je veux aller bien dans ma vie,INVALID
+1387,Il fait froid,INVALID
+1388,Je regarde Netflix,INVALID
+1389,Le train c'est cool mais bref,INVALID
+1390,Peux-tu me donner un synonyme de Paris,INVALID
+1391,Je n'ai pas décidé si je voyage,INVALID
+1392,Faut-il un billet pour voyager en avion,INVALID
+1393,J'aime écouter de la musique,INVALID
+1394,Je suis juste curieux,INVALID
+1395,Je dois ranger ma chambre,INVALID
+1396,J'attends un message,INVALID
+1397,Ceci est une phrase totalement hors sujet,INVALID
+1398,Je veux aller de Paris à Lyon demain matin,VALID
+1399,comment me rendre à Bordeaux depuis Tours,VALID
+1400,Trajet Paris → Lille s'il vous plaît,VALID
+1401,J'aimerais aller de Marseille jusqu'à Nice,VALID
+1402,Je pars de Nantes pour rejoindre Paris,VALID
+1403,de Toulouse vers Montpellier quels trains sont disponibles,VALID
+1404,Je souhaite me rendre à Rennes en partance de Caen,VALID
+1405,Départ Lyon arrivée Marseille merci,VALID
+1406,Peux-tu me trouver un train pour Dijon depuis Paris,VALID
+1407,Je dois aller à Metz en partant de Strasbourg,VALID
+1408,depart Marseille dest Lyon,VALID
+1409,Aller simple de Brest à Quimper,VALID
+1410,J'aimerais un itinéraire Bordeaux Poitiers,VALID
+1411,je pars de Lille pour aller à Roubaix,VALID
+1412,Montre moi un train entre Nîmes et Avignon,VALID
+1413,Je voudrais aller de Troyes à Paris en passant par Nogent,VALID
+1414,depuis Paris direction Orléans,VALID
+1415,Je veux aller à Limoges depuis Toulouse,VALID
+1416,De Pau à Toulouse je veux un train rapide,VALID
+1417,train Clermont-Ferrand vers Paris,VALID
+1418,Arrivée Strasbourg départ Nancy,VALID
+1419,Je pars de Dijon pour aller à Besançon,VALID
+1420,Itinéraire : Marseille -> Toulon,VALID
+1421,Je dois aller à Reims depuis Paris pour un rendez-vous,VALID
+1422,Trajet départ Tours destination Saumur,VALID
+1423,J'aimerai rejoindre Arras depuis Amiens,VALID
+1424,Peux-tu me calculer un trajet Caen Paris,VALID
+1425,aller de Grenoble direction Chambéry,VALID
+1426,Je veux quitter Lens pour aller à Lille,VALID
+1427,donne moi un trajet depuis Paris jusqu'à Limoges,VALID
+1428,je vais de Versailles à Paris Montparnasse,VALID
+1429,dep Marne-la-Vallée → dest Paris Est,VALID
+1430,Je pars de Dijon arrivée Nancy,VALID
+1431,Je cherche un train pour Montélimar depuis Valence,VALID
+1432,aller à Perpignan depuis Montpellier St Roch,VALID
+1433,J'aimerais partir de ST ÉTIENNE pour aller à Lyon,VALID
+1434,Train Strasbourg Paris ce soir,VALID
+1435,DE MARSEILLE À PARIS,VALID
+1436,je veux aller de Saint-Malo à Rennes,VALID
+1437,aller de Bordeaux à Paris avec mes deux chiens,VALID
+1438,Je voudrais rejoindre Tarbes depuis Pau,VALID
+1439,paris → marne la vallée chessy,VALID
+1440,Direction Lille départ Amiens,VALID
+1441,Je pars de Tours pour aller au Mans,VALID
+1442,Un billet Montpellier → Nîmes s'il vous plaît,VALID
+1443,je souhaite aller à Bayonne depuis Biarritz,VALID
+1444,depuis Reims vers Strasbourg trajet,VALID
+1445,Je voudrais aller de Toulon à Marseille,VALID
+1446,Départ Clermont-Ferrand arrivée Vichy,VALID
+1447,Trajet Saintes → Rochefort merci,VALID
+1448,je cherche un train de Limoges vers Poitiers,VALID
+1449,Je pars de Besançon pour rejoindre Dijon,VALID
+1450,aller Albi -> Toulouse,VALID
+1451,Je veux aller à Orléans depuis Paris Bercy,VALID
+1452,Depuis Nancy je voudrais aller à Metz,VALID
+1453,aller à Paris en partant de Marseille St Charles,VALID
+1454,De Lille à Bordeaux quel train existe,VALID
+1455,itinéraire de Nice pour Marseille,VALID
+1456,je veux rejoindre Angers depuis Nantes ce soir,VALID
+1457,aller de Lyon Part-Dieu à Genève,VALID
+1458,Direction Poitiers depuis Angoulême,VALID
+1459,Je pars de Cognac pour aller à Saintes,VALID
+1460,depuis Quimper je veux aller à Brest,VALID
+1461,train Paris Versailles maintenant,VALID
+1462,Aller Toulouse - Tarbes merci,VALID
+1463,J'aimerais aller de Dunkerque à Calais,VALID
+1464,Je vais de Toulon jusqu'à Cannes,VALID
+1465,Je cherche un itinéraire depuis Grenoble vers Gap,VALID
+1466,je voudrais aller de Montpellier à Nîmes,VALID
+1467,De Metz à Luxembourg quel train,VALID
+1468,Je veux aller de PARIS à LYON demain,VALID
+1469,trajet depuis ROUEN vers LE HAVRE stp,VALID
+1470,aller de MULHOUSE à COLMAR rapidement,VALID
+1471,je pars de ANNECY pour rejoindre GENÈVE,VALID
+1472,depuis ANGOULEME direction BORDEAUX,VALID
+1473,je voudrais aller de NIORT à LA ROCHELLE,VALID
+1474,trajet SAINT NAZAIRE NANTES svp,VALID
+1475,de CHERBOURG vers CAEN quel train,VALID
+1476,je veux partir de LAVAL pour aller au MANS,VALID
+1477,aller à CHARTRES depuis ORLÉANS,VALID
+1478,depuis TROYES je veux aller à REIMS,VALID
+1479,trajet ÉVREUX vers ROUEN merci,VALID
+1480,je pars de MEAUX pour rejoindre PARIS EST,VALID
+1481,de COMPIÈGNE à CREIL train rapide,VALID
+1482,aller de BEAUVAIS vers PARIS NORD,VALID
+1483,je voudrais aller de LENS à ARRAS,VALID
+1484,depuis CALAIS direction DUNKERQUE,VALID
+1485,trajet BOULOGNE SUR MER vers CALAIS,VALID
+1486,je veux aller de DOUAI à VALENCIENNES,VALID
+1487,depuis CAMBRAI je pars vers LILLE,VALID
+1488,aller de MAUBEUGE à VALENCIENNES,VALID
+1489,de HAZEBROUCK vers LILLE FLANDRES,VALID
+1490,je voudrais rejoindre BÉTHUNE depuis LENS,VALID
+1491,trajet depuis ARMENTIÈRES vers LILLE,VALID
+1492,je pars de SAINT OMER pour aller à CALAIS,VALID
+1493,aller de BERCK SUR MER à BOULOGNE,VALID
+1494,depuis ABBEVILLE direction AMIENS,VALID
+1495,je veux aller de MONTDIDIER à COMPIÈGNE,VALID
+1496,trajet depuis SOISSONS vers LAON,VALID
+1497,de CHÂTEAU THIERRY à REIMS train,VALID
+1498,je voudrais aller d'ÉPERNAY à CHÂLONS EN CHAMPAGNE,VALID
+1499,depuis VERDUN je pars vers METZ,VALID
+1500,aller de BAR LE DUC à NANCY,VALID
+1501,de ÉPINAL vers NANCY quel train,VALID
+1502,je veux rejoindre SAINT DIE depuis ÉPINAL,VALID
+1503,trajet depuis REMIREMONT vers ÉPINAL,VALID
+1504,je pars de THIONVILLE pour aller à LUXEMBOURG,VALID
+1505,aller de FORBACH à SARREGUEMINES,VALID
+1506,depuis SARREBOURG direction STRASBOURG,VALID
+1507,je voudrais aller de SÉLESTAT à COLMAR,VALID
+1508,trajet depuis OBERNAI vers STRASBOURG,VALID
+1509,de SAVERNE à STRASBOURG train,VALID
+1510,je veux aller de HAGUENAU à STRASBOURG,VALID
+1511,depuis WISSEMBOURG direction STRASBOURG,VALID
+1512,aller de BITCHE vers SARREGUEMINES,VALID
+1513,je pars de PHALSBOURG pour rejoindre STRASBOURG,VALID
+1514,trajet depuis MOLSHEIM vers STRASBOURG,VALID
+1515,de SÉLESTAT à COLMAR rapidement,VALID
+1516,je voudrais aller de GUEBWILLER à MULHOUSE,VALID
+1517,depuis THANN je veux aller à MULHOUSE,VALID
+1518,aller de BELFORT vers MULHOUSE,VALID
+1519,de MONTBÉLIARD à BELFORT train,VALID
+1520,je pars de LONS LE SAUNIER pour aller à BESANÇON,VALID
+1521,trajet depuis DOLE vers DIJON,VALID
+1522,je veux rejoindre AUXERRE depuis DIJON,VALID
+1523,depuis SENS direction PARIS,VALID
+1524,aller de JOIGNY à AUXERRE,VALID
+1525,de COSNE SUR LOIRE à NEVERS,VALID
+1526,je voudrais aller de DÉCIZE à NEVERS,VALID
+1527,trajet depuis MOULINS vers VICHY,VALID
+1528,je pars de ROANNE pour aller à SAINT ÉTIENNE,VALID
+1529,depuis FIRMINY direction SAINT ÉTIENNE,VALID
+1530,aller de MONTBRIZON à ROANNE,VALID
+1531,de THIERS vers CLERMONT FERRAND,VALID
+1532,je veux aller de RIOM à CLERMONT FERRAND,VALID
+1533,trajet depuis ISSOIRE vers CLERMONT,VALID
+1534,je voudrais rejoindre LE PUY EN VELAY depuis BRIOUDE,VALID
+1535,depuis LANGOGNE je pars vers LE PUY,VALID
+1536,aller de MENDE à MARVEJOLS,VALID
+1537,de FLORAC vers MENDE train,VALID
+1538,je veux aller d'ALÈS à NÎMES,VALID
+1539,trajet depuis UZÈS vers NÎMES,VALID
+1540,je pars de BEAUCAIRE pour rejoindre ARLES,VALID
+1541,depuis TARASCON direction ARLES,VALID
+1542,aller de SALON DE PROVENCE à AIX,VALID
+1543,de PERTUIS vers AIX EN PROVENCE,VALID
+1544,je voudrais aller de MANOSQUE à DIGNE,VALID
+1545,trajet depuis SISTERON vers GAP,VALID
+1546,je veux rejoindre EMBRUN depuis GAP,VALID
+1547,depuis BRIANÇON direction GAP,VALID
+1548,aller de GUILLESTRE vers GAP,VALID
+1549,de SERRÉ PONÇON à GAP train,VALID
+1550,je pars de BOURG SAINT MAURICE pour aller à ALBERTVILLE,VALID
+1551,trajet depuis MOUTIERS vers ALBERTVILLE,VALID
+1552,je veux aller d'ALBERTVILLE à CHAMBÉRY,VALID
+1553,depuis AIX LES BAINS direction CHAMBÉRY,VALID
+1554,aller de RUMILLY vers ANNECY,VALID
+1555,de BELLEGARDE à ANNECY train,VALID
+1556,je voudrais aller de SEYSSEL à BELLEGARDE,VALID
+1557,trajet depuis CULOZ vers BELLEGARDE,VALID
+1558,je pars d'AMBÉRIEU pour rejoindre BOURG EN BRESSE,VALID
+1559,depuis MACON je veux aller à VILLEFRANCHE,VALID
+1560,aller de TRÉVOUX vers VILLEFRANCHE,VALID
+1561,de BELLEVILLE à VILLEFRANCHE train,VALID
+1562,je veux rejoindre TARARE depuis VILLEFRANCHE,VALID
+1563,trajet depuis THIZY vers ROANNE,VALID
+1564,je voudrais aller de MONTBRIZON à FEURS,VALID
+1565,depuis BOEN direction MONTBRIZON,VALID
+1566,aller de SAINT JUST SUR LOIRE à MONTBRIZON,VALID
+1567,de SAINT ÉTIENNE à FIRMINY rapidement,VALID
+1568,je pars de RIVE DE GIER pour aller à SAINT ÉTIENNE,VALID
+1569,trajet depuis GIVORS vers LYON,VALID
+1570,je veux aller de VIENNE à LYON,VALID
+1571,depuis ROUSSILLON direction VIENNE,VALID
+1572,aller de TAIN L'HERMITAGE vers VALENCE,VALID
+1573,de TOURNON à VALENCE train,VALID
+1574,je voudrais rejoindre PRIVAS depuis VALENCE,VALID
+1575,trajet depuis LE TEIL vers MONTÉLIMAR,VALID
+1576,je pars de PIERRELATTE pour aller à MONTÉLIMAR,VALID
+1577,depuis ORANGE je veux aller à AVIGNON,VALID
+1578,aller de CARPENTRAS vers AVIGNON,VALID
+1579,de CAVAILLON à AVIGNON train,VALID
+1580,je veux aller d'APT vers AVIGNON,VALID
+1581,trajet depuis PERNES vers AVIGNON,VALID
+1582,je voudrais aller de L'ISLE SUR SORGUE à AVIGNON,VALID
+1583,depuis BOLLÈNE direction ORANGE,VALID
+1584,aller de PONT SAINT ESPRIT vers ORANGE,VALID
+1585,de BAGNOLS SUR CÈZE à ALÈS,VALID
+1586,je pars de SUMÈNE pour rejoindre ALÈS,VALID
+1587,trajet depuis ANDUZE vers ALÈS,VALID
+1588,je veux aller de QUISSAC à NÎMES,VALID
+1589,depuis SOMMIÈRES direction NÎMES,VALID
+1590,aller de VAUVERT vers NÎMES,VALID
+1591,de AIGUES MORTES à NÎMES train,VALID
+1592,je voudrais rejoindre MONTPELLIER depuis NÎMES,VALID
+1593,trajet depuis LUNEL vers MONTPELLIER,VALID
+1594,je pars de FRONTIGNAN pour aller à SÈTE,VALID
+1595,depuis MÈZE direction SÈTE,VALID
+1596,aller de PÉZENAS vers BÉZIERS,VALID
+1597,de VALRAS PLAGE à BÉZIERS train,VALID
+1598,je veux aller de SERVIAN vers BÉZIERS,VALID
+1599,trajet depuis CAPESTANG vers BÉZIERS,VALID
+1600,je voudrais aller de NARBONNE à BÉZIERS,VALID
+1601,depuis LÉZIGNAN CORBIÈRES direction NARBONNE,VALID
+1602,aller de CARCASSONNE vers NARBONNE,VALID
+1603,de LIMOUX à CARCASSONNE train,VALID
+1604,je pars de QUILLAN pour rejoindre LIMOUX,VALID
+1605,trajet depuis COUIZA vers QUILLAN,VALID
+1606,je veux aller d'ESPÉRAZA à QUILLAN,VALID
+1607,depuis AXAT direction QUILLAN,VALID
+1608,aller de BELCAIRE vers QUILLAN

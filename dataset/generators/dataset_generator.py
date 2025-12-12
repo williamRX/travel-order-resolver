@@ -48,6 +48,20 @@ TRANSPORTS: List[str] = [
     "bateau", "ferry", "velo", "scooter", "navette", "car", "taxi", "uber"
 ]
 
+# Transports valides pour le pattern spécial (train uniquement)
+VALID_TRANSPORTS: List[str] = ["train", "tgv", "ter", "tram", "metro", "rer", "transilien", "sncf"]
+
+# Transports invalides pour le pattern spécial
+INVALID_TRANSPORTS: List[str] = ["bateau", "ferry", "avion", "voiture", "covoiturage", "velo", "scooter", "car", "taxi", "uber", "bus"]
+
+# Villes fictives pour les patterns invalides
+FICTIVE_CITIES: List[str] = [
+    "Villefictive", "Nouvelleville", "Villeneuve", "Saint-Fictif", "Port-Imaginaire",
+    "Mont-Fantôme", "Rivage-Inventé", "Cité-Virtuelle", "Bourg-Fabriqué", "Hameau-Inventé",
+    "Ville-Rêvée", "Cité-Fantôme", "Port-Fictif", "Mont-Inventé", "Rivage-Imaginaire",
+    "Nouvelle-Cité", "Ville-Inventée", "Bourg-Fictif", "Hameau-Fabriqué", "Cité-Rêvée"
+]
+
 NOISE_TOKENS: List[str] = [
     "stp", "svp", "merci", "please", "plz", "mdr", "lol", "svp c urgent",
     "please asap", "ptdr", "hein", "ok", "svp vite"
@@ -200,6 +214,21 @@ def random_transport() -> str:
 
 def random_city_text(city: str) -> str:
     text = add_location_variant(city)
+    # Parfois enlever la majuscule (30% de chance)
+    if random.random() < 0.30:
+        # Enlever la majuscule du premier mot si c'est une ville simple
+        # Pour les variantes comme "la gare de Paris", on enlève la majuscule de la ville
+        if text.startswith("la gare de "):
+            text = f"la gare de {text[12:].lower()}"
+        elif text.startswith("l'aéroport de "):
+            text = f"l'aéroport de {text[15:].lower()}"
+        elif text.startswith("centre de "):
+            text = f"centre de {text[10:].lower()}"
+        elif text.startswith("port de "):
+            text = f"port de {text[8:].lower()}"
+        else:
+            # Ville simple, enlever la majuscule
+            text = text.lower()
     if random.random() < 0.55:
         text = introduce_typos(text)
     return text
@@ -248,6 +277,7 @@ def finalize_sentence(sentence: str) -> str:
 
 # --- Sentence patterns ---
 PatternFunc = Callable[[Dict[str, str]], Tuple[str, Optional[str], Optional[str]]]
+InvalidPatternFunc = Callable[[Dict[str, str]], str]
 
 # Poids par défaut pour chaque pattern (ajustables)
 # Les poids déterminent la probabilité relative d'utilisation de chaque pattern
@@ -258,15 +288,39 @@ DEFAULT_VALID_PATTERN_WEIGHTS: List[float] = [
     1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 21-30
     1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 31-40
     1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 41-50
-    1.0, 1.0,  # 51-52
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 51-60
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 61-70
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 71-80
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 81-90
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 91-100
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 101-110
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 111-120
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 121-130
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 131-140
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 141-150
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 151-160
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 161-170
+    1.0, 1.0, 1.0, 1.0,  # 171-174
 ]
 
-# Poids par défaut pour les patterns invalides (37 patterns)
+# Poids par défaut pour les patterns invalides (166 patterns)
 DEFAULT_INVALID_PATTERN_WEIGHTS: List[float] = [
     1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 1-10
     1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 11-20
     1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 21-30
-    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 31-37
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 31-40
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 41-50
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 51-60
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 61-70
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 71-80
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 81-90
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 91-100
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 101-110
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 111-120
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 121-130
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 131-140
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 141-150
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  # 151-166
 ]
 
 
@@ -392,47 +446,409 @@ def valid_patterns() -> List[PatternFunc]:
         lambda c: (f"Voyage avec vélo {c['dep_txt']} {c['arr_txt']}", c["dep"], c["arr"]),
         # 52. With pet
         lambda c: (f"Voyage avec animal {c['dep_txt']} {c['arr_txt']}", c["dep"], c["arr"]),
+        # 53. Pattern avec transport conditionnel (valid pour train, invalid pour autres)
+        lambda c: _generate_transport_conditional_pattern(c),
+        # 54. Question sur les horaires de trains
+        lambda c: (f"A quelle heure y a-t-il des trains vers {c['arr_txt']} en partance de {c['dep_txt']} ?", c["dep"], c["arr"]),
+        # 55-64. Formulations naturelles
+        lambda c: (f"Je dois aller à {c['arr_txt']} depuis {c['dep_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"J'ai besoin d'aller de {c['dep_txt']} à {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Je souhaite me rendre de {c['dep_txt']} à {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Je dois me déplacer de {c['dep_txt']} vers {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Je veux me rendre de {c['dep_txt']} à {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Je dois partir de {c['dep_txt']} pour aller à {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Je dois rejoindre {c['arr_txt']} depuis {c['dep_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Je dois me rendre à {c['arr_txt']} en partant de {c['dep_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Je dois aller de {c['dep_txt']} jusqu'à {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Je dois me déplacer entre {c['dep_txt']} et {c['arr_txt']}", c["dep"], c["arr"]),
+        # 65-74. Abrégées
+        lambda c: (f"{c['dep_txt']}→{c['arr_txt']} ?", c["dep"], c["arr"]),
+        lambda c: (f"trajet {c['dep_txt']} {c['arr_txt']} urgent", c["dep"], c["arr"]),
+        lambda c: (f"{c['dep_txt']} {c['arr_txt']} svp", c["dep"], c["arr"]),
+        lambda c: (f"train {c['dep_txt']} {c['arr_txt']} stp", c["dep"], c["arr"]),
+        lambda c: (f"{c['dep_txt']} > {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"dep {c['dep_txt']} arr {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"de {c['dep_txt']} a {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"{c['dep_txt']} -> {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"billet {c['dep_txt']} {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"itinéraire {c['dep_txt']} {c['arr_txt']}", c["dep"], c["arr"]),
+        # 75-84. Implicites
+        lambda c: (f"un train pour {c['arr_txt']} stp", None, c["arr"]),
+        lambda c: (f"train vers {c['arr_txt']} svp", None, c["arr"]),
+        lambda c: (f"billet pour {c['arr_txt']}", None, c["arr"]),
+        lambda c: (f"trajet vers {c['arr_txt']}", None, c["arr"]),
+        lambda c: (f"aller à {c['arr_txt']}", None, c["arr"]),
+        lambda c: (f"partir de {c['dep_txt']}", c["dep"], None),
+        lambda c: (f"quitter {c['dep_txt']}", c["dep"], None),
+        lambda c: (f"depuis {c['dep_txt']}", c["dep"], None),
+        lambda c: (f"direction {c['arr_txt']}", None, c["arr"]),
+        lambda c: (f"destination {c['arr_txt']}", None, c["arr"]),
+        # 85-94. Contraintes
+        lambda c: (f"Le moins cher de {c['dep_txt']} à {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Éviter les correspondances {c['dep_txt']} {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Trajet direct {c['dep_txt']} {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Le plus rapide de {c['dep_txt']} à {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Le plus court {c['dep_txt']} {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Trajet sans correspondance {c['dep_txt']} {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Le meilleur prix {c['dep_txt']} {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Option économique {c['dep_txt']} {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Trajet avec le moins d'escales {c['dep_txt']} {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Le plus confortable {c['dep_txt']} {c['arr_txt']}", c["dep"], c["arr"]),
+        # 95-104. Contexte temporel
+        lambda c: (f"demain matin de {c['dep_txt']} à {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"avant {c['time']} de {c['dep_txt']} à {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"{c['date']} matin {c['dep_txt']} {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"ce soir {c['dep_txt']} {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"cet après-midi {c['dep_txt']} {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"la semaine prochaine {c['dep_txt']} {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"dans 2 heures {c['dep_txt']} {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"après {c['time']} {c['dep_txt']} {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"vers {c['time']} {c['dep_txt']} {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"le {c['date']} {c['dep_txt']} {c['arr_txt']}", c["dep"], c["arr"]),
+        # 105-114. Polies
+        lambda c: (f"Pourriez-vous m'indiquer un trajet de {c['dep_txt']} à {c['arr_txt']} ?", c["dep"], c["arr"]),
+        lambda c: (f"Pourriez-vous me trouver un train de {c['dep_txt']} à {c['arr_txt']} ?", c["dep"], c["arr"]),
+        lambda c: (f"Auriez-vous l'amabilité de me donner un itinéraire {c['dep_txt']} {c['arr_txt']} ?", c["dep"], c["arr"]),
+        lambda c: (f"Serait-il possible d'avoir un billet {c['dep_txt']} {c['arr_txt']} ?", c["dep"], c["arr"]),
+        lambda c: (f"Je vous serais reconnaissant de me fournir un trajet {c['dep_txt']} {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Pourriez-vous m'aider à trouver un train {c['dep_txt']} {c['arr_txt']} ?", c["dep"], c["arr"]),
+        lambda c: (f"Merci de me proposer un itinéraire de {c['dep_txt']} à {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Je vous prie de bien vouloir me donner un trajet {c['dep_txt']} {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Seriez-vous en mesure de me trouver un billet {c['dep_txt']} {c['arr_txt']} ?", c["dep"], c["arr"]),
+        lambda c: (f"Je vous demande poliment un trajet de {c['dep_txt']} à {c['arr_txt']}", c["dep"], c["arr"]),
+        # 115-124. Argotiques
+        lambda c: (f"je me casse de {c['dep_txt']} pour {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"je me barre de {c['dep_txt']} vers {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"je me tire de {c['dep_txt']} à {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"je me taille de {c['dep_txt']} pour {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"je me tire de {c['dep_txt']} vers {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"je me barre de {c['dep_txt']} à {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"je me casse de {c['dep_txt']} à {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"je me tire de {c['dep_txt']} pour {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"je me taille de {c['dep_txt']} vers {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"je me barre de {c['dep_txt']} pour {c['arr_txt']}", c["dep"], c["arr"]),
+        # 125-134. Fautes courantes
+        lambda c: (f"je veu alé de {c['dep_txt']} a {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"je veu aller de {c['dep_txt']} a {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"je veu alé a {c['arr_txt']}", None, c["arr"]),
+        lambda c: (f"depui {c['dep_txt']} vers {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"depui {c['dep_txt']} a {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"je pars depui {c['dep_txt']} pour {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"trajet depui {c['dep_txt']} a {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"aller depui {c['dep_txt']} vers {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"je veu partir depui {c['dep_txt']} pour {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"billet depui {c['dep_txt']} a {c['arr_txt']}", c["dep"], c["arr"]),
+        # 135-144. Transport spécifique
+        lambda c: (f"En bus de {c['dep_txt']} à {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"En TER de {c['dep_txt']} à {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"En TGV de {c['dep_txt']} à {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"En train de {c['dep_txt']} à {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Par le {c['transport']} de {c['dep_txt']} à {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"En {c['transport']} de {c['dep_txt']} vers {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Prendre le {c['transport']} {c['dep_txt']} {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Un {c['transport']} {c['dep_txt']} {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Le {c['transport']} de {c['dep_txt']} à {c['arr_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Via {c['transport']} {c['dep_txt']} {c['arr_txt']}", c["dep"], c["arr"]),
+        # 145-154. Questions techniques
+        lambda c: (f"Y a-t-il un train direct {c['dep_txt']} {c['arr_txt']} ?", c["dep"], c["arr"]),
+        lambda c: (f"Est-ce qu'il y a des correspondances {c['dep_txt']} {c['arr_txt']} ?", c["dep"], c["arr"]),
+        lambda c: (f"Quels sont les horaires {c['dep_txt']} {c['arr_txt']} ?", c["dep"], c["arr"]),
+        lambda c: (f"Combien de temps pour aller de {c['dep_txt']} à {c['arr_txt']} ?", c["dep"], c["arr"]),
+        lambda c: (f"Quelle est la durée du trajet {c['dep_txt']} {c['arr_txt']} ?", c["dep"], c["arr"]),
+        lambda c: (f"Y a-t-il plusieurs trains par jour {c['dep_txt']} {c['arr_txt']} ?", c["dep"], c["arr"]),
+        lambda c: (f"Quel est le premier train {c['dep_txt']} {c['arr_txt']} ?", c["dep"], c["arr"]),
+        lambda c: (f"Quel est le dernier train {c['dep_txt']} {c['arr_txt']} ?", c["dep"], c["arr"]),
+        lambda c: (f"Y a-t-il des trains de nuit {c['dep_txt']} {c['arr_txt']} ?", c["dep"], c["arr"]),
+        lambda c: (f"Combien coûte un billet {c['dep_txt']} {c['arr_txt']} ?", c["dep"], c["arr"]),
+        # 155-164. Internationaux
+        lambda c: (f"Je vais en {c['country']} depuis {c['dep_txt']}", c["dep"], c["country"]),
+        lambda c: (f"Trajet vers {c['country']} en partant de {c['dep_txt']}", c["dep"], c["country"]),
+        lambda c: (f"Aller en {c['country']} depuis {c['dep_txt']}", c["dep"], c["country"]),
+        lambda c: (f"Voyage en {c['country']} depuis {c['dep_txt']}", c["dep"], c["country"]),
+        lambda c: (f"Billet pour {c['country']} depuis {c['dep_txt']}", c["dep"], c["country"]),
+        lambda c: (f"Je pars de {c['dep_txt']} pour aller en {c['country']}", c["dep"], c["country"]),
+        lambda c: (f"Trajet {c['dep_txt']} {c['country']}", c["dep"], c["country"]),
+        lambda c: (f"Comment aller en {c['country']} depuis {c['dep_txt']} ?", c["dep"], c["country"]),
+        lambda c: (f"Je veux me rendre en {c['country']} depuis {c['dep_txt']}", c["dep"], c["country"]),
+        lambda c: (f"Aller de {c['dep_txt']} vers {c['country']}", c["dep"], c["country"]),
+        # 165-174. Conversationnels
+        lambda c: (f"Salut, j'ai un rdv à {c['arr_txt']} {c['date']}, je pars de {c['dep_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Bonjour, je dois aller à {c['arr_txt']} depuis {c['dep_txt']} {c['time']}", c["dep"], c["arr"]),
+        lambda c: (f"Hey, je cherche un train {c['dep_txt']} {c['arr_txt']} {c['date']}", c["dep"], c["arr"]),
+        lambda c: (f"Coucou, j'ai besoin d'aller de {c['dep_txt']} à {c['arr_txt']} rapidement", c["dep"], c["arr"]),
+        lambda c: (f"Salut, trajet urgent {c['dep_txt']} {c['arr_txt']} {c['time']}", c["dep"], c["arr"]),
+        lambda c: (f"Bonjour, je dois me rendre à {c['arr_txt']} en partant de {c['dep_txt']} {c['date']}", c["dep"], c["arr"]),
+        lambda c: (f"Salut, j'ai un rendez-vous à {c['arr_txt']}, je suis à {c['dep_txt']}", c["dep"], c["arr"]),
+        lambda c: (f"Hey, je veux aller de {c['dep_txt']} à {c['arr_txt']} {c['date']} {c['time']}", c["dep"], c["arr"]),
+        lambda c: (f"Bonjour, je dois partir de {c['dep_txt']} pour {c['arr_txt']} {c['date']}", c["dep"], c["arr"]),
+        lambda c: (f"Salut, un billet {c['dep_txt']} {c['arr_txt']} {c['date']} stp", c["dep"], c["arr"]),
     ]
 
 
-INVALID_PATTERNS: List[Callable[[], str]] = [
-    lambda: "Je mange une pomme",
-    lambda: "mdrrr t ki",
-    lambda: "asdadadasd",
-    lambda: "peux pas afficher la page",
-    lambda: "J'ai perdu mes clés",
-    lambda: "le train c'est trop cher",
-    lambda: "je dois appeler ma mère",
-    lambda: "j'aimerais cuisiner des pâtes",
-    lambda: "Je ne vais nulle part aujourd'hui",
-    lambda: "Je voudrais juste dormir",
-    lambda: "Je regarde Netflix",
-    lambda: "Je suis fatigué",
-    lambda: "je veux aller la bas",
-    lambda: "Qu'est-ce qu'un TGV exactement",
-    lambda: f"j'hésite entre {pick_city()} et {pick_city()}",
-    lambda: f"j'aime {pick_city()}",
-    lambda: f"je suis à {pick_city()}",
-    lambda: f"{pick_city()} est jolie",
-    lambda: f"mon chat s'appelle {pick_city()}",
-    lambda: f"je dois aller peut etre {pick_city()} un jour",
-    lambda: f"{pick_city()} ou {pick_city()} ???",
-    lambda: f"Je lis un article sur {pick_city()}",
-    lambda: f"Je regarde un match à {pick_city()}",
-    lambda: f"je reste à la maison pas de voyage",
-    lambda: f"peux tu me raconter l'histoire de {pick_city()}",
-    lambda: "je dois ranger ma chambre",
-    lambda: "je n'ai pas de destination",
-    lambda: "Ceci n'est pas une phrase de trajet",
-    lambda: "aller de * * * * *",
-    lambda: "train machin truc ??",
-    lambda: f"peut etre {pick_city()} mais j'sais pas",
-    lambda: f"Je passe par {pick_city()} pour manger",
-    lambda: f"Je veux aller bien dans ma vie",
-    lambda: "Je vais peut-être éventuellement songer à partir",
-    lambda: "???",
-    lambda: "!!!",
-    lambda: "..."
+def _generate_transport_conditional_pattern(context: Dict[str, str]) -> Tuple[str, Optional[str], Optional[str]]:
+    """
+    Génère un pattern de type "[ville] et je vais à [ville] en [transport]"
+    Retourne valid si transport est train/tgv/etc, invalid sinon.
+    Note: Cette fonction est appelée depuis valid_patterns mais peut générer invalid.
+    Le système de génération doit gérer ce cas spécial.
+    """
+    dep = context["dep"]
+    arr = context["arr"]
+    dep_txt = context["dep_txt"]
+    arr_txt = context["arr_txt"]
+    
+    # Choisir un transport : 50% valid, 50% invalid
+    if random.random() < 0.5:
+        transport = random.choice(VALID_TRANSPORTS)
+    else:
+        transport = random.choice(INVALID_TRANSPORTS)
+    
+    # Variantes de phrases
+    patterns = [
+        f"{dep_txt} et je vais à {arr_txt} en {transport}",
+        f"Je suis à {dep_txt} et je vais à {arr_txt} en {transport}",
+        f"Partir de {dep_txt} et aller à {arr_txt} en {transport}",
+        f"De {dep_txt} je vais à {arr_txt} en {transport}",
+        f"Je pars de {dep_txt} et je vais à {arr_txt} en {transport}",
+    ]
+    
+    sentence = random.choice(patterns)
+    
+    # Vérifier si le transport est valide
+    is_valid_transport = transport.lower() in [t.lower() for t in VALID_TRANSPORTS]
+    
+    if is_valid_transport:
+        return (sentence, dep, arr)
+    else:
+        # Pour invalid, on retourne None pour departure/arrival
+        return (sentence, None, None)
+
+
+INVALID_PATTERNS: List[InvalidPatternFunc] = [
+    # 1. Nonsense général
+    lambda c: "Je mange une pomme",
+    # 2. SMS/informel incompréhensible
+    lambda c: "mdrrr t ki",
+    # 3. Caractères aléatoires
+    lambda c: "asdadadasd",
+    # 4. Erreur technique
+    lambda c: "peux pas afficher la page",
+    # 5. Phrase hors contexte
+    lambda c: "J'ai perdu mes clés",
+    # 6. Opinion sur le train
+    lambda c: f"le {c['transport']} c'est trop cher",
+    # 7. Action personnelle
+    lambda c: "je dois appeler ma mère",
+    # 8. Cuisine
+    lambda c: "j'aimerais cuisiner des pâtes",
+    # 9. Absence de destination
+    lambda c: "Je ne vais nulle part aujourd'hui",
+    # 10. État personnel
+    lambda c: "Je voudrais juste dormir",
+    # 11. Activité de loisir
+    lambda c: "Je regarde Netflix",
+    # 12. État de fatigue
+    lambda c: "Je suis fatigué",
+    # 13. Destination vague
+    lambda c: "je veux aller la bas",
+    # 14. Question sur le TGV
+    lambda c: "Qu'est-ce qu'un TGV exactement",
+    # 15. Hésitation entre villes
+    lambda c: f"j'hésite entre {c['dep_txt']} et {c['arr_txt']}",
+    # 16. Affection pour une ville
+    lambda c: f"j'aime {c['dep_txt']}",
+    # 17. Position actuelle
+    lambda c: f"je suis à {c['dep_txt']}",
+    # 18. Description d'une ville
+    lambda c: f"{c['dep_txt']} est jolie",
+    # 19. Nom d'animal
+    lambda c: f"mon chat s'appelle {c['dep']}",
+    # 20. Intention vague future
+    lambda c: f"je dois aller peut etre {c['arr_txt']} un jour",
+    # 21. Choix indécis
+    lambda c: f"{c['dep_txt']} ou {c['arr_txt']} ???",
+    # 22. Lecture d'article
+    lambda c: f"Je lis un article sur {c['dep_txt']}",
+    # 23. Match sportif
+    lambda c: f"Je regarde un match à {c['dep_txt']}",
+    # 24. Pas de voyage
+    lambda c: f"je reste à la maison pas de voyage",
+    # 25. Question historique
+    lambda c: f"peux tu me raconter l'histoire de {c['dep_txt']}",
+    # 26. Tâche ménagère
+    lambda c: "je dois ranger ma chambre",
+    # 27. Absence de destination
+    lambda c: "je n'ai pas de destination",
+    # 28. Phrase explicite non-trajet
+    lambda c: "Ceci n'est pas une phrase de trajet",
+    # 29. Pattern avec caractères génériques
+    lambda c: "aller de * * * * *",
+    # 30. Pattern incomplet
+    lambda c: f"train machin truc ??",
+    # 31. Intention incertaine
+    lambda c: f"peut etre {c['arr_txt']} mais j'sais pas",
+    # 32. Passage pour autre raison
+    lambda c: f"Je passe par {c['via_txt']} pour manger",
+    # 33. Expression métaphorique
+    lambda c: f"Je veux aller bien dans ma vie",
+    # 34. Intention très vague
+    lambda c: "Je vais peut-être éventuellement songer à partir",
+    # 35. Ponctuation seule
+    lambda c: "???",
+    # 36. Ponctuation seule
+    lambda c: "!!!",
+    # 37. Ponctuation seule
+    lambda c: "...",
+    # 38. Ville fictive - départ simple
+    lambda c: f"Je vais à {random.choice(FICTIVE_CITIES)}",
+    # 39. Ville fictive - départ
+    lambda c: f"Je pars de {random.choice(FICTIVE_CITIES)}",
+    # 40. Ville fictive - trajet complet
+    lambda c: f"Je vais de {random.choice(FICTIVE_CITIES)} à {random.choice(FICTIVE_CITIES)}",
+    # 41. Ville fictive - trajet court
+    lambda c: f"Trajet {random.choice(FICTIVE_CITIES)} {random.choice(FICTIVE_CITIES)}",
+    # 42. Ville fictive - aller vers
+    lambda c: f"Aller de {random.choice(FICTIVE_CITIES)} vers {random.choice(FICTIVE_CITIES)}",
+    # 43. Ville fictive - se rendre
+    lambda c: f"Je dois me rendre à {random.choice(FICTIVE_CITIES)} depuis {random.choice(FICTIVE_CITIES)}",
+    # 44. Ville fictive - voyage
+    lambda c: f"Voyage {random.choice(FICTIVE_CITIES)} {random.choice(FICTIVE_CITIES)}",
+    # 45. Ville fictive - billet
+    lambda c: f"Billet {random.choice(FICTIVE_CITIES)} {random.choice(FICTIVE_CITIES)}",
+    # 46. Récit d'un ami (pas une demande de trajet)
+    lambda c: f"Mon ami m'a dit qu'il partait de {c['dep_txt']} pour aller a {c['arr_txt']}",
+    # 47-56. Messages non liés au voyage - Météo
+    lambda c: "Il fait beau aujourd'hui",
+    lambda c: "Quel temps fait-il ?",
+    lambda c: f"La météo à {c['dep_txt']} est bonne",
+    lambda c: "Il pleut beaucoup",
+    lambda c: "C'est ensoleillé",
+    lambda c: "Quelle température fait-il ?",
+    lambda c: "Le vent souffle fort",
+    lambda c: "Il neige",
+    lambda c: "C'est nuageux",
+    lambda c: "La météo est pourrie",
+    # 57-66. Messages non liés - Humeur/Santé
+    lambda c: "Je suis de bonne humeur",
+    lambda c: "Je me sens mal",
+    lambda c: "J'ai mal à la tête",
+    lambda c: "Je suis fatigué",
+    lambda c: "Je suis content",
+    lambda c: "Je suis triste",
+    lambda c: "Je suis stressé",
+    lambda c: "Je me sens bien",
+    lambda c: "J'ai faim",
+    lambda c: "Je suis en forme",
+    # 67-76. Messages non liés - Tâches
+    lambda c: "Je dois faire les courses",
+    lambda c: "J'ai un rendez-vous chez le médecin",
+    lambda c: "Je dois appeler ma mère",
+    lambda c: "J'ai du travail à faire",
+    lambda c: "Je dois laver la vaisselle",
+    lambda c: "Je dois faire le ménage",
+    lambda c: "J'ai un examen demain",
+    lambda c: "Je dois préparer le dîner",
+    lambda c: "J'ai une réunion importante",
+    lambda c: "Je dois aller au supermarché",
+    # 77-86. Bruit - Phrases incomplètes
+    lambda c: "je veux",
+    lambda c: "aller",
+    lambda c: "train",
+    lambda c: "de",
+    lambda c: "à",
+    lambda c: "depuis",
+    lambda c: "vers",
+    lambda c: "trajet",
+    lambda c: "billet",
+    lambda c: "voyage",
+    # 87-96. Bruit - Mots aléatoires/Emoji seuls
+    lambda c: "🚆",
+    lambda c: "✈️",
+    lambda c: "🚄",
+    lambda c: "mdr lol",
+    lambda c: "asdf",
+    lambda c: "qwerty",
+    lambda c: "123456",
+    lambda c: "test test",
+    lambda c: "blabla",
+    lambda c: "truc machin",
+    # 97-106. Questions générales non liées
+    lambda c: f"Quelle est la population de {c['dep_txt']} ?",
+    lambda c: f"Quelle est l'histoire de {c['arr_txt']} ?",
+    lambda c: f"Où se trouve {c['dep_txt']} sur la carte ?",
+    lambda c: f"Quel est le code postal de {c['arr_txt']} ?",
+    lambda c: f"Quelle est la superficie de {c['dep_txt']} ?",
+    lambda c: f"Quels sont les monuments de {c['arr_txt']} ?",
+    lambda c: f"Quelle est la capitale de la région de {c['dep_txt']} ?",
+    lambda c: f"Combien d'habitants à {c['arr_txt']} ?",
+    lambda c: f"Quel est le maire de {c['dep_txt']} ?",
+    lambda c: f"Quelle est la spécialité culinaire de {c['arr_txt']} ?",
+    # 107-116. Métalangage
+    lambda c: "Peux-tu me donner un exemple de phrase ?",
+    lambda c: "Comment formuler une demande de trajet ?",
+    lambda c: "Qu'est-ce qu'une phrase valide ?",
+    lambda c: "Montre-moi un exemple",
+    lambda c: "Comment dire que je veux voyager ?",
+    lambda c: "Quelle est la syntaxe correcte ?",
+    lambda c: "Peux-tu m'expliquer comment demander un trajet ?",
+    lambda c: "Donne-moi un modèle de phrase",
+    lambda c: "Comment écrire une demande ?",
+    lambda c: "Quel est le format attendu ?",
+    # 117-126. Pièges "aller" hors contexte
+    lambda c: "Je vais bien",
+    lambda c: "Je vais manger",
+    lambda c: "Je vais dormir",
+    lambda c: "Je vais travailler",
+    lambda c: "Je vais faire du sport",
+    lambda c: "Je vais prendre une douche",
+    lambda c: "Je vais lire un livre",
+    lambda c: "Je vais regarder la télé",
+    lambda c: "Je vais cuisiner",
+    lambda c: "Je vais me reposer",
+    # 127-136. Parle d'un autre voyageur
+    lambda c: f"Mon frère va de {c['dep_txt']} à {c['arr_txt']}",
+    lambda c: f"Ma sœur part de {c['dep_txt']} pour {c['arr_txt']}",
+    lambda c: f"Mon père va à {c['arr_txt']} depuis {c['dep_txt']}",
+    lambda c: f"Ma mère part de {c['dep_txt']} vers {c['arr_txt']}",
+    lambda c: f"Mon collègue va de {c['dep_txt']} à {c['arr_txt']}",
+    lambda c: f"Mon voisin part de {c['dep_txt']} pour {c['arr_txt']}",
+    lambda c: f"Mon ami va de {c['dep_txt']} à {c['arr_txt']} demain",
+    lambda c: f"Ma copine part de {c['dep_txt']} vers {c['arr_txt']}",
+    lambda c: f"Mon copain va de {c['dep_txt']} à {c['arr_txt']}",
+    lambda c: f"Mon cousin part de {c['dep_txt']} pour {c['arr_txt']}",
+    # 137-146. Fictif/Impossible
+    lambda c: "Je vais de la Terre à Mars",
+    lambda c: "Trajet vers la Lune",
+    lambda c: f"Je pars de {random.choice(FICTIVE_CITIES)} pour aller sur Jupiter",
+    lambda c: "Voyage vers une autre galaxie",
+    lambda c: f"Billet {random.choice(FICTIVE_CITIES)} Alpha Centauri",
+    lambda c: "Aller dans le passé",
+    lambda c: "Voyage dans le futur",
+    lambda c: f"Trajet {random.choice(FICTIVE_CITIES)} Atlantide",
+    lambda c: "Je vais à Shangri-La",
+    lambda c: "Partir vers l'El Dorado",
+    # 147-156. Infos ferroviaires sans demande
+    lambda c: "Il y a des retards sur la ligne",
+    lambda c: "La grève est prévue demain",
+    lambda c: "Les trains sont en panne",
+    lambda c: "La SNCF annonce des perturbations",
+    lambda c: "Les billets sont en rupture",
+    lambda c: "Le TGV est complet",
+    lambda c: "Il y a des travaux sur la voie",
+    lambda c: "La ligne est fermée",
+    lambda c: "Les trains sont annulés",
+    lambda c: "Il y a un incident technique",
+    # 157-166. Récits
+    lambda c: f"Dans mon livre, le héros va de {c['dep_txt']} à {c['arr_txt']}",
+    lambda c: f"Dans le film, ils partent de {c['dep_txt']} vers {c['arr_txt']}",
+    lambda c: f"L'histoire raconte un voyage de {c['dep_txt']} à {c['arr_txt']}",
+    lambda c: f"Le personnage principal va de {c['dep_txt']} à {c['arr_txt']}",
+    lambda c: f"Dans la série, ils voyagent de {c['dep_txt']} à {c['arr_txt']}",
+    lambda c: f"Le roman parle d'un trajet de {c['dep_txt']} à {c['arr_txt']}",
+    lambda c: f"Dans la pièce de théâtre, il va de {c['dep_txt']} à {c['arr_txt']}",
+    lambda c: f"L'auteur décrit un voyage de {c['dep_txt']} à {c['arr_txt']}",
+    lambda c: f"Le scénario montre un trajet de {c['dep_txt']} à {c['arr_txt']}",
+    lambda c: f"Dans la nouvelle, ils partent de {c['dep_txt']} vers {c['arr_txt']}",
 ]
 
 
@@ -445,16 +861,21 @@ def generate_valid_sentence(
     context = build_context()
     sentence, dep_label, arr_label = pattern_func(context)
     sentence = finalize_sentence(sentence)
+    
+    # Cas spécial : si dep_label et arr_label sont None, c'est un pattern invalid
+    # (ex: pattern avec transport invalid comme bateau/avion)
+    is_valid = 1 if (dep_label is not None or arr_label is not None) else 0
+    
     return {
         "sentence": sentence,
         "departure": dep_label,
         "arrival": arr_label,
-        "is_valid": 1,
+        "is_valid": is_valid,
     }
 
 
 def generate_invalid_sentence(
-    invalid_patterns_list: Optional[List[Callable[[], str]]] = None,
+    invalid_patterns_list: Optional[List[InvalidPatternFunc]] = None,
     invalid_weights: Optional[List[float]] = None
 ) -> Dict[str, Optional[str]]:
     if invalid_patterns_list is None:
@@ -468,8 +889,11 @@ def generate_invalid_sentence(
     elif len(invalid_weights) > len(invalid_patterns_list):
         invalid_weights = invalid_weights[:len(invalid_patterns_list)]
     
+    # Créer un contexte pour les patterns invalides (comme pour les patterns valides)
+    context = build_context()
+    
     pattern_idx = weighted_choice(invalid_patterns_list, invalid_weights)
-    sentence = invalid_patterns_list[pattern_idx]()
+    sentence = invalid_patterns_list[pattern_idx](context)
     sentence = finalize_sentence(sentence)
     return {"sentence": sentence, "departure": None, "arrival": None, "is_valid": 0}
 
@@ -490,8 +914,8 @@ def generate_dataset(
         invalid_ratio: Proportion de phrases invalides (0.0 à 1.0)
         seed: Graine aléatoire pour la reproductibilité
         output_file: Fichier de sortie
-        valid_pattern_weights: Poids pour chaque pattern valide (52 patterns)
-        invalid_pattern_weights: Poids pour chaque pattern invalide (37 patterns)
+        valid_pattern_weights: Poids pour chaque pattern valide (174 patterns)
+        invalid_pattern_weights: Poids pour chaque pattern invalide (166 patterns)
     """
     if seed is not None:
         random.seed(seed)

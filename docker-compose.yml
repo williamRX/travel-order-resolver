@@ -1,0 +1,55 @@
+services:
+  jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: t-aia-911-lil3-jupyter
+    ports:
+      - "8888:8888"
+    volumes:
+      # Monter le projet pour que les modifications soient visibles
+      - .:/workspace
+      # Persister les données Jupyter
+      - jupyter-data:/root/.jupyter
+      # Persister les modèles et résultats
+      - ./models:/workspace/models
+      - ./results:/workspace/results
+      - ./checkpoints:/workspace/checkpoints
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: t-aia-911-lil3-api
+    ports:
+      - "8000:8000"
+    volumes:
+      # Monter le projet pour que les modifications soient visibles
+      - .:/workspace
+    entrypoint: []  # Override l'ENTRYPOINT du Dockerfile
+    command: uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
+    working_dir: /workspace
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: t-aia-911-lil3-frontend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./frontend:/workspace/frontend
+    entrypoint: []  # Override l'ENTRYPOINT du Dockerfile
+    command: python -m http.server 8080 --directory /workspace/frontend
+    working_dir: /workspace
+    restart: unless-stopped
+
+volumes:
+  jupyter-data:
+

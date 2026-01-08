@@ -1,0 +1,182 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# Conda
+.conda/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints/
+
+# Jupyter Notebook outputs (optionnel - décommenter si vous ne voulez pas versionner les outputs)
+# *.ipynb
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Modèles et résultats (gros fichiers)
+# Modèles baseline
+models/baseline/*.joblib
+models/baseline/*.pkl
+models/transformers/
+
+# Modèles du classifier (TF-IDF + modèles classiques)
+classifier/models/*.joblib
+classifier/models/*.pkl
+classifier/models/metadata_*.json  # Ignorer seulement les métadonnées, pas les configs
+classifier/models/*/  # Ignorer les dossiers de modèles (ex: modèles CamemBERT)
+
+# Modèles NLP (spaCy, transformers)
+nlp/models/*/
+nlp/models/*.bin
+nlp/models/*.pt
+nlp/models/*.pth
+nlp/models/*.onnx
+
+# Checkpoints (tous les dossiers)
+checkpoints/
+classifier/checkpoints/
+nlp/checkpoints/
+
+# Résultats (tous les dossiers)
+results/
+classifier/results/
+nlp/results/
+
+# Logs (tous les dossiers)
+logs/
+classifier/logs/
+nlp/logs/
+
+# Modèles Hugging Face / Transformers (très volumineux)
+# Ignorer les modèles entiers mais garder les configs si nécessaire
+# (Les patterns spécifiques sont définis plus bas dans "Fichiers de sauvegarde PyTorch/Hugging Face")
+
+# Cache Hugging Face (peut être très volumineux)
+.cache/
+**/.cache/
+~/.cache/huggingface/
+
+# Garder la structure des dossiers
+!models/baseline/.gitkeep
+!checkpoints/.gitkeep
+!results/.gitkeep
+!logs/.gitkeep
+!classifier/models/.gitkeep
+!classifier/checkpoints/.gitkeep
+!classifier/results/.gitkeep
+!classifier/logs/.gitkeep
+!nlp/models/.gitkeep
+!nlp/checkpoints/.gitkeep
+!nlp/results/.gitkeep
+!nlp/logs/.gitkeep
+
+# Garder les fichiers de configuration des modèles Hugging Face (nécessaires pour recharger)
+!**/models/**/config.json
+!**/models/**/tokenizer.json
+!**/models/**/tokenizer_config.json
+!**/models/**/vocab.json
+!**/models/**/merges.txt
+!**/models/**/special_tokens_map.json
+
+# Docker
+.dockerignore
+
+# Environnement
+.env
+.env.local
+
+# Fichiers temporaires
+*.tmp
+*.log
+*.cache
+
+# Datasets générés (peuvent être volumineux)
+# Garder les datasets source mais ignorer les générés si trop volumineux
+# dataset/classifier/csv/*.csv  # Décommenter si les CSV sont trop volumineux
+# dataset/classifier/json/*.jsonl  # Décommenter si le JSONL est trop volumineux
+
+# Fichiers de sauvegarde PyTorch/Hugging Face (modèles uniquement)
+# Ne pas ignorer tous les .bin/.pt, seulement dans les dossiers de modèles
+**/models/**/pytorch_model.bin
+**/models/**/model.safetensors
+**/models/**/tf_model.h5
+**/models/**/flax_model.msgpack
+**/models/**/model.pt
+**/models/**/model.pth
+**/models/**/*.bin
+**/models/**/*.pt
+**/models/**/*.pth
+**/models/**/*.onnx
+**/models/**/*.msgpack
+**/models/**/adapter_model.bin
+**/models/**/adapter_model.safetensors
+**/checkpoints/**/*.pt
+**/checkpoints/**/*.pth
+**/checkpoints/**/*.bin
+
+# Cache Python
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+
+# Distribution / packaging (déjà couvert dans la section Python ci-dessus)
+
+# Notebook outputs (optionnel - garder les notebooks mais pas les outputs)
+# Décommenter si vous ne voulez pas versionner les outputs des notebooks
+# *.ipynb
+
+# Fichiers de données volumineux (optionnel - décommenter si nécessaire)
+# *.h5
+# *.hdf5
+# *.parquet
+# *.feather
+
+# Fichiers de sauvegarde
+*.bak
+*.backup
+

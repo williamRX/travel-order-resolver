@@ -1,0 +1,57 @@
+{
+  "experiment_name": "validity_classifier_20260106_144210",
+  "version": "v1",
+  "timestamp": "2026-01-06T14:42:56.758822",
+  "model_type": "gradient_boosting",
+  "model_config": {
+    "n_estimators": 100,
+    "learning_rate": 0.1,
+    "max_depth": 5,
+    "random_state": 42
+  },
+  "preprocessing": {
+    "lowercase": false,
+    "min_df": 2,
+    "max_df": 0.95,
+    "max_features": 10000,
+    "ngram_range": [
+      1,
+      2
+    ]
+  },
+  "dataset": {
+    "total_samples": 30000,
+    "train_size": 21000,
+    "val_size": 3000,
+    "test_size": 6000,
+    "class_distribution": {
+      "train": {
+        "valid": 14661,
+        "invalid": 6339
+      },
+      "val": {
+        "valid": 2094,
+        "invalid": 906
+      },
+      "test": {
+        "valid": 4189,
+        "invalid": 1811
+      }
+    }
+  },
+  "metrics": {
+    "test": {
+      "accuracy": 0.91,
+      "precision": 0.8904344104429702,
+      "recall": 0.9933158271663881,
+      "f1_score": 0.9390656736628301,
+      "roc_auc": 0.970974900870374
+    },
+    "validation": {
+      "accuracy": 0.9083333333333333,
+      "precision": 0.8875159778440562,
+      "recall": 0.9947468958930277,
+      "f1_score": 0.938077009682504
+    }
+  }
+}

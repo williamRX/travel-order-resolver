@@ -1,0 +1,73 @@
+{
+  "experiment_name": "validity_classifier_20260106_204404",
+  "version": "v1",
+  "timestamp": "2026-01-06T20:45:30.709381",
+  "model_type": "logistic_regression",
+  "model_config": {
+    "C": 1.0,
+    "max_iter": 1000,
+    "solver": "lbfgs",
+    "class_weight": "balanced"
+  },
+  "preprocessing": {
+    "lowercase": false,
+    "min_df": 2,
+    "max_df": 0.95,
+    "max_features": 10000,
+    "ngram_range": [
+      1,
+      2
+    ]
+  },
+  "dataset": {
+    "total_samples": 30000,
+    "train_size": 21000,
+    "val_size": 3000,
+    "test_size": 6000,
+    "class_distribution": {
+      "train": {
+        "valid": 14674,
+        "invalid": 6326
+      },
+      "val": {
+        "valid": 2096,
+        "invalid": 904
+      },
+      "test": {
+        "valid": 4193,
+        "invalid": 1807
+      }
+    }
+  },
+  "metrics": {
+    "test": {
+      "accuracy": 0.9538333333333333,
+      "precision": 0.9628841607565012,
+      "recall": 0.971380872883377,
+      "f1_score": 0.9671138549210495,
+      "roc_auc": 0.9861046641231842
+    },
+    "validation": {
+      "accuracy": 0.9556666666666667,
+      "precision": 0.9631901840490797,
+      "recall": 0.9737595419847328,
+      "f1_score": 0.9684460260972716,
+      "roc_auc": 0.9851756189623726
+    }
+  },
+  "selection_criteria": {
+    "method": "best_model_based_on_metrics",
+    "priority": [
+      "F1-Score",
+      "ROC-AUC",
+      "Accuracy"
+    ],
+    "selected_because": "F1=0.9684, AUC=0.9852, Acc=0.9557",
+    "all_models_trained": [
+      "logistic_regression",
+      "svm",
+      "random_forest",
+      "gradient_boosting"
+    ]
+  }
+}

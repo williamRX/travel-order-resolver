@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extraction d'Intentions de Voyage</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 800px;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .chat-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message.bot {
+            justify-content: flex-start;
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            word-wrap: break-word;
+        }
+
+        .message.user .message-content {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message.bot .message-content {
+            background: white;
+            color: #333;
+            border: 1px solid #e0e0e0;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message.error .message-content {
+            background: #fee;
+            color: #c33;
+            border-color: #fcc;
+        }
+
+        .message.success .message-content {
+            background: #efe;
+            color: #3c3;
+            border-color: #cfc;
+        }
+
+        .result-box {
+            background: #f0f4ff;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        .result-box h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .result-item {
+            margin: 8px 0;
+            padding: 8px;
+            background: white;
+            border-radius: 5px;
+            border-left: 4px solid #667eea;
+        }
+
+        .result-item strong {
+            color: #667eea;
+            display: inline-block;
+            min-width: 80px;
+        }
+
+        .input-container {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .input-wrapper {
+            display: flex;
+            gap: 10px;
+        }
+
+        #sentenceInput {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        #sentenceInput:focus {
+            border-color: #667eea;
+        }
+
+        #sendButton {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        #sendButton:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        #sendButton:active {
+            transform: translateY(0);
+        }
+
+        #sendButton:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .welcome-message {
+            text-align: center;
+            color: #666;
+            padding: 20px;
+        }
+
+        .welcome-message h2 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .examples {
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .examples h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .example-item {
+            padding: 8px;
+            margin: 5px 0;
+            background: #f8f9fa;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: 14px;
+        }
+
+        .example-item:hover {
+            background: #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚂 Extraction d'Intentions de Voyage</h1>
+            <p>Entrez une phrase pour extraire les destinations de départ et d'arrivée</p>
+        </div>
+
+        <div class="chat-container" id="chatContainer">
+            <div class="welcome-message">
+                <h2>Bienvenue ! 👋</h2>
+                <p>Je peux extraire les destinations de départ et d'arrivée depuis vos phrases.</p>
+                <div class="examples">
+                    <h3>Exemples de phrases valides :</h3>
+                    <div class="example-item" onclick="sendExample('Je vais de Paris à Lyon')">
+                        "Je vais de Paris à Lyon"
+                    </div>
+                    <div class="example-item" onclick="sendExample('Billet Marseille Nice demain')">
+                        "Billet Marseille Nice demain"
+                    </div>
+                    <div class="example-item" onclick="sendExample('Trajet la gare de Lille vers l\\'aéroport de Lyon')">
+                        "Trajet la gare de Lille vers l'aéroport de Lyon"
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="input-container">
+            <div class="input-wrapper">
+                <input 
+                    type="text" 
+                    id="sentenceInput" 
+                    placeholder="Tapez votre phrase ici..."
+                    onkeypress="handleKeyPress(event)"
+                >
+                <button id="sendButton" onclick="sendMessage()">Envoyer</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:8000';
+        const chatContainer = document.getElementById('chatContainer');
+        const sentenceInput = document.getElementById('sentenceInput');
+        const sendButton = document.getElementById('sendButton');
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendExample(text) {
+            sentenceInput.value = text;
+            sendMessage();
+        }
+
+        function addMessage(text, type = 'bot', isError = false, isSuccess = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type} ${isError ? 'error' : ''} ${isSuccess ? 'success' : ''}`;
+            
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+            contentDiv.innerHTML = text;
+            
+            messageDiv.appendChild(contentDiv);
+            chatContainer.appendChild(messageDiv);
+            
+            // Supprimer le message de bienvenue si présent
+            const welcomeMessage = chatContainer.querySelector('.welcome-message');
+            if (welcomeMessage) {
+                welcomeMessage.remove();
+            }
+            
+            // Scroll vers le bas
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        async function sendMessage() {
+            const sentence = sentenceInput.value.trim();
+            
+            if (!sentence) {
+                return;
+            }
+
+            // Afficher le message de l'utilisateur
+            addMessage(sentence, 'user');
+            sentenceInput.value = '';
+            
+            // Désactiver le bouton et afficher le loading
+            sendButton.disabled = true;
+            sendButton.innerHTML = '<div class="loading"></div>';
+
+            try {
+                const response = await fetch(`${API_URL}/predict`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ sentence: sentence })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.detail || 'Erreur lors de la requête');
+                }
+
+                // Afficher la réponse
+                if (!data.valid) {
+                    addMessage(data.message, 'bot', true, false);
+                } else {
+                    let message = '✅ Phrase valide !<br><br>';
+                    
+                    if (data.departure || data.arrival) {
+                        message += '<div class="result-box">';
+                        message += '<h3>Destinations extraites :</h3>';
+                        
+                        if (data.departure) {
+                            message += `<div class="result-item"><strong>Départ :</strong> ${data.departure}</div>`;
+                        } else {
+                            message += `<div class="result-item"><strong>Départ :</strong> <em>Non détecté</em></div>`;
+                        }
+                        
+                        if (data.arrival) {
+                            message += `<div class="result-item"><strong>Arrivée :</strong> ${data.arrival}</div>`;
+                        } else {
+                            message += `<div class="result-item"><strong>Arrivée :</strong> <em>Non détecté</em></div>`;
+                        }
+                        
+                        message += '</div>';
+                    } else {
+                        message += '⚠️ Aucune destination détectée dans la phrase.';
+                    }
+                    
+                    addMessage(message, 'bot', false, true);
+                }
+
+            } catch (error) {
+                addMessage(`❌ Erreur : ${error.message}`, 'bot', true, false);
+                console.error('Erreur:', error);
+            } finally {
+                sendButton.disabled = false;
+                sendButton.textContent = 'Envoyer';
+            }
+        }
+    </script>
+</body>
+</html>
+

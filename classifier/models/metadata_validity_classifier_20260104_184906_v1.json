@@ -1,0 +1,57 @@
+{
+  "experiment_name": "validity_classifier_20260104_184906",
+  "version": "v1",
+  "timestamp": "2026-01-04T18:49:08.190727",
+  "model_type": "logistic_regression",
+  "model_config": {
+    "C": 1.0,
+    "max_iter": 1000,
+    "solver": "lbfgs",
+    "class_weight": "balanced"
+  },
+  "preprocessing": {
+    "lowercase": false,
+    "min_df": 2,
+    "max_df": 0.95,
+    "max_features": 10000,
+    "ngram_range": [
+      1,
+      2
+    ]
+  },
+  "dataset": {
+    "total_samples": 10000,
+    "train_size": 7000,
+    "val_size": 1000,
+    "test_size": 2000,
+    "class_distribution": {
+      "train": {
+        "valid": 4888,
+        "invalid": 2112
+      },
+      "val": {
+        "valid": 698,
+        "invalid": 302
+      },
+      "test": {
+        "valid": 1397,
+        "invalid": 603
+      }
+    }
+  },
+  "metrics": {
+    "test": {
+      "accuracy": 0.946,
+      "precision": 0.9554770318021202,
+      "recall": 0.9677881173944166,
+      "f1_score": 0.9615931721194879,
+      "roc_auc": 0.9788613601047494
+    },
+    "validation": {
+      "accuracy": 0.961,
+      "precision": 0.9727403156384505,
+      "recall": 0.9713467048710601,
+      "f1_score": 0.9720430107526882
+    }
+  }
+}

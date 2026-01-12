@@ -1,0 +1,14 @@
+{
+  "test_accuracy": 0.9941666666666666,
+  "test_precision": 0.9935866983372922,
+  "test_recall": 0.9980911476974469,
+  "test_f1": 0.995833829306035,
+  "test_auc": 0.9998134938394272,
+  "model_name": "camembert-base",
+  "max_length": 128,
+  "batch_size": 16,
+  "learning_rate": 2e-05,
+  "num_epochs": 3,
+  "experiment_name": "validity_classifier_camembert_20260109_153726",
+  "version": "v1"
+}

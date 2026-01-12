@@ -36,3 +36,7 @@ Le classifieur détermine si une phrase contient une **intention de trajet valid
 - Chaque expérience génère un dossier dans `results/` avec toutes les métriques
 - Les checkpoints permettent de reprendre l'entraînement ou d'analyser l'évolution
 
+## 📓 Journal de Bord
+
+Consultez [`JOURNAL.md`](JOURNAL.md) pour un suivi des problèmes rencontrés et des solutions apportées au classifieur.
+

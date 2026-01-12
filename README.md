@@ -67,6 +67,26 @@ docker-compose up
 - **Jupyter Notebook** ou **Jupyter Lab**
 - Optionnel: **Conda** ou **Docker**
 
+### 🚀 Pour Mac Apple Silicon (M1/M2/M3/M4) - Utilisation du GPU
+
+Si vous êtes sur un Mac Apple Silicon et souhaitez utiliser le GPU pour accélérer l'entraînement :
+
+1. **Installez PyTorch avec support MPS** :
+   ```bash
+   ./scripts/install_pytorch_mps.sh
+   # ou manuellement:
+   pip install torch torchvision torchaudio
+   ```
+
+2. **Vérifiez la configuration** :
+   ```bash
+   python scripts/verify_mps.py
+   ```
+
+3. **Consultez le guide complet** : [`docs/MPS_GPU_SETUP.md`](docs/MPS_GPU_SETUP.md)
+
+Le notebook détectera automatiquement MPS et utilisera le GPU si disponible.
+
 ## 📦 Structure du Projet
 
 Le projet est organisé par **domaine** pour faciliter la navigation :

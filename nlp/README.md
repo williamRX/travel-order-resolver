@@ -31,3 +31,7 @@ Le modèle NLP extrait les **destinations de départ** et les **destinations d'a
 - Il utilise uniquement les phrases validées comme valides
 - Les modèles sont sauvegardés avec timestamp pour traçabilité
 
+## 📓 Journal de Bord
+
+Consultez [`JOURNAL.md`](JOURNAL.md) pour un suivi des problèmes rencontrés et des solutions apportées au modèle NLP.
+

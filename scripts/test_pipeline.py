@@ -22,9 +22,20 @@ def test_pipeline():
     
     # Initialiser le pipeline
     try:
+        print("🔄 Chargement du pipeline...")
         pipeline = TravelIntentPipeline()
+        print("✅ Pipeline chargé avec succès!\n")
+        
+        # Afficher le type de modèle NER utilisé
+        if hasattr(pipeline, 'use_camembert_ner') and pipeline.use_camembert_ner:
+            print("📌 Modèle NER utilisé: CamemBERT")
+        else:
+            print("📌 Modèle NER utilisé: SpaCy")
+        print()
     except Exception as e:
         print(f"❌ Erreur lors de l'initialisation: {e}")
+        import traceback
+        traceback.print_exc()
         return
     
     # Phrases de test
@@ -34,6 +45,8 @@ def test_pipeline():
         ("Billet Marseille Nice demain", True, True, True),
         ("Trajet la gare de Lille vers l'aéroport de Lyon", True, True, True),
         ("Je veux aller de Bordeaux à Toulouse", True, True, True),
+        ("J'aimerais un trajet de Nantes à Rennes", True, True, True),
+        ("train Strasbourg Metz svp", True, True, True),
         
         # Phrases valides avec seulement arrivée
         ("Je vais à Paris", True, False, True),
@@ -45,45 +58,73 @@ def test_pipeline():
         ("Je suis content", False, False, False),
     ]
     
-    print("Tests en cours...\n")
+    print("🧪 Tests en cours...\n")
+    print("-" * 80)
     
     passed = 0
     failed = 0
     
-    for sentence, should_be_valid, should_have_departure, should_have_arrival in test_cases:
-        result = pipeline.predict(sentence)
-        
-        # Vérifier les résultats
-        is_valid = result["valid"]
-        has_departure = result["departure"] is not None
-        has_arrival = result["arrival"] is not None
-        
-        # Validation
-        valid_ok = is_valid == should_be_valid
-        departure_ok = (not should_have_departure) or has_departure
-        arrival_ok = (not should_have_arrival) or has_arrival
-        
-        test_passed = valid_ok and departure_ok and arrival_ok
-        
-        if test_passed:
-            passed += 1
-            status = "✅"
-        else:
+    for i, (sentence, should_be_valid, should_have_departure, should_have_arrival) in enumerate(test_cases, 1):
+        try:
+            result = pipeline.predict(sentence)
+            
+            # Vérifier les résultats
+            is_valid = result["valid"]
+            has_departure = result["departure"] is not None
+            has_arrival = result["arrival"] is not None
+            
+            # Validation (plus souple pour les tests)
+            valid_ok = is_valid == should_be_valid
+            departure_ok = (not should_have_departure) or has_departure
+            arrival_ok = (not should_have_arrival) or has_arrival
+            
+            # Pour les phrases invalides, on accepte qu'elles soient rejetées
+            if not should_be_valid:
+                test_passed = not is_valid
+            else:
+                test_passed = valid_ok and departure_ok and arrival_ok
+            
+            if test_passed:
+                passed += 1
+                status = "✅"
+            else:
+                failed += 1
+                status = "❌"
+            
+            print(f"\n{status} Test {i}: \"{sentence}\"")
+            print(f"   Valid: {is_valid} (attendu: {should_be_valid})")
+            if is_valid:
+                print(f"   Départ: {result['departure'] or 'Non trouvé'}")
+                print(f"   Arrivée: {result['arrival'] or 'Non trouvé'}")
+                if not test_passed:
+                    print(f"   ⚠️  Problème détecté:")
+                    if not departure_ok:
+                        print(f"      - Départ attendu mais non trouvé")
+                    if not arrival_ok:
+                        print(f"      - Arrivée attendue mais non trouvée")
+            else:
+                print(f"   Message: {result['message']}")
+                
+        except Exception as e:
             failed += 1
-            status = "❌"
+            print(f"\n❌ Test {i}: \"{sentence}\"")
+            print(f"   Erreur: {e}")
+            import traceback
+            traceback.print_exc()
         
-        print(f"{status} Phrase: \"{sentence}\"")
-        print(f"   Valid: {is_valid} (attendu: {should_be_valid})")
-        if is_valid:
-            print(f"   Départ: {result['departure']}")
-            print(f"   Arrivée: {result['arrival']}")
-        else:
-            print(f"   Message: {result['message']}")
-        print()
+        print("-" * 80)
     
-    print("=" * 80)
-    print(f"Résultats: {passed} tests réussis, {failed} tests échoués")
-    print("=" * 80)
+    print(f"\n{'=' * 80}")
+    print(f"📊 RÉSULTATS FINAUX")
+    print(f"{'=' * 80}")
+    print(f"✅ Tests réussis: {passed}/{len(test_cases)}")
+    print(f"❌ Tests échoués: {failed}/{len(test_cases)}")
+    print(f"{'=' * 80}")
+    
+    if failed == 0:
+        print("\n🎉 Tous les tests sont passés avec succès!")
+    else:
+        print(f"\n⚠️  {failed} test(s) ont échoué. Vérifiez les résultats ci-dessus.")
 
 
 if __name__ == "__main__":

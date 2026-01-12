@@ -14,6 +14,8 @@ ENV PYTHONUNBUFFERED=1 \
 # Installer les dépendances système
 RUN apt-get update && apt-get install -y \
     build-essential \
+    git \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Créer le répertoire de travail
@@ -43,7 +45,7 @@ COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 # Exposer les ports
-EXPOSE 8888 8000 8080
+EXPOSE 8888 8000 3000
 
 # Utiliser le script d'entrée qui vérifie et génère le dataset si nécessaire
 ENTRYPOINT ["docker-entrypoint.sh"]

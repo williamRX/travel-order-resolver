@@ -23,8 +23,21 @@ notebook>=6.5.0
 
 # NLP
 spacy>=3.5.0
+seqeval>=1.2.2  # Métriques NER (precision, recall, F1 pour les entités)
+
+# Transformers / Deep Learning (pour CamemBERT)
+transformers>=4.30.0
+torch>=2.0.0  # Pour Mac Apple Silicon: pip install torch torchvision torchaudio (support MPS inclus)
+accelerate>=0.20.0
+sentencepiece>=0.1.99  # Requis pour CamemBERT tokenizer
+
+# Note pour Mac Apple Silicon (M1/M2/M3/M4):
+# PyTorch avec support MPS (Metal Performance Shaders) est installé automatiquement
+# avec: pip install torch torchvision torchaudio
+# Voir docs/MPS_GPU_SETUP.md pour plus de détails
 
 # API
 fastapi>=0.104.0
 uvicorn[standard]>=0.24.0
 pydantic>=2.0.0
+python-multipart>=0.0.6  # Requis pour les uploads de fichiers (File/UploadFile)

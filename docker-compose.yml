@@ -11,10 +11,20 @@ services:
       - .:/workspace
       # Persister les données Jupyter
       - jupyter-data:/root/.jupyter
-      # Persister les modèles et résultats
+      # Persister les modèles et résultats (baseline)
       - ./models:/workspace/models
       - ./results:/workspace/results
       - ./checkpoints:/workspace/checkpoints
+      # Persister les modèles et résultats du classifier
+      - ./classifier/models:/workspace/classifier/models
+      - ./classifier/results:/workspace/classifier/results
+      - ./classifier/checkpoints:/workspace/classifier/checkpoints
+      - ./classifier/logs:/workspace/classifier/logs
+      # Persister les modèles et résultats NLP
+      - ./nlp/models:/workspace/nlp/models
+      - ./nlp/results:/workspace/nlp/results
+      - ./nlp/checkpoints:/workspace/nlp/checkpoints
+      - ./nlp/logs:/workspace/nlp/logs
     environment:
       - JUPYTER_ENABLE_LAB=yes
     restart: unless-stopped
@@ -31,10 +41,15 @@ services:
     volumes:
       # Monter le projet pour que les modifications soient visibles
       - .:/workspace
+      # Persister les modèles entraînés
+      - ./classifier/models:/workspace/classifier/models
+      - ./nlp/models:/workspace/nlp/models
     entrypoint: []  # Override l'ENTRYPOINT du Dockerfile
     command: uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
     working_dir: /workspace
     restart: unless-stopped
+    depends_on:
+      - jupyter  # Attendre que Jupyter soit prêt (optionnel)
 
   frontend:
     build:
@@ -42,13 +57,15 @@ services:
       dockerfile: Dockerfile
     container_name: t-aia-911-lil3-frontend
     ports:
-      - "8080:8080"
+      - "3000:3000"
     volumes:
       - ./frontend:/workspace/frontend
     entrypoint: []  # Override l'ENTRYPOINT du Dockerfile
-    command: python -m http.server 8080 --directory /workspace/frontend
+    command: python -m http.server 3000 --directory /workspace/frontend
     working_dir: /workspace
     restart: unless-stopped
+    depends_on:
+      - api  # Attendre que l'API soit prête
 
 volumes:
   jupyter-data:

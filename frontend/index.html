@@ -142,6 +142,24 @@
             min-width: 80px;
         }
 
+        .route-path {
+            font-size: 16px;
+            padding: 12px;
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8f0ff 100%);
+            border-left: 4px solid #28a745;
+            text-align: center;
+        }
+
+        .route-path strong {
+            color: #667eea;
+            padding: 4px 8px;
+            background: white;
+            border-radius: 4px;
+            margin: 0 2px;
+            display: inline-block;
+            min-width: auto;
+        }
+
         .input-container {
             padding: 20px;
             background: white;
@@ -247,6 +265,7 @@
         .example-item:hover {
             background: #e9ecef;
         }
+
     </style>
 </head>
 <body>
@@ -254,6 +273,9 @@
         <div class="header">
             <h1>🚂 Extraction d'Intentions de Voyage</h1>
             <p>Entrez une phrase pour extraire les destinations de départ et d'arrivée</p>
+            <a href="csv_upload.html" style="display: inline-block; margin-top: 15px; padding: 8px 16px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 5px; font-size: 14px; transition: background 0.2s;">
+                📄 Traitement par fichier CSV →
+            </a>
         </div>
 
         <div class="chat-container" id="chatContainer">
@@ -289,7 +311,12 @@
     </div>
 
     <script>
-        const API_URL = 'http://localhost:8000';
+        // Détecter automatiquement l'URL de l'API
+        // Si on est dans Docker, utiliser le nom du service, sinon localhost
+        const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:8000'
+            : 'http://api:8000';  // Nom du service Docker
+        
         const chatContainer = document.getElementById('chatContainer');
         const sentenceInput = document.getElementById('sentenceInput');
         const sendButton = document.getElementById('sendButton');
@@ -362,7 +389,43 @@
                 } else {
                     let message = '✅ Phrase valide !<br><br>';
                     
-                    if (data.departure || data.arrival) {
+                    // Si une route complète est disponible (pathfinding activé)
+                    if (data.route && data.route.length > 0) {
+                        message += '<div class="result-box">';
+                        message += '<h3>🚂 Itinéraire trouvé :</h3>';
+                        
+                        // Afficher le trajet complet avec flèches
+                        let routeDisplay = '';
+                        for (let i = 0; i < data.route.length; i++) {
+                            if (i > 0) {
+                                routeDisplay += ' → ';
+                            }
+                            routeDisplay += `<strong>${data.route[i]}</strong>`;
+                        }
+                        message += `<div class="result-item route-path">${routeDisplay}</div>`;
+                        
+                        // Afficher les informations supplémentaires si disponibles
+                        if (data.route_distance) {
+                            message += `<div class="result-item"><strong>Distance totale :</strong> ${data.route_distance.toFixed(1)} km</div>`;
+                        }
+                        if (data.route_time) {
+                            message += `<div class="result-item"><strong>Temps estimé :</strong> ${data.route_time.toFixed(1)} heures</div>`;
+                        }
+                        
+                        // Afficher aussi départ et arrivée pour référence
+                        message += '<hr style="margin: 10px 0; border: none; border-top: 1px solid #e0e0e0;">';
+                        message += '<div style="font-size: 12px; color: #666;">';
+                        if (data.departure) {
+                            message += `<div><strong>Départ :</strong> ${data.departure}</div>`;
+                        }
+                        if (data.arrival) {
+                            message += `<div><strong>Arrivée :</strong> ${data.arrival}</div>`;
+                        }
+                        message += '</div>';
+                        
+                        message += '</div>';
+                    } else if (data.departure || data.arrival) {
+                        // Pas de route, afficher seulement départ/arrivée
                         message += '<div class="result-box">';
                         message += '<h3>Destinations extraites :</h3>';
                         
@@ -397,4 +460,3 @@
     </script>
 </body>
 </html>
-

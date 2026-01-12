@@ -29,14 +29,29 @@ Ce guide vous accompagne étape par étape pour configurer le projet.
 ### Étape 1 : Installer Conda
 
 **Si vous n'avez pas Conda :**
-1. Télécharger Anaconda : https://www.anaconda.com/products/distribution
-   - Ou Miniconda (plus léger) : https://docs.conda.io/en/latest/miniconda.html
-2. Installer selon votre système d'exploitation
-3. Redémarrer votre terminal
 
-**Vérifier l'installation :**
+👉 **Guide détaillé complet** : Voir [`docs/INSTALL_CONDA.md`](docs/INSTALL_CONDA.md) pour les instructions pas à pas.
+
+**Résumé rapide :**
+
+1. **Télécharger Miniconda** (recommandé, plus léger) :
+   - https://docs.conda.io/en/latest/miniconda.html
+   - Choisir "Miniconda3 macOS Apple Silicon 64-bit pkg" pour Mac M4 Max
+   - Ou Anaconda (plus complet) : https://www.anaconda.com/products/distribution
+
+2. **Installer** : Double-cliquer sur le fichier `.pkg` et suivre l'assistant
+
+3. **Fermer et rouvrir le terminal**
+
+4. **Vérifier l'installation** :
+   ```bash
+   conda --version
+   ```
+
+**Si `conda` n'est pas reconnu**, initialiser Conda :
 ```bash
-conda --version
+conda init zsh  # Pour zsh (terminal par défaut macOS)
+# Puis fermer et rouvrir le terminal
 ```
 
 ### Étape 2 : Créer l'Environnement

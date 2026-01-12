@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traitement CSV - Extraction d'Intentions de Voyage</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: #f0f0f0;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.2s;
+        }
+
+        .back-link:hover {
+            background: #e0e0e0;
+        }
+
+        .upload-section {
+            background: #f8f9fa;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .upload-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        .file-upload {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .file-input-wrapper input[type="file"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .file-input-label {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .file-input-label:hover {
+            opacity: 0.9;
+        }
+
+        .file-name {
+            margin-top: 10px;
+            color: #666;
+            font-size: 14px;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .csv-button {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .csv-button:hover:not(:disabled) {
+            opacity: 0.9;
+        }
+
+        .csv-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .info-box {
+            background: #e8f4f8;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .info-box h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+            color: #666;
+        }
+
+        .info-box li {
+            margin: 5px 0;
+        }
+
+        .csv-results {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .csv-results h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .csv-results pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .download-button {
+            margin-top: 20px;
+            padding: 12px 24px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background 0.2s;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .download-button:hover {
+            background: #218838;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Retour au chatbot</a>
+        
+        <div class="header">
+            <h1>📄 Traitement par fichier CSV</h1>
+            <p>Uploadez un fichier CSV pour traiter plusieurs phrases en une fois</p>
+        </div>
+
+        <div class="info-box">
+            <h3>📋 Format d'entrée</h3>
+            <ul>
+                <li>Format : <code>sentenceID,sentence</code> (une ligne par phrase)</li>
+                <li>Exemple : <code>1,Je vais de Paris à Lyon</code></li>
+                <li>Le fichier doit être encodé en UTF-8</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3>📤 Format de sortie</h3>
+            <ul>
+                <li>Phrase valide : <code>sentenceID,Departure,Step1,Step2,...,Destination</code></li>
+                <li>Phrase invalide : <code>sentenceID,INVALID</code></li>
+                <li>Si le pathfinding est activé, les étapes intermédiaires seront incluses</li>
+            </ul>
+        </div>
+
+        <div class="upload-section">
+            <h2>📁 Sélectionner un fichier CSV</h2>
+            <div class="file-upload">
+                <div class="file-input-wrapper">
+                    <input 
+                        type="file" 
+                        id="csvFileInput" 
+                        accept=".csv"
+                        onchange="handleFileSelect(event)"
+                    >
+                    <label for="csvFileInput" class="file-input-label">
+                        📁 Choisir un fichier CSV
+                    </label>
+                </div>
+                <div class="file-name" id="fileName"></div>
+                <button 
+                    id="processCsvButton" 
+                    class="csv-button" 
+                    onclick="processCsvFile()"
+                    disabled
+                >
+                    🔄 Traiter le fichier CSV
+                </button>
+            </div>
+        </div>
+
+        <div id="csvResults" class="csv-results" style="display: none;">
+            <h3>📊 Résultats</h3>
+            <pre id="resultsContent"></pre>
+            <a id="downloadLink" class="download-button" style="display: none;" download="results.csv">
+                💾 Télécharger les résultats
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Détecter automatiquement l'URL de l'API
+        const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:8000'
+            : 'http://api:8000';  // Nom du service Docker
+        
+        const csvFileInput = document.getElementById('csvFileInput');
+        const processCsvButton = document.getElementById('processCsvButton');
+        const fileName = document.getElementById('fileName');
+        const csvResults = document.getElementById('csvResults');
+        const resultsContent = document.getElementById('resultsContent');
+        const downloadLink = document.getElementById('downloadLink');
+        
+        let selectedFile = null;
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                selectedFile = file;
+                fileName.textContent = `Fichier sélectionné: ${file.name} (${(file.size / 1024).toFixed(2)} KB)`;
+                processCsvButton.disabled = false;
+                csvResults.style.display = 'none';
+                downloadLink.style.display = 'none';
+            }
+        }
+
+        async function processCsvFile() {
+            if (!selectedFile) {
+                alert('Veuillez sélectionner un fichier CSV');
+                return;
+            }
+
+            // Désactiver le bouton et afficher le loading
+            processCsvButton.disabled = true;
+            processCsvButton.innerHTML = '<div class="loading"></div> Traitement en cours...';
+
+            try {
+                // Créer FormData pour l'upload
+                const formData = new FormData();
+                formData.append('file', selectedFile);
+
+                console.log('📤 Envoi du fichier à l\'API...', selectedFile.name);
+                console.log('API URL:', `${API_URL}/process_csv`);
+
+                // Envoyer le fichier à l'API
+                const response = await fetch(`${API_URL}/process_csv`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                console.log('📥 Réponse reçue:', response.status, response.statusText);
+
+                if (!response.ok) {
+                    let errorMessage = 'Erreur lors du traitement';
+                    try {
+                        const errorData = await response.json();
+                        errorMessage = errorData.detail || errorMessage;
+                        console.error('❌ Erreur API:', errorData);
+                    } catch (e) {
+                        try {
+                            errorMessage = await response.text() || errorMessage;
+                        } catch (e2) {
+                            errorMessage = `Erreur HTTP ${response.status}: ${response.statusText}`;
+                        }
+                    }
+                    throw new Error(errorMessage);
+                }
+
+                // Lire le contenu CSV retourné
+                const csvContent = await response.text();
+                console.log('✅ CSV reçu:', csvContent.substring(0, 100) + '...');
+
+                // Afficher les résultats
+                csvResults.style.display = 'block';
+                resultsContent.textContent = csvContent;
+
+                // Créer le lien de téléchargement
+                const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                const url = URL.createObjectURL(blob);
+                downloadLink.href = url;
+                downloadLink.download = 'results_' + selectedFile.name;
+                downloadLink.style.display = 'inline-block';
+
+                // Scroll vers les résultats
+                csvResults.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            } catch (error) {
+                alert('Erreur lors du traitement: ' + error.message);
+                console.error('Erreur:', error);
+            } finally {
+                // Réactiver le bouton
+                processCsvButton.disabled = false;
+                processCsvButton.innerHTML = '🔄 Traiter le fichier CSV';
+            }
+        }
+    </script>
+</body>
+</html>

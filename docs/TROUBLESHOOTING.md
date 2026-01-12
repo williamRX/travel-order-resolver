@@ -56,7 +56,7 @@
    ```
 
 3. **Accéder directement au fichier**
-   - Ouvrir `http://localhost:8080` dans le navigateur
+   - Ouvrir `http://localhost:3000` dans le navigateur
    - Vérifier la console du navigateur (F12) pour les erreurs
 
 4. **Vérifier la connexion à l'API**
@@ -100,7 +100,7 @@ Si vous obtenez une erreur "port already in use" :
    ```bash
    # macOS/Linux
    lsof -i :8000
-   lsof -i :8080
+   lsof -i :3000
    lsof -i :8888
    ```
 

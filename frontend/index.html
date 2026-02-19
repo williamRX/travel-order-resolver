@@ -150,6 +150,142 @@
             text-align: center;
         }
 
+        .route-path.sncf {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe8cc 100%);
+            border-left: 4px solid #ff9800;
+        }
+
+        .route-path.graph {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 4px solid #4caf50;
+        }
+
+        .route-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        .route-badge.sncf {
+            background: #ff9800;
+            color: white;
+        }
+
+        .route-badge.graph {
+            background: #4caf50;
+            color: white;
+        }
+
+        .route-badge.dijkstra {
+            background: #2196f3;
+            color: white;
+        }
+
+        .route-badge.astar {
+            background: #9c27b0;
+            color: white;
+        }
+
+        .route-source-info {
+            margin-top: 8px;
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.03);
+            border-radius: 6px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Styles pour les détails du trajet SNCF (cliquables) */
+        .sncf-details-toggle {
+            margin-top: 15px;
+            padding: 10px 15px;
+            background: #fff;
+            border: 2px solid #ff9800;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            color: #ff9800;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            user-select: none;
+        }
+
+        .sncf-details-toggle:hover {
+            background: #fff5e6;
+            border-color: #f57c00;
+        }
+
+        .sncf-details-toggle .toggle-icon {
+            transition: transform 0.3s;
+            font-size: 18px;
+        }
+
+        .sncf-details-toggle.expanded .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .sncf-details-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            margin-top: 10px;
+        }
+
+        .sncf-details-content.expanded {
+            max-height: 1000px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        .sncf-section-detail {
+            padding: 10px;
+            margin: 8px 0;
+            background: #f9f9f9;
+            border-left: 4px solid #ff9800;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .sncf-section-detail.train {
+            background: #fff5e6;
+            border-left-color: #ff9800;
+        }
+
+        .sncf-section-detail.transfer {
+            background: #f5f5f5;
+            border-left-color: #999;
+            color: #666;
+            font-style: italic;
+        }
+
+        .sncf-summary {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .sncf-summary-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            padding: 8px;
+            background: #f9f9f9;
+            border-radius: 4px;
+        }
+
+        .sncf-summary-item strong {
+            min-width: 120px;
+            color: #ff9800;
+        }
+
         .route-path strong {
             color: #667eea;
             padding: 4px 8px;
@@ -169,6 +305,7 @@
         .input-wrapper {
             display: flex;
             gap: 10px;
+            align-items: center;
         }
 
         #sentenceInput {
@@ -210,6 +347,77 @@
             opacity: 0.6;
             cursor: not-allowed;
             transform: none;
+        }
+
+        #voiceButton {
+            padding: 12px;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+        }
+
+        #voiceButton:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+        }
+
+        #voiceButton.recording {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            animation: pulse 1.5s infinite;
+            box-shadow: 0 0 20px rgba(220, 53, 69, 0.6);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        #voiceButton.recording::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid rgba(220, 53, 69, 0.5);
+            animation: ripple 1.5s infinite;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .voice-status {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            text-align: center;
+            min-height: 16px;
+        }
+
+        .voice-status.active {
+            color: #dc3545;
+            font-weight: bold;
         }
 
         .loading {
@@ -266,13 +474,206 @@
             background: #e9ecef;
         }
 
+        .settings-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .settings-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .settings-panel {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            height: 100vh;
+            background: white;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .settings-panel.open {
+            right: 0;
+        }
+
+        .settings-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .settings-header h2 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .close-settings {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .settings-content {
+            padding: 20px;
+        }
+
+        .settings-section {
+            margin-bottom: 25px;
+        }
+
+        .settings-section h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group select:focus,
+        .form-group input:focus {
+            border-color: #667eea;
+        }
+
+        .form-group input[type="password"] {
+            font-family: monospace;
+        }
+
+        .form-group small {
+            display: block;
+            margin-top: 5px;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .save-settings-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .save-settings-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+
     </style>
 </head>
 <body>
+    <div class="overlay" id="settingsOverlay" onclick="closeSettings()"></div>
+    
+    <div class="settings-panel" id="settingsPanel">
+        <div class="settings-header">
+            <h2>⚙️ Paramètres</h2>
+            <button class="close-settings" onclick="closeSettings()">×</button>
+        </div>
+        <div class="settings-content">
+            <div class="settings-section">
+                <h3>🔍 Mode de recherche d'itinéraire</h3>
+                <div class="form-group">
+                    <label for="routeMode">Système de recherche :</label>
+                    <select id="routeMode">
+                        <option value="graph">Graphe local (A* / Dijkstra)</option>
+                        <option value="sncf_api">API SNCF (horaires réels)</option>
+                    </select>
+                    <small>Graphe : Rapide, local, basé sur distances | API SNCF : Données réelles, horaires en temps réel</small>
+                </div>
+                
+                <div class="form-group" id="algorithmGroup">
+                    <label for="pathfindingAlgorithm">Algorithme (graphe) :</label>
+                    <select id="pathfindingAlgorithm">
+                        <option value="dijkstra">Dijkstra</option>
+                        <option value="astar">A* (A-star)</option>
+                    </select>
+                    <small>Dijkstra : Plus simple | A* : Plus rapide avec heuristique</small>
+                </div>
+                
+                <div class="form-group" id="sncfApiKeyGroup" style="display: none;">
+                    <label for="sncfApiKey">Clé API SNCF :</label>
+                    <input type="password" id="sncfApiKey" placeholder="Votre clé API SNCF">
+                    <small>
+                        Obtenez votre clé sur 
+                        <a href="https://www.sncf-connect.com/open-data/api" target="_blank" style="color: #667eea;">
+                            sncf-connect.com/open-data/api
+                        </a>
+                    </small>
+                </div>
+            </div>
+            
+            <button class="save-settings-btn" onclick="saveSettings()">💾 Enregistrer les paramètres</button>
+        </div>
+    </div>
+    
     <div class="container">
         <div class="header">
+            <button class="settings-toggle" onclick="openSettings()">⚙️ Paramètres</button>
             <h1>🚂 Extraction d'Intentions de Voyage</h1>
-            <p>Entrez une phrase pour extraire les destinations de départ et d'arrivée</p>
+            <p>Entrez une phrase ou utilisez le microphone 🎤 pour extraire les destinations</p>
             <a href="csv_upload.html" style="display: inline-block; margin-top: 15px; padding: 8px 16px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 5px; font-size: 14px; transition: background 0.2s;">
                 📄 Traitement par fichier CSV →
             </a>
@@ -299,14 +700,18 @@
 
         <div class="input-container">
             <div class="input-wrapper">
+                <button id="voiceButton" onclick="toggleVoiceRecognition()" title="Reconnaissance vocale">
+                    🎤
+                </button>
                 <input 
                     type="text" 
                     id="sentenceInput" 
-                    placeholder="Tapez votre phrase ici..."
+                    placeholder="Tapez votre phrase ici ou cliquez sur le micro 🎤..."
                     onkeypress="handleKeyPress(event)"
                 >
                 <button id="sendButton" onclick="sendMessage()">Envoyer</button>
             </div>
+            <div class="voice-status" id="voiceStatus"></div>
         </div>
     </div>
 
@@ -320,6 +725,181 @@
         const chatContainer = document.getElementById('chatContainer');
         const sentenceInput = document.getElementById('sentenceInput');
         const sendButton = document.getElementById('sendButton');
+        const voiceButton = document.getElementById('voiceButton');
+        const voiceStatus = document.getElementById('voiceStatus');
+        const settingsPanel = document.getElementById('settingsPanel');
+        const settingsOverlay = document.getElementById('settingsOverlay');
+
+        // Paramètres par défaut (stockés dans localStorage)
+        let currentSettings = {
+            routeMode: localStorage.getItem('routeMode') || 'graph',
+            pathfindingAlgorithm: localStorage.getItem('pathfindingAlgorithm') || 'dijkstra',
+            sncfApiKey: localStorage.getItem('sncfApiKey') || ''
+        };
+
+        // Charger les paramètres au démarrage
+        function loadSettings() {
+            document.getElementById('routeMode').value = currentSettings.routeMode;
+            document.getElementById('pathfindingAlgorithm').value = currentSettings.pathfindingAlgorithm;
+            document.getElementById('sncfApiKey').value = currentSettings.sncfApiKey;
+            updateSettingsUI();
+        }
+
+        // Mettre à jour l'UI selon le mode sélectionné
+        function updateSettingsUI() {
+            const routeMode = document.getElementById('routeMode').value;
+            const algorithmGroup = document.getElementById('algorithmGroup');
+            const sncfApiKeyGroup = document.getElementById('sncfApiKeyGroup');
+            
+            if (routeMode === 'graph') {
+                algorithmGroup.style.display = 'block';
+                sncfApiKeyGroup.style.display = 'none';
+            } else {
+                algorithmGroup.style.display = 'none';
+                sncfApiKeyGroup.style.display = 'block';
+            }
+        }
+
+        // Ouvrir/fermer les paramètres
+        function openSettings() {
+            settingsPanel.classList.add('open');
+            settingsOverlay.classList.add('show');
+            loadSettings();
+        }
+
+        function closeSettings() {
+            settingsPanel.classList.remove('open');
+            settingsOverlay.classList.remove('show');
+        }
+
+        // Enregistrer les paramètres
+        function saveSettings() {
+            currentSettings.routeMode = document.getElementById('routeMode').value;
+            currentSettings.pathfindingAlgorithm = document.getElementById('pathfindingAlgorithm').value;
+            currentSettings.sncfApiKey = document.getElementById('sncfApiKey').value;
+            
+            // Sauvegarder dans localStorage
+            localStorage.setItem('routeMode', currentSettings.routeMode);
+            localStorage.setItem('pathfindingAlgorithm', currentSettings.pathfindingAlgorithm);
+            if (currentSettings.sncfApiKey) {
+                localStorage.setItem('sncfApiKey', currentSettings.sncfApiKey);
+            }
+            
+            closeSettings();
+            
+            // Afficher un message de confirmation
+            addMessage('✅ Paramètres enregistrés avec succès !', 'bot', false, true);
+        }
+
+        // Écouter les changements de mode
+        document.getElementById('routeMode').addEventListener('change', updateSettingsUI);
+
+        // Charger les paramètres au démarrage
+        loadSettings();
+
+        // Reconnaissance vocale
+        let recognition = null;
+        let isRecording = false;
+
+        // Vérifier si la reconnaissance vocale est disponible
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            
+            // Configuration de la reconnaissance vocale
+            recognition.lang = 'fr-FR';  // Langue française
+            recognition.continuous = false;  // Arrêter après une phrase
+            recognition.interimResults = false;  // Afficher seulement les résultats finaux
+            recognition.maxAlternatives = 1;  // Une seule alternative
+
+            // Événements de la reconnaissance vocale
+            recognition.onstart = function() {
+                isRecording = true;
+                voiceButton.classList.add('recording');
+                voiceButton.textContent = '🔴';
+                voiceStatus.textContent = '🎤 Enregistrement en cours... Parlez maintenant.';
+                voiceStatus.classList.add('active');
+                sendButton.disabled = true;
+            };
+
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                sentenceInput.value = transcript.trim();
+                
+                // Afficher un message de confirmation
+                voiceStatus.textContent = '✅ Transcription terminée. Cliquez sur "Envoyer" ou parlez à nouveau.';
+                voiceStatus.classList.add('active');
+                setTimeout(() => {
+                    voiceStatus.textContent = '';
+                    voiceStatus.classList.remove('active');
+                }, 2000);
+                
+                // Option : Auto-envoi après transcription (décommenter pour activer)
+                // setTimeout(() => sendMessage(), 500);
+            };
+
+            recognition.onerror = function(event) {
+                console.error('Erreur de reconnaissance vocale:', event.error);
+                let errorMessage = 'Erreur de reconnaissance vocale.';
+                
+                switch(event.error) {
+                    case 'no-speech':
+                        errorMessage = 'Aucune parole détectée. Réessayez.';
+                        break;
+                    case 'audio-capture':
+                        errorMessage = 'Aucun microphone trouvé.';
+                        break;
+                    case 'not-allowed':
+                        errorMessage = 'Permission microphone refusée. Autorisez l\'accès dans les paramètres du navigateur.';
+                        break;
+                    case 'network':
+                        errorMessage = 'Erreur réseau. Vérifiez votre connexion.';
+                        break;
+                }
+                
+                voiceStatus.textContent = errorMessage;
+                voiceStatus.classList.add('active');
+                setTimeout(() => {
+                    voiceStatus.textContent = '';
+                    voiceStatus.classList.remove('active');
+                }, 3000);
+            };
+
+            recognition.onend = function() {
+                isRecording = false;
+                voiceButton.classList.remove('recording');
+                voiceButton.textContent = '🎤';
+                voiceStatus.textContent = '';
+                voiceStatus.classList.remove('active');
+                sendButton.disabled = false;
+            };
+        } else {
+            // Reconnaissance vocale non disponible
+            voiceButton.style.display = 'none';
+            console.warn('La reconnaissance vocale n\'est pas disponible dans ce navigateur.');
+        }
+
+        function toggleVoiceRecognition() {
+            if (!recognition) {
+                voiceStatus.textContent = '⚠️ Reconnaissance vocale non disponible dans ce navigateur. Utilisez Chrome ou Edge.';
+                voiceStatus.classList.add('active');
+                return;
+            }
+
+            if (isRecording) {
+                // Arrêter l'enregistrement
+                recognition.stop();
+            } else {
+                // Démarrer l'enregistrement
+                try {
+                    recognition.start();
+                } catch (error) {
+                    console.error('Erreur lors du démarrage de la reconnaissance:', error);
+                    voiceStatus.textContent = 'Erreur : ' + error.message;
+                    voiceStatus.classList.add('active');
+                }
+            }
+        }
 
         function handleKeyPress(event) {
             if (event.key === 'Enter') {
@@ -369,12 +949,24 @@
             sendButton.innerHTML = '<div class="loading"></div>';
 
             try {
+                // Construire la requête avec les paramètres de route
+                const requestBody = {
+                    sentence: sentence,
+                    route_mode: currentSettings.routeMode,
+                    pathfinding_algorithm: currentSettings.pathfindingAlgorithm,
+                };
+                
+                // Ajouter la clé API SNCF seulement si mode SNCF
+                if (currentSettings.routeMode === 'sncf_api' && currentSettings.sncfApiKey) {
+                    requestBody.sncf_api_key = currentSettings.sncfApiKey;
+                }
+                
                 const response = await fetch(`${API_URL}/predict`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ sentence: sentence })
+                    body: JSON.stringify(requestBody)
                 });
 
                 const data = await response.json();
@@ -391,8 +983,33 @@
                     
                     // Si une route complète est disponible (pathfinding activé)
                     if (data.route && data.route.length > 0) {
+                        // Déterminer la source et le style
+                        const routeSource = data.route_source || 'graph';
+                        const routeAlgorithm = data.route_algorithm || '';
+                        const isSNCF = routeSource === 'sncf_api';
+                        const isGraph = routeSource === 'graph';
+                        
+                        // Déterminer l'icône et le titre selon la source
+                        let routeIcon = isSNCF ? '🚆' : '🗺️';
+                        let routeTitle = isSNCF ? 'Itinéraire SNCF (horaires réels)' : 'Itinéraire calculé (graphe local)';
+                        
+                        // Badge de source
+                        let sourceBadge = '';
+                        if (isSNCF) {
+                            sourceBadge = '<span class="route-badge sncf">API SNCF</span>';
+                        } else if (isGraph) {
+                            sourceBadge = '<span class="route-badge graph">Graphe</span>';
+                            if (routeAlgorithm) {
+                                const algoName = routeAlgorithm === 'astar' ? 'A*' : 'Dijkstra';
+                                sourceBadge += `<span class="route-badge ${routeAlgorithm}">${algoName}</span>`;
+                            }
+                        }
+                        
                         message += '<div class="result-box">';
-                        message += '<h3>🚂 Itinéraire trouvé :</h3>';
+                        message += `<h3>${routeIcon} ${routeTitle} ${sourceBadge}</h3>`;
+                        
+                        // Déterminer la classe CSS selon la source
+                        const routePathClass = isSNCF ? 'route-path sncf' : 'route-path graph';
                         
                         // Afficher le trajet complet avec flèches
                         let routeDisplay = '';
@@ -402,14 +1019,92 @@
                             }
                             routeDisplay += `<strong>${data.route[i]}</strong>`;
                         }
-                        message += `<div class="result-item route-path">${routeDisplay}</div>`;
+                        message += `<div class="result-item ${routePathClass}">${routeDisplay}</div>`;
                         
                         // Afficher les informations supplémentaires si disponibles
                         if (data.route_distance) {
                             message += `<div class="result-item"><strong>Distance totale :</strong> ${data.route_distance.toFixed(1)} km</div>`;
                         }
                         if (data.route_time) {
-                            message += `<div class="result-item"><strong>Temps estimé :</strong> ${data.route_time.toFixed(1)} heures</div>`;
+                            const timeHours = data.route_time.toFixed(1);
+                            const timeMinutes = Math.round(data.route_time * 60);
+                            message += `<div class="result-item"><strong>Temps estimé :</strong> ${timeHours} heures (${timeMinutes} minutes)</div>`;
+                        }
+                        
+                        // Réorganiser l'affichage SNCF : résumé en haut, détails cliquables en bas
+                        if (isSNCF) {
+                            // Section résumé SNCF (toujours visible)
+                            message += '<div class="sncf-summary">';
+                            
+                            // Horaires principaux
+                            if (data.sncf_departure_time && data.sncf_arrival_time) {
+                                message += `<div class="sncf-summary-item">
+                                    <strong>⏱️ Horaires :</strong> 
+                                    <span>${data.sncf_departure_time} → ${data.sncf_arrival_time}</span>
+                                </div>`;
+                            }
+                            
+                            // Prochain train
+                            if (data.sncf_next_train) {
+                                message += `<div class="sncf-summary-item" style="background: #fff3cd; border-left: 3px solid #ff9800;">
+                                    <strong>🚆 Prochain train :</strong> 
+                                    <span>${data.sncf_next_train}</span>
+                                </div>`;
+                            }
+                            
+                            // Correspondances
+                            if (data.sncf_transfers !== undefined && data.sncf_transfers !== null) {
+                                const transfersText = data.sncf_transfers === 0 ? 'Direct ✨' : `${data.sncf_transfers} correspondance${data.sncf_transfers > 1 ? 's' : ''}`;
+                                message += `<div class="sncf-summary-item">
+                                    <strong>🔄 Correspondances :</strong> 
+                                    <span>${transfersText}</span>
+                                </div>`;
+                            }
+                            
+                            message += '</div>'; // Fin sncf-summary
+                            
+                            // Section détails du trajet (cliquable)
+                            if (data.sncf_sections && data.sncf_sections.length > 0) {
+                                const detailsId = `sncf-details-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+                                message += `<div class="sncf-details-toggle" onclick="toggleSNCFDetails('${detailsId}')">
+                                    <span>📋 Détails du trajet</span>
+                                    <span class="toggle-icon">▼</span>
+                                </div>`;
+                                
+                                message += `<div class="sncf-details-content" id="${detailsId}">`;
+                                data.sncf_sections.forEach((section, idx) => {
+                                    if (section.type === 'train') {
+                                        const depTime = section.departure_time ? section.departure_time.split('T')[1]?.substring(0, 5) : 'N/A';
+                                        const arrTime = section.arrival_time ? section.arrival_time.split('T')[1]?.substring(0, 5) : 'N/A';
+                                        const durationMin = section.duration ? Math.round(section.duration / 60) : '';
+                                        message += `<div class="sncf-section-detail train">
+                                            <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                                                <span style="font-size: 18px; margin-right: 8px;">🚂</span>
+                                                <strong style="color: #ff9800;">${section.line || 'Train'}</strong>
+                                            </div>
+                                            <div style="padding-left: 26px;">
+                                                <div><strong>${section.from || 'N/A'}</strong> (${depTime})</div>
+                                                <div style="margin: 5px 0; color: #666;">→</div>
+                                                <div><strong>${section.to || 'N/A'}</strong> (${arrTime})</div>
+                                                ${durationMin ? `<div style="margin-top: 5px; font-size: 12px; color: #999;">⏱️ Durée : ${durationMin} min</div>` : ''}
+                                            </div>
+                                        </div>`;
+                                    } else if (section.type === 'transfer') {
+                                        const durationMin = Math.round(section.duration / 60);
+                                        message += `<div class="sncf-section-detail transfer">
+                                            <span style="font-size: 16px; margin-right: 8px;">⚡</span>
+                                            <strong>Correspondance</strong> - ${durationMin} min
+                                        </div>`;
+                                    }
+                                });
+                                message += '</div>'; // Fin sncf-details-content
+                            }
+                            
+                            // Source de l'itinéraire
+                            message += `<div class="route-source-info" style="margin-top: 15px;">📡 Source : API SNCF - Horaires en temps réel avec correspondances réelles</div>`;
+                        } else if (isGraph) {
+                            const algoText = routeAlgorithm === 'astar' ? 'A* (A-star)' : 'Dijkstra';
+                            message += `<div class="route-source-info" style="margin-top: 15px;">📊 Source : Graphe local - Calcul basé sur distances géographiques (${algoText})</div>`;
                         }
                         
                         // Afficher aussi départ et arrivée pour référence
@@ -450,11 +1145,40 @@
                 }
 
             } catch (error) {
-                addMessage(`❌ Erreur : ${error.message}`, 'bot', true, false);
+                const isNetworkError = (
+                    error.message === 'Load failed' ||
+                    error.message === 'Failed to fetch' ||
+                    error.message === 'NetworkError when attempting to fetch resource' ||
+                    (error.name === 'TypeError' && error.message.includes('fetch'))
+                );
+                const msg = isNetworkError
+                    ? `Impossible de joindre l'API. Vérifiez que les services tournent (docker compose up -d) et que l'API est accessible sur ${API_URL}`
+                    : `Erreur : ${error.message}`;
+                addMessage(`❌ ${msg}`, 'bot', true, false);
                 console.error('Erreur:', error);
             } finally {
                 sendButton.disabled = false;
                 sendButton.textContent = 'Envoyer';
+            }
+        }
+
+        // Fonction pour afficher/masquer les détails du trajet SNCF
+        function toggleSNCFDetails(detailsId) {
+            const content = document.getElementById(detailsId);
+            if (!content) return;
+            
+            // Trouver le toggle (élément précédent)
+            const toggle = content.previousElementSibling;
+            if (!toggle || !toggle.classList.contains('sncf-details-toggle')) return;
+            
+            // Toggle la classe expanded
+            const isExpanded = content.classList.contains('expanded');
+            if (isExpanded) {
+                content.classList.remove('expanded');
+                toggle.classList.remove('expanded');
+            } else {
+                content.classList.add('expanded');
+                toggle.classList.add('expanded');
             }
         }
     </script>

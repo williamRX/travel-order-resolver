@@ -1,0 +1,36 @@
+text,expected_departure,expected_arrival,category
+Je vais de Paris à Lyon,Paris,Lyon,Phrase standard
+Billet Marseille Nice,Marseille,Nice,Billet
+Trajet Bordeaux Toulouse,Bordeaux,Toulouse,Trajet Ville Ville
+Paris - Lyon,Paris,Lyon,Ville - Ville
+Paris -> Lyon,Paris,Lyon,Ville -> Ville
+Comment aller de Lille à Strasbourg ?,Lille,Strasbourg,Question
+Je pars de la gare de Nantes pour Rennes,Nantes,Rennes,Avec gare
+Donne moi un trajet Sncf de Montpellier à Marseille,Montpellier,Marseille,Demande Sncf
+Je veu alé de Parid a Lyonn,Parid,Lyonn,Avec typos
+PARIS LYON,PARIS,LYON,Casse majuscules
+paris lyon,paris,lyon,Casse minuscules
+Je vais de Paris Gare de Lyon à Lyon Part-Dieu,Paris Gare de Lyon,Lyon Part-Dieu,Gare complète
+Trajet Paris - Gare du Nord Lyon - Part-Dieu,Paris - Gare du Nord,Lyon - Part-Dieu,Ville avec tiret composé
+Je veux aller de Toulouse à Marseille,Toulouse,Marseille,Je veux aller
+Je dois me rendre de Nice à Cannes,Nice,Cannes,Je dois me rendre
+Un billet pour Marseille depuis Paris,Paris,Marseille,Billet depuis
+Combien coûte un billet Paris Lyon ?,Paris,Lyon,Prix billet
+Quel train pour aller de Bordeaux à Toulouse ?,Bordeaux,Toulouse,Quel train
+Y a-t-il un train Paris Marseille ?,Paris,Marseille,Y a-t-il un train
+Je pars de l'aéroport de Lyon pour Nice,Lyon,Nice,Avec aéroport
+Trajet de la gare de Paris vers Lyon,Paris,Lyon,Gare vers
+Pour aller à Lyon je pars de Paris,Paris,Lyon,Pour aller
+J'ai besoin d'aller de Nantes à Rennes,Nantes,Rennes,J'ai besoin
+Je veux me rendre de Strasbourg à Mulhouse,Strasbourg,Mulhouse,Je veux me rendre
+Je dois me déplacer de Lille vers Douai,Lille,Douai,Me déplacer
+En train de Paris à Lyon,Paris,Lyon,En train
+Par le train de Marseille à Nice,Marseille,Nice,Par le train
+En TGV de Lyon à Paris,Lyon,Paris,En TGV
+Je pars de Paris demain pour Lyon,Paris,Lyon,Avec date
+Je vais à Lyon ce soir depuis Paris,Paris,Lyon,Avec horaire
+Comment me rendre de Bordeaux à Toulouse ?,Bordeaux,Toulouse,Comment me rendre
+Quel est le prix d'un billet Paris Lyon ?,Paris,Lyon,Prix question
+Salut j'ai un rdv à Marseille je pars de Paris,Paris,Marseille,Salut contexte
+Je vais de Saint-Étienne à Clermont-Ferrand,Saint-Étienne,Clermont-Ferrand,Ville avec tiret
+Trajet Bordeaux-Saint-Jean Toulouse-Matabiau,Bordeaux-Saint-Jean,Toulouse-Matabiau,Gare avec tiret

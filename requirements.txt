@@ -30,6 +30,9 @@ transformers>=4.30.0
 torch>=2.0.0  # Pour Mac Apple Silicon: pip install torch torchvision torchaudio (support MPS inclus)
 accelerate>=0.20.0
 sentencepiece>=0.1.99  # Requis pour CamemBERT tokenizer
+protobuf>=4.25.0       # Requis par SentencePieceExtractor (transformers + sentencepiece)
+# Optionnel mais recommandé : évite les erreurs de fallback tokenizer récents
+tiktoken>=0.5.0
 
 # Note pour Mac Apple Silicon (M1/M2/M3/M4):
 # PyTorch avec support MPS (Metal Performance Shaders) est installé automatiquement
@@ -41,3 +44,4 @@ fastapi>=0.104.0
 uvicorn[standard]>=0.24.0
 pydantic>=2.0.0
 python-multipart>=0.0.6  # Requis pour les uploads de fichiers (File/UploadFile)
+requests>=2.31.0  # Requis pour l'API SNCF (appels HTTP)

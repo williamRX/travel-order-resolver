@@ -52,8 +52,10 @@ echo "   http://localhost:$PORT"
 echo ""
 echo "📝 Instructions:"
 echo "1. Ouvrez l'URL ci-dessus dans Chrome/Safari"
-echo "2. Naviguez vers: classifier/notebooks/03_validity_classifier_camembert.ipynb"
-echo "3. Le notebook utilisera automatiquement votre GPU M4 Pro!"
+echo "2. Naviguez vers:"
+echo "   - NLP: nlp/notebooks/02_ner_training_camembert.ipynb"
+echo "   - Classifier: classifier/notebooks/03_validity_classifier_camembert.ipynb"
+echo "3. Le notebook utilisera automatiquement votre GPU MPS!"
 echo ""
 
 # Générer un token simple pour le développement

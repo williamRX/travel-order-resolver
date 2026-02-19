@@ -40,7 +40,13 @@ const API_URL = 'http://votre-api:8000';
 
 ## Fonctionnalités
 
-- Interface chatbot moderne et responsive
+- **Interface chatbot moderne et responsive**
+- **Reconnaissance vocale (Voice-to-Text)** 🎤
+  - Utilise la Web Speech API native du navigateur
+  - Supporte le français (fr-FR)
+  - Bouton microphone avec feedback visuel
+  - Transcription automatique dans le champ de saisie
+  - Compatible avec Chrome, Edge, Safari (depuis iOS 14.5)
 - Validation des phrases avec le classifieur
 - Extraction des destinations avec le modèle NLP
 - Affichage des résultats dans un format structuré

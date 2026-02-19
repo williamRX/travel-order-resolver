@@ -8,7 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, Response
 from pydantic import BaseModel
 from pathlib import Path
-from typing import Optional, List
+from typing import Optional, List, Dict
 import sys
 import io
 
@@ -47,6 +47,9 @@ except Exception as e:
 class SentenceRequest(BaseModel):
     """Requête avec une phrase à analyser."""
     sentence: str
+    route_mode: Optional[str] = None  # "graph" ou "sncf_api"
+    pathfinding_algorithm: Optional[str] = None  # "dijkstra" ou "astar" (si route_mode="graph")
+    sncf_api_key: Optional[str] = None  # Clé API SNCF (si route_mode="sncf_api")
 
 
 class SentenceResponse(BaseModel):
@@ -58,6 +61,17 @@ class SentenceResponse(BaseModel):
     route: Optional[List[str]] = None  # Itinéraire complet avec étapes (si pathfinding activé)
     route_distance: Optional[float] = None  # Distance totale en km
     route_time: Optional[float] = None  # Temps estimé en heures
+    route_source: Optional[str] = None  # Source de l'itinéraire: "graph" (A*/Dijkstra) ou "sncf_api"
+    route_algorithm: Optional[str] = None  # Algorithme utilisé si route_source="graph": "dijkstra" ou "astar"
+    # Informations SNCF supplémentaires
+    sncf_departure_time: Optional[str] = None  # Heure de départ formatée (HH:MM)
+    sncf_arrival_time: Optional[str] = None  # Heure d'arrivée formatée (HH:MM)
+    sncf_next_train: Optional[str] = None  # Prochain train disponible (HH:MM)
+    sncf_transfers: Optional[int] = None  # Nombre de correspondances
+    sncf_sections: Optional[List[Dict]] = None  # Détails des sections (trains, correspondances)
+    sncf_departure_uic: Optional[str] = None  # Code UIC de la gare de départ (8 chiffres) pour deeplink
+    sncf_arrival_uic: Optional[str] = None  # Code UIC de la gare d'arrivée (8 chiffres) pour deeplink
+    sncf_departure_time_raw: Optional[str] = None  # Date/heure de départ au format YYYYMMDDThhmmss pour deeplink
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -130,7 +144,13 @@ async def predict(request: SentenceRequest):
         )
     
     try:
-        result = pipeline.predict(request.sentence)
+        # Appeler le pipeline avec les paramètres optionnels
+        result = pipeline.predict(
+            request.sentence,
+            route_mode=request.route_mode,
+            pathfinding_algorithm=request.pathfinding_algorithm,
+            sncf_api_key=request.sncf_api_key
+        )
         return SentenceResponse(**result)
     except Exception as e:
         raise HTTPException(

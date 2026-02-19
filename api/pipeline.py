@@ -18,7 +18,6 @@ import torch
 import spacy
 import json
 from transformers import (
-    CamembertTokenizer, 
     CamembertTokenizerFast,
     CamembertForSequenceClassification,
     CamembertForTokenClassification
@@ -32,6 +31,14 @@ except ImportError:
     PATHFINDING_AVAILABLE = False
     print("⚠️  Module pathfinding non disponible")
 
+# Import du module API SNCF
+try:
+    from pathfinding.sncf_api import SNCFAPI
+    SNCF_API_AVAILABLE = True
+except ImportError:
+    SNCF_API_AVAILABLE = False
+    print("⚠️  Module API SNCF non disponible")
+
 
 class TravelIntentPipeline:
     """Pipeline complet pour l'extraction des intentions de voyage."""
@@ -43,7 +50,9 @@ class TravelIntentPipeline:
         use_camembert: bool = True,
         use_camembert_ner: Optional[bool] = None,  # None = auto-détection
         use_pathfinding: bool = True,  # Activer le pathfinding
-        pathfinding_algorithm: str = "dijkstra"  # "dijkstra" ou "astar"
+        pathfinding_algorithm: str = "dijkstra",  # "dijkstra" ou "astar"
+        route_mode: str = "graph",  # "graph" ou "sncf_api"
+        sncf_api_key: Optional[str] = None  # Clé API SNCF (si route_mode="sncf_api")
     ):
         """
         Initialise le pipeline avec les chemins des modèles.
@@ -54,13 +63,17 @@ class TravelIntentPipeline:
             use_camembert: Si True, utilise CamemBERT pour le classifieur, sinon utilise l'ancien modèle TF-IDF
             use_camembert_ner: Si True, utilise CamemBERT NER, si False utilise SpaCy, si None détecte automatiquement
             use_pathfinding: Si True, active le module pathfinding pour trouver les itinéraires (défaut: True)
-            pathfinding_algorithm: Algorithme à utiliser ("dijkstra" ou "astar", défaut: "dijkstra")
+            pathfinding_algorithm: Algorithme à utiliser si route_mode="graph" ("dijkstra" ou "astar", défaut: "dijkstra")
+            route_mode: Mode de recherche d'itinéraire ("graph" ou "sncf_api", défaut: "graph")
+            sncf_api_key: Clé API SNCF (requis si route_mode="sncf_api")
         """
         self.project_root = PROJECT_ROOT
         self.use_camembert = use_camembert
         self.use_camembert_ner = use_camembert_ner
-        self.use_pathfinding = use_pathfinding and PATHFINDING_AVAILABLE
+        self.use_pathfinding = use_pathfinding
         self.pathfinding_algorithm = pathfinding_algorithm
+        self.route_mode = route_mode  # "graph" ou "sncf_api"
+        self.sncf_api_key = sncf_api_key
         
         # Configurer le device (GPU MPS si disponible, sinon CPU)
         if torch.backends.mps.is_available():
@@ -83,7 +96,9 @@ class TravelIntentPipeline:
         # Charger le classifieur
         print(f"🔄 Chargement du classifieur depuis {classifier_model_path}...")
         if use_camembert:
-            self.tokenizer = CamembertTokenizer.from_pretrained(str(classifier_model_path))
+            # Tokenizer Fast depuis "camembert-base" (évite l'erreur tokenizers/Unigram avec
+            # le tokenizer slow sauvegardé). Le classifieur est bien chargé depuis le chemin.
+            self.tokenizer = CamembertTokenizerFast.from_pretrained("camembert-base")
             self.classifier = CamembertForSequenceClassification.from_pretrained(str(classifier_model_path))
             self.classifier.to(self.device)
             self.classifier.eval()
@@ -112,17 +127,36 @@ class TravelIntentPipeline:
         # Charger la liste des villes/gares pour le post-processing (commun aux deux modèles)
         self._load_cities_list()
         
-        # Initialiser le module pathfinding si disponible
+        # Initialiser le module pathfinding selon le mode choisi
         self.route_finder = None
+        self.sncf_api = None
+        
         if self.use_pathfinding:
-            try:
-                print("🔄 Initialisation du module pathfinding...")
-                self.route_finder = RouteFinder()
-                print("✅ Module pathfinding initialisé")
-            except Exception as e:
-                print(f"⚠️  Erreur lors de l'initialisation du pathfinding: {e}")
-                self.use_pathfinding = False
-                self.route_finder = None
+            if self.route_mode == "graph" and PATHFINDING_AVAILABLE:
+                try:
+                    print("🔄 Initialisation du module pathfinding (graphe)...")
+                    self.route_finder = RouteFinder()
+                    print(f"✅ Module pathfinding initialisé (algorithme: {pathfinding_algorithm})")
+                except Exception as e:
+                    print(f"⚠️  Erreur lors de l'initialisation du pathfinding: {e}")
+                    self.use_pathfinding = False
+                    self.route_finder = None
+            elif self.route_mode == "sncf_api" and SNCF_API_AVAILABLE:
+                try:
+                    print("🔄 Initialisation du module API SNCF...")
+                    self.sncf_api = SNCFAPI(api_key=self.sncf_api_key)
+                    print("✅ Module API SNCF initialisé")
+                except Exception as e:
+                    print(f"⚠️  Erreur lors de l'initialisation de l'API SNCF: {e}")
+                    self.use_pathfinding = False
+                    self.sncf_api = None
+            else:
+                if self.route_mode == "sncf_api" and not SNCF_API_AVAILABLE:
+                    print("⚠️  Module API SNCF non disponible")
+                    self.use_pathfinding = False
+                elif self.route_mode == "graph" and not PATHFINDING_AVAILABLE:
+                    print("⚠️  Module pathfinding non disponible")
+                    self.use_pathfinding = False
         
         print("✅ Pipeline initialisé et prêt à l'emploi!")
     
@@ -155,7 +189,10 @@ class TravelIntentPipeline:
         return sorted(vectorizer_files)[-1]
     
     def _find_latest_nlp_model(self) -> Path:
-        """Trouve le modèle NLP le plus récent (CamemBERT ou SpaCy)."""
+        """
+        Trouve le modèle NLP avec le meilleur F1-score.
+        Si les métriques ne sont pas disponibles, utilise le modèle le plus récent.
+        """
         models_dir = self.project_root / "nlp" / "models"
         # Chercher d'abord les modèles CamemBERT NER
         camembert_dirs = [d for d in models_dir.iterdir() 
@@ -165,15 +202,45 @@ class TravelIntentPipeline:
                      if d.is_dir() and d.name.startswith("spacy_ner_")]
         
         # Priorité aux modèles CamemBERT
-        if camembert_dirs:
-            return sorted(camembert_dirs)[-1]
-        elif spacy_dirs:
-            return sorted(spacy_dirs)[-1]
-        else:
+        model_dirs = camembert_dirs if camembert_dirs else spacy_dirs
+        
+        if not model_dirs:
             raise FileNotFoundError(
                 "Aucun modèle NLP trouvé. "
                 "Entraînez un modèle avec les notebooks NER (SpaCy ou CamemBERT)"
             )
+        
+        # Chercher le modèle avec le meilleur F1-score
+        best_model = None
+        best_f1 = -1.0
+        
+        for model_dir in model_dirs:
+            metrics_file = model_dir / "metrics.json"
+            if metrics_file.exists():
+                try:
+                    with open(metrics_file, 'r', encoding='utf-8') as f:
+                        metrics = json.load(f)
+                    
+                    # Extraire le F1-score depuis test_metrics
+                    test_metrics = metrics.get('test_metrics', {})
+                    f1_score = test_metrics.get('f1', test_metrics.get('f1-score', 0))
+                    
+                    if f1_score > best_f1:
+                        best_f1 = f1_score
+                        best_model = model_dir
+                except (json.JSONDecodeError, KeyError, Exception) as e:
+                    # Si erreur de lecture, ignorer ce modèle
+                    continue
+        
+        # Si on a trouvé un modèle avec métriques, le retourner
+        if best_model is not None:
+            print(f"✅ Modèle avec meilleur F1-score sélectionné: {best_model.name} (F1: {best_f1:.4f})")
+            return best_model
+        
+        # Sinon, fallback sur le modèle le plus récent (tri par nom)
+        latest_model = sorted(model_dirs)[-1]
+        print(f"⚠️  Aucune métrique trouvée, utilisation du modèle le plus récent: {latest_model.name}")
+        return latest_model
     
     def _detect_ner_model_type(self, model_path: Path) -> bool:
         """
@@ -547,13 +614,63 @@ class TravelIntentPipeline:
         is_valid = self.classifier.predict(sentence_vectorized)[0] == 1
         return is_valid
     
-    def predict(self, sentence: str) -> Dict:
+    def _pre_process_direct_extraction(self, sentence: str) -> Optional[Tuple[str, str]]:
+        """
+        Pre-processing : Extrait directement les villes si on détecte le pattern "Ville - Ville"
+        (avec espaces autour du tiret).
+        
+        Cela évite les erreurs avec l'IA et les problèmes avec les villes qui ont des tirets
+        dans leur nom (ex: "Saint-Paul", "Blonville-sur-Mer").
+        
+        Args:
+            sentence: Phrase à analyser
+            
+        Returns:
+            Tuple (departure, arrival) si le pattern est détecté, None sinon
+        """
+        # Pattern "Ville - Ville" (tiret avec espaces)
+        # On cherche ce pattern AVANT l'IA pour éviter les erreurs
+        pattern = r'([A-Za-zÀ-ÿ\-\s]+)\s+-\s+([A-Za-zÀ-ÿ\-\s]+)'
+        matches = list(re.finditer(pattern, sentence))
+        
+        if not matches:
+            return None
+        
+        # Prendre le premier match qui ressemble à deux villes valides
+        for match in matches:
+            part1 = match.group(1).strip()
+            part2 = match.group(2).strip()
+            
+            # Nettoyer les parties (enlever ponctuation finale)
+            part1 = re.sub(r'[.,!?;:()\[\]{}"\']+$', '', part1).strip()
+            part2 = re.sub(r'^[.,!?;:()\[\]{}"\']+', '', re.sub(r'[.,!?;:()\[\]{}"\']+$', '', part2)).strip()
+            
+            # Extraire les noms de villes depuis les parties
+            city1 = self._extract_city_name_from_text(part1)
+            city2 = self._extract_city_name_from_text(part2)
+            
+            # Si on a deux villes valides, les retourner
+            if city1 and city2:
+                return (city1, city2)
+        
+        return None
+    
+    def predict(
+        self, 
+        sentence: str,
+        route_mode: Optional[str] = None,
+        pathfinding_algorithm: Optional[str] = None,
+        sncf_api_key: Optional[str] = None
+    ) -> Dict:
         """
         Prédit les destinations de départ et d'arrivée à partir d'une phrase.
         Si le pathfinding est activé, trouve également l'itinéraire optimal.
         
         Args:
             sentence: Phrase à analyser
+            route_mode: Mode de recherche d'itinéraire ("graph" ou "sncf_api", None = utiliser la valeur par défaut)
+            pathfinding_algorithm: Algorithme pour mode "graph" ("dijkstra" ou "astar", None = utiliser la valeur par défaut)
+            sncf_api_key: Clé API SNCF pour mode "sncf_api" (None = utiliser la valeur par défaut)
             
         Returns:
             Dictionnaire avec:
@@ -565,6 +682,114 @@ class TravelIntentPipeline:
             - route_distance: Optional[float] - Distance totale en km (si pathfinding activé)
             - route_time: Optional[float] - Temps estimé en heures (si pathfinding activé)
         """
+        # Utiliser les paramètres fournis ou les valeurs par défaut
+        current_route_mode = route_mode if route_mode is not None else self.route_mode
+        current_algorithm = pathfinding_algorithm if pathfinding_algorithm is not None else self.pathfinding_algorithm
+        current_sncf_key = sncf_api_key if sncf_api_key is not None else self.sncf_api_key
+        
+        # Étape 0: Pre-processing - Extraction directe si pattern "Ville - Ville" détecté
+        direct_extraction = self._pre_process_direct_extraction(sentence)
+        if direct_extraction:
+            departure, arrival = direct_extraction
+            # On a trouvé directement les villes, on peut skip l'IA
+            # Mais on vérifie quand même la validité avec le classifieur
+            if self.use_camembert:
+                is_valid = self._predict_validity_camembert(sentence)
+            else:
+                is_valid = self._predict_validity_basic(sentence)
+            
+            if not is_valid:
+                return {
+                    "valid": False,
+                    "message": "Cette phrase ne contient pas d'intention de trajet valide. Veuillez reformuler votre demande.",
+                    "departure": None,
+                    "arrival": None,
+                    "route": None,
+                    "route_distance": None,
+                    "route_time": None
+                }
+            
+            # Aller directement au pathfinding si activé
+            route = None
+            route_distance = None
+            route_time = None
+            sncf_info = None
+            
+            if self.use_pathfinding and departure and arrival:
+                try:
+                    if current_route_mode == "graph" and self.route_finder:
+                        # Utiliser le système de graphe (A* ou Dijkstra)
+                        pathfinding_result = self.route_finder.find_route(
+                            departure,
+                            arrival,
+                            algorithm=current_algorithm
+                        )
+                        
+                        if pathfinding_result.success:
+                            route = pathfinding_result.route
+                            route_distance = pathfinding_result.total_distance
+                            route_time = pathfinding_result.estimated_time
+                    elif current_route_mode == "sncf_api":
+                        # Utiliser l'API SNCF (créer une instance temporaire si clé différente)
+                        sncf_api_to_use = self.sncf_api
+                        if current_sncf_key and current_sncf_key != self.sncf_api_key:
+                            from pathfinding.sncf_api import SNCFAPI
+                            sncf_api_to_use = SNCFAPI(api_key=current_sncf_key)
+                        elif current_sncf_key and not sncf_api_to_use:
+                            from pathfinding.sncf_api import SNCFAPI
+                            sncf_api_to_use = SNCFAPI(api_key=current_sncf_key)
+                        
+                        if sncf_api_to_use:
+                            sncf_result = sncf_api_to_use.find_route(departure, arrival)
+                            
+                            if sncf_result.success:
+                                route = sncf_result.route
+                                route_time = sncf_result.duration_seconds / 3600.0 if sncf_result.duration_seconds else None
+                                route_distance = None
+                                # Stocker les infos SNCF supplémentaires pour la réponse finale
+                                sncf_info = {
+                                    "departure_time": sncf_result.departure_time_formatted,
+                                    "arrival_time": sncf_result.arrival_time_formatted,
+                                    "next_train": sncf_result.next_train_departure,
+                                    "transfers": sncf_result.transfers,
+                                    "sections": sncf_result.sections_details,
+                                    "departure_uic": sncf_result.departure_uic,
+                                    "arrival_uic": sncf_result.arrival_uic,
+                                    "departure_time_raw": sncf_result.departure_time  # Format: YYYYMMDDThhmmss pour deeplink
+                                }
+                            else:
+                                print(f"⚠️  Erreur API SNCF: {sncf_result.message}")
+                except Exception as e:
+                    print(f"⚠️  Erreur pathfinding: {e}")
+            
+            # Construire la réponse
+            response = {
+                "valid": True,
+                "message": None,
+                "departure": departure,
+                "arrival": arrival,
+                "route": route,
+                "route_distance": route_distance,
+                "route_time": route_time,
+                "route_source": current_route_mode if route else None,
+                "route_algorithm": current_algorithm if route and current_route_mode == "graph" else None
+            }
+            
+            # Ajouter les infos SNCF si disponibles
+            if sncf_info:
+                response.update({
+                    "sncf_departure_time": sncf_info["departure_time"],
+                    "sncf_arrival_time": sncf_info["arrival_time"],
+                    "sncf_next_train": sncf_info["next_train"],
+                    "sncf_transfers": sncf_info["transfers"],
+                    "sncf_sections": sncf_info["sections"],
+                    "sncf_departure_uic": sncf_info.get("departure_uic"),
+                    "sncf_arrival_uic": sncf_info.get("arrival_uic"),
+                    "sncf_departure_time_raw": sncf_info.get("departure_time_raw")  # Format: YYYYMMDDThhmmss pour deeplink
+                })
+            
+            return response
+        
         # Étape 1: Vérifier avec le classifieur
         if self.use_camembert:
             is_valid = self._predict_validity_camembert(sentence)
@@ -595,33 +820,84 @@ class TravelIntentPipeline:
         route = None
         route_distance = None
         route_time = None
+        sncf_info = None
         
-        if self.use_pathfinding and self.route_finder and departure and arrival:
+        if self.use_pathfinding and departure and arrival:
             try:
-                pathfinding_result = self.route_finder.find_route(
-                    departure,
-                    arrival,
-                    algorithm=self.pathfinding_algorithm
-                )
-                
-                if pathfinding_result.success:
-                    route = pathfinding_result.route
-                    route_distance = pathfinding_result.total_distance
-                    route_time = pathfinding_result.estimated_time
+                if current_route_mode == "graph" and self.route_finder:
+                    # Utiliser le système de graphe (A* ou Dijkstra)
+                    pathfinding_result = self.route_finder.find_route(
+                        departure,
+                        arrival,
+                        algorithm=current_algorithm
+                    )
+                    
+                    if pathfinding_result.success:
+                        route = pathfinding_result.route
+                        route_distance = pathfinding_result.total_distance
+                        route_time = pathfinding_result.estimated_time
+                elif current_route_mode == "sncf_api":
+                    # Utiliser l'API SNCF (créer une instance temporaire si clé différente)
+                    sncf_api_to_use = self.sncf_api
+                    if current_sncf_key and current_sncf_key != self.sncf_api_key:
+                        from pathfinding.sncf_api import SNCFAPI
+                        sncf_api_to_use = SNCFAPI(api_key=current_sncf_key)
+                    elif current_sncf_key and not sncf_api_to_use:
+                        from pathfinding.sncf_api import SNCFAPI
+                        sncf_api_to_use = SNCFAPI(api_key=current_sncf_key)
+                    
+                    if sncf_api_to_use:
+                        sncf_result = sncf_api_to_use.find_route(departure, arrival)
+                        
+                        if sncf_result.success:
+                            route = sncf_result.route
+                            route_time = sncf_result.duration_seconds / 3600.0 if sncf_result.duration_seconds else None
+                            route_distance = None
+                            # Stocker les infos SNCF supplémentaires pour la réponse finale
+                            sncf_info = {
+                                "departure_time": sncf_result.departure_time_formatted,
+                                "arrival_time": sncf_result.arrival_time_formatted,
+                                "next_train": sncf_result.next_train_departure,
+                                "transfers": sncf_result.transfers,
+                                "sections": sncf_result.sections_details,
+                                "departure_uic": sncf_result.departure_uic,
+                                "arrival_uic": sncf_result.arrival_uic,
+                                "departure_time_raw": sncf_result.departure_time  # Format: YYYYMMDDThhmmss pour deeplink
+                            }
+                        else:
+                            print(f"⚠️  Erreur API SNCF: {sncf_result.message}")
                 # Si échec, on garde departure et arrival mais pas de route
             except Exception as e:
                 # En cas d'erreur, on continue sans pathfinding
                 print(f"⚠️  Erreur pathfinding: {e}")
         
-        return {
+        # Construire la réponse
+        response = {
             "valid": True,
             "message": None,
             "departure": departure,
             "arrival": arrival,
             "route": route,
             "route_distance": route_distance,
-            "route_time": route_time
+            "route_time": route_time,
+            "route_source": current_route_mode if route else None,
+            "route_algorithm": current_algorithm if route and current_route_mode == "graph" else None
         }
+        
+        # Ajouter les infos SNCF si disponibles
+        if sncf_info:
+            response.update({
+                "sncf_departure_time": sncf_info["departure_time"],
+                "sncf_arrival_time": sncf_info["arrival_time"],
+                "sncf_next_train": sncf_info["next_train"],
+                "sncf_transfers": sncf_info["transfers"],
+                "sncf_sections": sncf_info["sections"],
+                "sncf_departure_uic": sncf_info.get("departure_uic"),
+                "sncf_arrival_uic": sncf_info.get("arrival_uic"),
+                "sncf_departure_time_raw": sncf_info.get("departure_time_raw")  # Format: YYYYMMDDThhmmss pour deeplink
+            })
+        
+        return response
     
     def _extract_entities_spacy(self, sentence: str) -> Tuple[Optional[str], Optional[str]]:
         """Extrait les entités DEPARTURE et ARRIVAL avec SpaCy."""
@@ -746,19 +1022,57 @@ class TravelIntentPipeline:
             elif current_entity == "ARRIVAL":
                 arrival_spans.append((entity_start_char, entity_end_char))
         
-        # Extraire le texte original pour chaque entité
+        # Extraire le texte original pour chaque entité et filtrer avec post-processing
         departure = None
         arrival = None
+        
+        # Liste de pays à exclure (faux positifs fréquents)
+        excluded_countries = {
+            'inde', 'maroc', 'egypte', 'portugal', 'belgique', 'espagne', 'italie', 
+            'france', 'allemagne', 'suisse', 'tunisie', 'turquie', 'bresil', 'argentine', 
+            'chili', 'mexique', 'chine', 'thailande', 'vietnam', 'japon', 'australie', 
+            'canada', 'royaume-uni', 'etats-unis'
+        }
         
         if departure_spans:
             # Prendre la première occurrence de DEPARTURE
             start_char, end_char = departure_spans[0]
-            departure = sentence[start_char:end_char].strip()
+            candidate = sentence[start_char:end_char].strip()
+            
+            # POST-PROCESSING: Filtrer les entités invalides
+            candidate_lower = candidate.lower()
+            
+            # 1. Rejeter les lettres isolées (1-2 caractères)
+            if len(candidate) <= 2:
+                departure = None
+            # 2. Rejeter les pays
+            elif candidate_lower in excluded_countries:
+                departure = None
+            # 3. Validation par liste de gares (si disponible)
+            elif self.known_cities and not self._is_likely_city(candidate):
+                departure = None
+            else:
+                departure = candidate
         
         if arrival_spans:
             # Prendre la première occurrence de ARRIVAL
             start_char, end_char = arrival_spans[0]
-            arrival = sentence[start_char:end_char].strip()
+            candidate = sentence[start_char:end_char].strip()
+            
+            # POST-PROCESSING: Filtrer les entités invalides
+            candidate_lower = candidate.lower()
+            
+            # 1. Rejeter les lettres isolées (1-2 caractères)
+            if len(candidate) <= 2:
+                arrival = None
+            # 2. Rejeter les pays
+            elif candidate_lower in excluded_countries:
+                arrival = None
+            # 3. Validation par liste de gares (si disponible)
+            elif self.known_cities and not self._is_likely_city(candidate):
+                arrival = None
+            else:
+                arrival = candidate
         
         return departure, arrival
 

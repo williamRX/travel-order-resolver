@@ -12,20 +12,72 @@ Ce document liste ce qui doit être ajouté selon le sujet du projet et l'état 
 - ✅ Dataset de training généré
 - ✅ Modèles entraînés et sauvegardés
 - ✅ Pipeline de prédiction fonctionnel
-- ✅ Post-processing (nettoyage caractères spéciaux, séparation Ville-Ville)
+- ✅ Post-processing avancé :
+  - Nettoyage caractères spéciaux (`/`, `"`, `?`, `(`, `)`)
+  - Séparation Ville-Ville (ex: "Marseille-Lyon" → "Marseille", "Lyon")
+  - Extraction de villes depuis phrases (ex: "la gare de Lille" → "Lille")
+  - Capitalisation intelligente des noms de villes
 
 ### 2. Infrastructure
-- ✅ API FastAPI
-- ✅ Frontend chatbot
+- ✅ API FastAPI avec endpoints `/predict` et `/process_csv`
+- ✅ Frontend chatbot interactif (page séparée)
+- ✅ Frontend CSV upload (page séparée `csv_upload.html`)
 - ✅ Docker et docker-compose
-- ✅ Documentation partielle (Markdown)
+- ✅ Documentation complète (Markdown)
 - ✅ Journaux de bord (classifier et NLP)
+
+### 3. Module Pathfinding
+- ✅ Module `pathfinding/` complet avec :
+  - `data_loader.py` : Chargement des gares depuis `gares-francaises.json`
+  - `graph_builder.py` : Construction du graphe de connexions
+  - `dijkstra.py` : Implémentation de l'algorithme Dijkstra
+  - `astar.py` : Implémentation de l'algorithme A* avec heuristique
+  - `route_finder.py` : Classe principale pour trouver les itinéraires
+  - `utils.py` : Utilitaires (distance haversine, normalisation)
+- ✅ Intégration dans le pipeline NLP (`api/pipeline.py`)
+- ✅ Format de sortie avec étapes : `sentenceID,Departure,Step1,Step2,...,Destination`
+- ✅ Script de test/comparaison : `scripts/test_pathfinding.py`
+- ✅ Documentation : `docs/PATHFINDING_ARCHITECTURE.md` et `docs/PATHFINDING_INTERFACE.md`
+
+---
+
+## 🆕 Améliorations Récentes
+
+### Post-processing NLP Avancé
+- ✅ Extraction intelligente de villes depuis phrases complexes :
+  - "la gare de Lille" → "Lille"
+  - "l'aéroport de Lyon" → "Lyon"
+  - "station de Paris" → "Paris"
+- ✅ Capitalisation automatique des noms de villes :
+  - "nantes" → "Nantes"
+  - "rennes" → "Rennes"
+  - Utilise la capitalisation exacte depuis `gares-francaises.json`
+
+### Module Pathfinding Complet
+- ✅ Implémentation de **Dijkstra** et **A*** pour comparaison
+- ✅ Construction automatique du graphe depuis `gares-francaises.json`
+- ✅ Intégration transparente dans le pipeline NLP
+- ✅ Format de sortie avec étapes intermédiaires automatique
+- ✅ Script de test/comparaison des algorithmes
+
+### Interface Utilisateur
+- ✅ **Séparation des pages** : Chatbot et CSV upload sur des pages distinctes
+- ✅ Affichage du trajet complet dans le chatbot (avec étapes intermédiaires)
+- ✅ Page CSV dédiée avec instructions et interface spacieuse
+- ✅ Navigation fluide entre les deux pages
+
+### Intégration Pipeline
+- ✅ Le pathfinding s'exécute automatiquement après l'extraction NLP
+- ✅ Format de sortie adaptatif :
+  - Avec pathfinding : `sentenceID,Departure,Step1,Step2,...,Destination`
+  - Sans pathfinding : `sentenceID,Departure,Destination`
+- ✅ Gestion d'erreurs robuste (gares non trouvées, trajets impossibles)
 
 ---
 
 ## ❌ Ce qui MANQUE selon le sujet
 
-### 🔴 PRIORITÉ 1 : Format d'entrée/sortie spécifique
+### ✅ PRIORITÉ 1 : Format d'entrée/sortie spécifique - COMPLÉTÉ
 
 **Exigence du sujet :**
 - Format d'entrée : `sentenceID,sentence` (une ligne par phrase)
@@ -61,14 +113,20 @@ python scripts/process_input.py --url http://example.com/sentences.csv > output.
 
 **Note importante :** 
 - Le script CLI (`process_input.py`) est un outil ligne de commande pour le format CSV
-- Le chatbot web a maintenant **aussi** une fonctionnalité CSV intégrée (upload de fichier)
-- Les deux systèmes utilisent le même pipeline NLP et respectent le format du sujet
+- Le chatbot web a maintenant **aussi** une fonctionnalité CSV intégrée :
+  - **Page séparée** : `frontend/csv_upload.html` pour éviter la surcharge de l'interface
+  - Upload de fichier CSV avec traitement automatique
+  - Affichage des résultats et téléchargement
+- Les deux systèmes utilisent le même pipeline NLP + Pathfinding et respectent le format du sujet
+- **Format de sortie amélioré** : Si le pathfinding est activé, le format inclut les étapes intermédiaires :
+  - `sentenceID,Departure,Step1,Step2,...,Destination` (avec pathfinding)
+  - `sentenceID,Departure,Destination` (sans pathfinding ou trajet direct)
 - Voir `docs/CHATBOT_VS_CLI.md` pour la différence entre chatbot et CLI
 - Voir `docs/CSV_CHATBOT_INTEGRATION.md` pour l'utilisation CSV dans le chatbot
 
 ---
 
-### 🔴 PRIORITÉ 1 : Module Pathfinding (Graph)
+### ✅ PRIORITÉ 1 : Module Pathfinding (Graph) - COMPLÉTÉ
 
 **Exigence du sujet :**
 - Trouver un itinéraire optimal entre deux villes/gares
@@ -76,21 +134,48 @@ python scripts/process_input.py --url http://example.com/sentences.csv > output.
 - Utiliser les données SNCF (gares-francaises.json)
 - Trouver le chemin le plus court ou le plus rapide
 
-**Ce qui manque :**
-- ❌ Module de pathfinding
-- ❌ Construction d'un graphe depuis les données de gares
-- ❌ Algorithmes de recherche de chemin (Dijkstra, A*, etc.)
-- ❌ Intégration avec les données SNCF
-- ❌ Script pour générer la sortie finale avec étapes intermédiaires
+**✅ IMPLÉMENTÉ :**
+- ✅ Module `pathfinding/` complet créé avec toute la structure
+- ✅ Construction du graphe depuis `gares-francaises.json` :
+  - Connexion des hubs majeurs (catégorie A) entre eux
+  - Connexion des autres gares selon distance géographique (seuil configurable)
+  - Calcul des distances avec formule de Haversine
+- ✅ Algorithmes implémentés :
+  - **Dijkstra** : Algorithme classique pour chemin optimal
+  - **A*** : Algorithme optimisé avec heuristique (distance à vol d'oiseau)
+  - Les deux algorithmes retournent des statistiques (nœuds explorés, etc.)
+- ✅ Intégration complète dans le pipeline NLP :
+  - Le pathfinding s'exécute automatiquement après l'extraction NLP
+  - Retourne le trajet complet avec étapes intermédiaires
+  - Format de sortie : `sentenceID,Departure,Step1,Step2,...,Destination`
+- ✅ Normalisation intelligente des noms de villes/gares
+- ✅ Script de test/comparaison : `scripts/test_pathfinding.py`
+- ✅ Documentation complète :
+  - `docs/PATHFINDING_ARCHITECTURE.md` : Architecture détaillée
+  - `docs/PATHFINDING_INTERFACE.md` : Interfaces d'entrée/sortie
+  - `pathfinding/README.md` : Documentation du module
 
-**Action requise :**
-Créer un module `pathfinding/` avec :
-- `pathfinding/graph_builder.py` : Construire le graphe depuis gares-francaises.json
-- `pathfinding/route_finder.py` : Trouver les itinéraires (Dijkstra ou similaire)
-- `pathfinding/__init__.py` : Interface simple
-- Script principal : `scripts/find_routes.py` qui prend `sentenceID,Departure,Destination` en entrée
+**Utilisation :**
+```python
+from pathfinding import RouteFinder
 
-**Note :** Le sujet dit que c'est "not the core" mais c'est quand même requis pour la livraison finale.
+# Initialiser
+route_finder = RouteFinder()
+
+# Trouver un itinéraire
+result = route_finder.find_route("Paris", "Lyon", algorithm="dijkstra")
+# ou
+result = route_finder.find_route("Paris", "Lyon", algorithm="astar")
+
+if result.success:
+    print(f"Route: {' → '.join(result.route)}")
+    print(f"Distance: {result.total_distance} km")
+```
+
+**Intégration dans le pipeline :**
+Le pathfinding est automatiquement activé dans `api/pipeline.py`. Quand le NLP extrait `departure` et `arrival`, le pathfinding trouve automatiquement l'itinéraire optimal et le retourne dans le champ `route`.
+
+**Note :** Le sujet dit que c'est "not the core" mais c'est quand même requis pour la livraison finale. ✅ **Complété !**
 
 ---
 
@@ -196,18 +281,21 @@ python scripts/nlp_standalone.py "Je vais de Paris à Lyon"
 
 ## 📋 Plan d'Action Recommandé
 
-### Phase 1 : Format d'entrée/sortie (URGENT)
-1. Créer `scripts/process_input.py` avec format spécifique
-2. Tester avec fichiers d'exemple
-3. Documenter l'utilisation
+### Phase 1 : Format d'entrée/sortie (URGENT) - ✅ COMPLÉTÉ
+1. ✅ Créer `scripts/process_input.py` avec format spécifique
+2. ✅ Tester avec fichiers d'exemple
+3. ✅ Documenter l'utilisation
+4. ✅ Intégration dans le chatbot web (page CSV séparée)
+5. ✅ Support du format avec pathfinding (étapes intermédiaires)
 
-### Phase 2 : Pathfinding (URGENT)
-1. Créer module `pathfinding/`
-2. Implémenter construction du graphe
-3. Implémenter algorithme de recherche (Dijkstra)
-4. Intégrer avec données SNCF
-5. Tester avec exemples réels
-6. Créer script final : `sentenceID,Departure,Destination` → `sentenceID,Departure,Step1,...,Destination`
+### Phase 2 : Pathfinding (URGENT) - ✅ COMPLÉTÉ
+1. ✅ Créer module `pathfinding/`
+2. ✅ Implémenter construction du graphe
+3. ✅ Implémenter algorithmes de recherche (Dijkstra + A*)
+4. ✅ Intégrer avec données SNCF
+5. ✅ Tester avec exemples réels
+6. ✅ Intégration dans le pipeline : `sentenceID,Departure,Destination` → `sentenceID,Departure,Step1,...,Destination`
+7. ✅ Script de test/comparaison des algorithmes
 
 ### Phase 3 : Documentation PDF (IMPORTANT)
 1. Rédiger rapport complet en Markdown
@@ -237,9 +325,12 @@ python scripts/nlp_standalone.py "Je vais de Paris à Lyon"
 
 | Composant | État | Priorité | Est. Temps |
 |-----------|------|----------|------------|
-| NLP (Classification + NER) | ✅ 90% | - | - |
+| NLP (Classification + NER) | ✅ 95% | - | - |
+| Post-processing NLP | ✅ 100% | ✅ Complété | - |
 | Format I/O spécifique | ✅ 100% | ✅ Complété | ✅ 2-4h |
-| Pathfinding | ❌ 0% | 🔴 Haute | 8-16h |
+| Pathfinding (Dijkstra + A*) | ✅ 100% | ✅ Complété | ✅ 8-16h |
+| Intégration Pipeline | ✅ 100% | ✅ Complété | - |
+| Frontend (Chatbot + CSV) | ✅ 100% | ✅ Complété | - |
 | Documentation PDF | ❌ 20% | 🟡 Moyenne | 8-12h |
 | Métriques documentées | ❌ 40% | 🟡 Moyenne | 4-6h |
 | Isolation NLP | ⚠️ 70% | 🟢 Basse | 2-3h |
@@ -250,18 +341,24 @@ python scripts/nlp_standalone.py "Je vais de Paris à Lyon"
 ## 🎯 Résumé
 
 **Points forts :**
-- ✅ Module NLP robuste et fonctionnel
-- ✅ Pipeline complet intégré
+- ✅ Module NLP robuste et fonctionnel avec post-processing avancé
+- ✅ Pipeline complet intégré (NLP + Pathfinding)
+- ✅ Module Pathfinding complet (Dijkstra + A*)
 - ✅ Modèles entraînés et performants
-- ✅ Infrastructure (API, Docker) en place
+- ✅ Infrastructure complète (API FastAPI, Frontend séparé, Docker)
+- ✅ Format I/O conforme au sujet avec support pathfinding
+- ✅ Interface utilisateur moderne (chatbot + CSV upload séparés)
 
 **Points à compléter :**
-- ❌ Format d'entrée/sortie selon spécification
-- ❌ Module pathfinding (graph)
-- ❌ Documentation PDF complète
-- ❌ Métriques documentées
+- ❌ Documentation PDF complète (rapport final)
+- ❌ Métriques documentées (compilation et analyse)
+- ⚠️ Isolation NLP (amélioration possible mais fonctionnel)
 
 **Recommandation :**
-1. **Prioriser** le format I/O et le pathfinding (requis pour livraison)
-2. **Ensuite** compléter la documentation PDF
-3. **Enfin** améliorer isolation et ajouter bonuses si temps
+1. ✅ **Complété** : Format I/O et pathfinding (requis pour livraison) ✅
+2. **Prioriser maintenant** : Documentation PDF complète
+3. **Ensuite** : Compiler et documenter les métriques
+4. **Enfin** : Améliorer isolation et ajouter bonuses si temps
+
+**État actuel :**
+Le système est **fonctionnellement complet** pour la livraison. Les composants principaux (NLP, Pathfinding, API, Frontend) sont tous implémentés et intégrés. Il reste principalement la documentation finale à compléter.

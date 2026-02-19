@@ -1,0 +1,34 @@
+text,expected_departure,expected_arrival,category
+Je veux aller de Port-Boulet à Paris,Port-Boulet,Paris,Trajet difficile (Port-Boulet)
+Je dois me rendre de Saint-Quentin-en-Yvelines à Marseille,Saint-Quentin-en-Yvelines,Marseille,Trajet ville à tirets complexe
+Un billet pour Villeneuve-d'Ascq depuis Lille,Lille,Villeneuve-d'Ascq,Trajet ville avec apostrophe et tiret
+Je pars de Aix-en-Provence TGV pour Paris,Aix-en-Provence TGV,Paris,Gare TGV composée
+Je veux un trajet de Paris Montparnasse à Saint-Malo,Paris Montparnasse,Saint-Malo,Trajet gares longues
+Je pars de Schirmeck - La Broque pour Strasbourg,Schirmeck - La Broque,Strasbourg,Trajet gare avec tiret interne
+Je vais de Blonville-sur-Mer à Caen,Blonville-sur-Mer,Caen,Trajet ville-sur-ville
+Je veux aller de Saint-Étienne Châteaucreux à Lyon Part-Dieu,Saint-Étienne Châteaucreux,Lyon Part-Dieu,Trajet gares complètes
+Je vais de Paris Saint-Lazare à Le Havre,Paris Saint-Lazare,Le Havre,Trajet Saint-Lazare
+Je veux aller de Paris St Lazare à Le Havre,Paris Saint-Lazare,Le Havre,Trajet abréviation (St Lazare)
+Je vais de Paris G de Lyon à Lyon Part Dieu,Paris Gare de Lyon,Lyon Part-Dieu,Trajet abréviation (G de / Part Dieu)
+Salut je dois aller de Bordeaux Saint Jean à Toulouse Matabiau,Bordeaux Saint-Jean,Toulouse-Matabiau,Trajet gares tirets implicites
+Je veux un trajet de Nice-Ville à Lyon,Nice-Ville,Lyon,Trajet gare avec tiret
+Je veux un billet de Nantes a rennes avec mon pote Paris,Nantes,Rennes,Nom propre ambigu (Paris prénom)
+Je dîne avec Paris ce soir à Lyon,,,Non trajet (nom propre Paris)
+Je fais mes études à Marseille depuis 3 ans,,,Non trajet (ville mais pas de demande)
+J'adore la gare de Lyon pour son architecture,,,Non trajet (gare de Lyon description)
+Je vais chez Paul à Lille ce week-end,,,Non trajet (chez + ville)
+On se retrouve avec Sarah à la gare de Rennes demain,,,Non trajet (rendez-vous social)
+Je voudrais savoir le prix moyen d'un billet de train en France,,,Non trajet (question générale)
+Est-ce que Port-Boulet est une belle ville ?,,,Non trajet (question sur la ville)
+Trajet Port-Boulet Paris sans date précise,Port-Boulet,Paris,Trajet ville difficile sans date
+Besoin d'un train Saint-Michel-sur-Orge Paris,St-Michel-sur-Orge,Paris,Trajet ville composée (Saint-Michel-sur-Orge)
+Je veux un train pour Marseille mais je ne sais pas d'où je pars,,Marseille,Arrivée seule avec phrase ambiguë
+Je pars de Lyon mais je ne sais pas encore où aller,Lyon,,Départ seul avec arrivée inconnue
+Je vais de toulous a marseile en mode vite fait,toulous,marseile,Trajet avec typos lourdes
+🚆 trajet schirmeck la broque - strasbourg,Schirmeck - La Broque,Strasbourg,Trajet emoji + gare composée
+Je veux un trajet SNCF de Bordeaux à Toulouse avec correspondance,Bordeaux,Toulouse,Trajet SNCF avec correspondance
+Hier je suis allé de Paris à Lyon en voiture,,,Non trajet (trajet passé non demandé)
+Je cherche juste des infos sur la ville de Strasbourg,,,Non trajet (infos ville)
+Donne moi un itinéraire Port-Boulet > Paris en TGV,Port-Boulet,Paris,Trajet avec chevron
+Trajet saint etienne lyon sans majuscules,saint etienne,lyon,Trajet casse minuscule + ville composée
+TRAJET SAINT-ETIENNE LYON,SAINT-ETIENNE,LYON,Trajet casse majuscule + tiret

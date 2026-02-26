@@ -67,6 +67,19 @@ services:
     depends_on:
       - api  # Attendre que l'API soit prête
 
+  cly:
+    build:
+      context: ./cly
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: http://localhost:8000
+    container_name: t-aia-911-lil3-cly
+    ports:
+      - "5173:5173"
+    restart: unless-stopped
+    depends_on:
+      - api
+
 volumes:
   jupyter-data:
 

@@ -389,7 +389,7 @@ export const LoadingSpinner = styled.div`
   }
 `;
 
-/* Settings panel */
+/* Settings panel - aligné avec le style sticker (violet #7751fd, bordures cyan #00FAE9) */
 export const SettingsOverlay = styled.div<{ $open: boolean }>`
   display: ${({ $open }) => ($open ? "block" : "none")};
   position: fixed;
@@ -397,7 +397,7 @@ export const SettingsOverlay = styled.div<{ $open: boolean }>`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.4);
   z-index: 999;
 `;
 
@@ -408,50 +408,67 @@ export const SettingsPanel = styled.div<{ $open: boolean }>`
   width: 380px;
   max-width: 100%;
   height: 100vh;
-  background: white;
-  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  border-radius: 20px 0 0 20px;
+  border: 4px solid #fff;
+  border-right: none;
+  box-shadow:
+    inset 0 0 0 2px #000,
+    -4px 4px 12px rgba(0, 0, 0, 0.15);
   transition: right 0.3s ease;
   z-index: 1000;
   overflow-y: auto;
 `;
 
 export const SettingsPanelHeader = styled.div`
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: #7751fd;
+  color: #fff;
   padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-radius: 16px 0 0 0;
+  text-shadow: 0 1px 0 #000, 1px 0 0 #000, 0 -1px 0 #000, -1px 0 0 #000;
   h2 {
     margin: 0;
     font-size: 20px;
+    font-weight: bold;
   }
 `;
 
 export const CloseSettingsButton = styled.button`
-  background: none;
-  border: none;
-  color: white;
-  font-size: 24px;
+  background: transparent;
+  border: 2px solid #00fae9;
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
   cursor: pointer;
   padding: 0;
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+  }
 `;
 
 export const SettingsContent = styled.div`
   padding: 20px;
+  background: #fff;
 `;
 
 export const SettingsSection = styled.div`
   margin-bottom: 25px;
   h3 {
-    color: #667eea;
+    color: #7751fd;
     margin-bottom: 15px;
     font-size: 16px;
+    font-weight: bold;
   }
 `;
 
@@ -461,50 +478,63 @@ export const FormGroup = styled.div`
     display: block;
     margin-bottom: 8px;
     color: #333;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 14px;
   }
   select,
   input {
     width: 100%;
-    padding: 10px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
+    padding: 10px 12px;
+    border: 2px solid #00fae9;
+    border-radius: 12px;
     font-size: 14px;
     outline: none;
-    transition: border-color 0.3s;
+    background: #fff;
+    color: #000;
+    transition: border-color 0.2s, box-shadow 0.2s;
   }
   select:focus,
   input:focus {
-    border-color: #667eea;
+    border-color: #7751fd;
+    box-shadow: 0 0 0 1px #7751fd;
   }
   input[type="password"] {
     font-family: monospace;
   }
   small {
     display: block;
-    margin-top: 5px;
-    color: #666;
+    margin-top: 6px;
+    color: #555;
     font-size: 12px;
   }
   small a {
-    color: #667eea;
+    color: #7751fd;
+    font-weight: 600;
+    text-decoration: underline;
+  }
+  small a:hover {
+    color: #5a3fc9;
   }
 `;
 
 export const SaveSettingsButton = styled.button`
   width: 100%;
-  padding: 12px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  border-radius: 8px;
+  padding: 14px;
+  background: #7751fd;
+  color: #fff;
+  border: 2px solid #00fae9;
+  border-radius: 14px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
   &:hover {
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(119, 81, 253, 0.35);
+  }
+  &:active {
+    transform: translateY(0);
   }
 `;
 

@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   ChatContainer,
   ChatMessagesArea,
@@ -30,6 +31,7 @@ function generateId() {
 }
 
 export const Chat = () => {
+  const navigate = useNavigate();
   const isPortrait = useIsPortrait();
   const [messages, setMessages] = useState<ChatMessageType[]>([]);
   const [settings, setSettings] = useState<ChatSettings>(loadSettings);
@@ -112,8 +114,8 @@ export const Chat = () => {
   }, []);
 
   const handleCsvClick = useCallback(() => {
-    window.location.hash = "csv";
-  }, []);
+    navigate("/csv");
+  }, [navigate]);
 
   const handleSaveSettingsAndNotify = useCallback(
     (newSettings: ChatSettings) => {

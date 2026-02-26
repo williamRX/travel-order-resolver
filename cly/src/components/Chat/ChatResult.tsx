@@ -40,18 +40,18 @@ function SncfDetails({ sections }: { sections: SncfSection[] }) {
             <SncfSectionDetail key={idx} $type="train">
               <div style={{ display: "flex", alignItems: "center", marginBottom: 5 }}>
                 <span style={{ fontSize: 18, marginRight: 8 }}>🚂</span>
-                <strong style={{ color: "#ff9800" }}>{section.line || "Train"}</strong>
+                <strong style={{ color: "#ffcc33" }}>{section.line || "Train"}</strong>
               </div>
               <div style={{ paddingLeft: 26 }}>
                 <div>
                   <strong>{section.from ?? "N/A"}</strong> ({formatTime(section.departure_time)})
                 </div>
-                <div style={{ margin: "5px 0", color: "#666" }}>→</div>
+                <div style={{ margin: "5px 0", color: "#000000" }}>→</div>
                 <div>
                   <strong>{section.to ?? "N/A"}</strong> ({formatTime(section.arrival_time)})
                 </div>
                 {section.duration != null && (
-                  <div style={{ marginTop: 5, fontSize: 12, color: "#999" }}>
+                  <div style={{ marginTop: 5, fontSize: 12, color: "#000000" }}>
                     ⏱️ Durée : {Math.round(section.duration / 60)} min
                   </div>
                 )}

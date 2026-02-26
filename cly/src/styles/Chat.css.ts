@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+/* Palette design (6 couleurs uniquement):
+   #ffffff blanc | #000000 noir | #ffcc33 jaune | #ff9999 corail | #66ffcc turquoise | #cc99ff lavande */
+
 export const ChatContainer = styled.div<{ $isPortrait: boolean }>`
   flex: ${({ $isPortrait }) => ($isPortrait ? "0 0 100%" : "1 1 0")};
   width: ${({ $isPortrait }) => ($isPortrait ? "100%" : "50%")};
@@ -161,7 +164,8 @@ export const ChatMessagesScroll = styled.div`
   flex: 1;
   overflow-y: auto;
   padding: 20px;
-  background: rgb(255, 255, 255);
+  background: #ffffff;
+  border-radius: 16px;
 `;
 
 export const MessageWrapper = styled.div<{
@@ -181,29 +185,21 @@ export const MessageWrapper = styled.div<{
     word-wrap: break-word;
     background: ${({ $role, $isError, $isSuccess }) =>
       $role === "user"
-        ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+        ? "#cc99ff"
         : $isError
-          ? "#fee"
+          ? "#ff9999"
           : $isSuccess
-            ? "#efe"
-            : "white"};
+            ? "#cc99ff"
+            : "#ffffff"};
     color: ${({ $role, $isError, $isSuccess }) =>
       $role === "user"
-        ? "white"
+        ? "#ffffff"
         : $isError
-          ? "#c33"
+          ? "#000000"
           : $isSuccess
-            ? "#3c3"
-            : "#333"};
-    border: 1px solid
-      ${({ $role, $isError, $isSuccess }) =>
-        $role === "user"
-          ? "transparent"
-          : $isError
-            ? "#fcc"
-            : $isSuccess
-              ? "#cfc"
-              : "#e0e0e0"};
+            ? "#000000"
+            : "#000000"};
+    border: 2px solid #000000;
     border-bottom-right-radius: ${({ $role }) =>
       $role === "user" ? "4px" : "18px"};
     border-bottom-left-radius: ${({ $role }) =>
@@ -223,49 +219,60 @@ export const MessageWrapper = styled.div<{
 
 export const WelcomeBlock = styled.div`
   text-align: center;
-  color: #666;
+  color: #000000;
   padding: 20px;
   h2 {
-    color: #667eea;
+    color: #cc99ff;
     margin-bottom: 10px;
+    font-weight: bold;
+  }
+  p {
+    color: #000000;
   }
 `;
 
 export const ExamplesBlock = styled.div`
   margin-top: 20px;
   padding: 15px;
-  background: white;
-  border-radius: 10px;
-  border: 1px solid #e0e0e0;
+  background: #ffffff;
+  border-radius: 14px;
+  border: 2px solid #000000;
   h3 {
-    color: #667eea;
+    color: #cc99ff;
     margin-bottom: 10px;
     font-size: 14px;
+    font-weight: bold;
   }
 `;
 
 export const ExampleItem = styled.button`
   display: block;
   width: 100%;
-  padding: 8px;
-  margin: 5px 0;
-  background: #f8f9fa;
-  border: none;
-  border-radius: 5px;
+  padding: 10px 12px;
+  margin: 6px 0;
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 12px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    color 0.2s;
   font-size: 14px;
   text-align: left;
+  color: #000000;
   &:hover {
-    background: #e9ecef;
+    background: #cc99ff;
+    border-color: #000000;
+    color: #ffffff;
   }
 `;
 
 export const InputSection = styled.div`
   flex-shrink: 0;
   padding: 0;
-  background: white;
-  border-top: 1px solid #e0e0e0;
+  background: #ffffff;
+  border-top: 2px solid #000000;
 `;
 
 export const InputRow = styled.div`
@@ -285,24 +292,33 @@ export const SentenceInput = styled.input`
   pointer-events: auto;
   z-index: 1;
   position: relative;
-  cursor: pointer;
+  cursor: text;
   outline: none;
-  background: #fff;
-  color: #000;
-  border-radius: 8px;
-  padding-left: 12px;
-  transition: border-color 0.3s;
+  background: #ffffff;
+  color: #000000;
+  border: 2px solid #000000;
+  border-radius: 12px;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
   &:focus {
-    border-color: #667eea;
+    border-color: #000000;
+    box-shadow: 0 0 0 2px #000000;
+  }
+  &::placeholder {
+    color: #000000;
+    opacity: 0.5;
   }
 `;
 
 export const SendButton = styled.button`
   padding: 12px 24px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  border-radius: 25px;
+  background: #cc99ff;
+  color: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 14px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
@@ -311,7 +327,7 @@ export const SendButton = styled.button`
     box-shadow 0.2s;
   &:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
   &:active:not(:disabled) {
     transform: translateY(0);
@@ -325,28 +341,22 @@ export const SendButton = styled.button`
 
 export const VoiceButton = styled.button<{ $recording?: boolean }>`
   padding: 12px;
-  background: ${({ $recording }) =>
-    $recording
-      ? "linear-gradient(135deg, #dc3545 0%, #c82333 100%)"
-      : "linear-gradient(135deg, #28a745 0%, #20c997 100%)"};
-  color: white;
-  border: none;
+  background: ${({ $recording }) => ($recording ? "#ff9999" : "#cc99ff")};
+  color: #ffffff;
+  border: 2px solid #000000;
   border-radius: 50%;
   width: 48px;
   height: 48px;
   font-size: 20px;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: ${({ $recording }) =>
-    $recording
-      ? "0 0 20px rgba(220, 53, 69, 0.6)"
-      : "0 2px 8px rgba(40, 167, 69, 0.3)"};
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   &:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
   ${({ $recording }) =>
     $recording &&
@@ -365,7 +375,7 @@ export const VoiceStatus = styled.div<{ $active?: boolean }>`
   position: relative;
   z-index: 10;
   font-size: 12px;
-  color: #fff;
+  color: #ffffff;
   font-weight: ${({ $active }) => ($active ? "bold" : "normal")};
   text-align: center;
   min-height: 16px;
@@ -375,8 +385,8 @@ export const LoadingSpinner = styled.div`
   display: inline-block;
   width: 20px;
   height: 20px;
-  border: 3px solid #f3f3f3;
-  border-top: 3px solid #667eea;
+  border: 3px solid #000000;
+  border-top: 3px solid #ffffff;
   border-radius: 50%;
   animation: spin 1s linear infinite;
   @keyframes spin {
@@ -389,7 +399,7 @@ export const LoadingSpinner = styled.div`
   }
 `;
 
-/* Settings panel - aligné avec le style sticker (violet #7751fd, bordures cyan #00FAE9) */
+/* Settings panel - palette 6 couleurs */
 export const SettingsOverlay = styled.div<{ $open: boolean }>`
   display: ${({ $open }) => ($open ? "block" : "none")};
   position: fixed;
@@ -408,12 +418,12 @@ export const SettingsPanel = styled.div<{ $open: boolean }>`
   width: 380px;
   max-width: 100%;
   height: 100vh;
-  background: #fff;
+  background: #ffffff;
   border-radius: 20px 0 0 20px;
-  border: 4px solid #fff;
+  border: 4px solid #000000;
   border-right: none;
   box-shadow:
-    inset 0 0 0 2px #000,
+    inset 0 0 0 2px #000000,
     -4px 4px 12px rgba(0, 0, 0, 0.15);
   transition: right 0.3s ease;
   z-index: 1000;
@@ -421,14 +431,18 @@ export const SettingsPanel = styled.div<{ $open: boolean }>`
 `;
 
 export const SettingsPanelHeader = styled.div`
-  background: #7751fd;
-  color: #fff;
+  background: #cc99ff;
+  color: #ffffff;
   padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-radius: 16px 0 0 0;
-  text-shadow: 0 1px 0 #000, 1px 0 0 #000, 0 -1px 0 #000, -1px 0 0 #000;
+  text-shadow:
+    0 1px 0 #000000,
+    1px 0 0 #000000,
+    0 -1px 0 #000000,
+    -1px 0 0 #000000;
   h2 {
     margin: 0;
     font-size: 20px;
@@ -438,8 +452,8 @@ export const SettingsPanelHeader = styled.div`
 
 export const CloseSettingsButton = styled.button`
   background: transparent;
-  border: 2px solid #00fae9;
-  color: #fff;
+  border: 2px solid #000000;
+  color: #ffffff;
   font-size: 22px;
   line-height: 1;
   cursor: pointer;
@@ -450,22 +464,25 @@ export const CloseSettingsButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s, transform 0.2s;
+  transition:
+    background 0.2s,
+    transform 0.2s;
   &:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: #ffffff;
+    color: #cc99ff;
     transform: scale(1.05);
   }
 `;
 
 export const SettingsContent = styled.div`
   padding: 20px;
-  background: #fff;
+  background: #ffffff;
 `;
 
 export const SettingsSection = styled.div`
   margin-bottom: 25px;
   h3 {
-    color: #7751fd;
+    color: #cc99ff;
     margin-bottom: 15px;
     font-size: 16px;
     font-weight: bold;
@@ -477,26 +494,30 @@ export const FormGroup = styled.div`
   label {
     display: block;
     margin-bottom: 8px;
-    color: #333;
+    color: #000000;
     font-weight: 600;
     font-size: 14px;
   }
   select,
   input {
+    box-sizing: border-box;
     width: 100%;
+    max-width: 100%;
     padding: 10px 12px;
-    border: 2px solid #00fae9;
+    border: 2px solid #000000;
     border-radius: 12px;
     font-size: 14px;
     outline: none;
-    background: #fff;
-    color: #000;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    background: #ffffff;
+    color: #000000;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
   }
   select:focus,
   input:focus {
-    border-color: #7751fd;
-    box-shadow: 0 0 0 1px #7751fd;
+    border-color: #000000;
+    box-shadow: 0 0 0 2px #000000;
   }
   input[type="password"] {
     font-family: monospace;
@@ -504,62 +525,65 @@ export const FormGroup = styled.div`
   small {
     display: block;
     margin-top: 6px;
-    color: #555;
+    color: #000000;
     font-size: 12px;
   }
   small a {
-    color: #7751fd;
+    color: #cc99ff;
     font-weight: 600;
     text-decoration: underline;
   }
   small a:hover {
-    color: #5a3fc9;
+    color: #cc99ff;
   }
 `;
 
 export const SaveSettingsButton = styled.button`
   width: 100%;
   padding: 14px;
-  background: #7751fd;
-  color: #fff;
-  border: 2px solid #00fae9;
+  background: #cc99ff;
+  color: #ffffff;
+  border: 2px solid #000000;
   border-radius: 14px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(119, 81, 253, 0.35);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
   &:active {
     transform: translateY(0);
   }
 `;
 
-/* Result box (bot message content) */
+/* Result box - palette 6 couleurs */
 export const ResultBox = styled.div`
-  background: #f0f4ff;
-  border: 2px solid #667eea;
-  border-radius: 10px;
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 14px;
   padding: 15px;
   margin-top: 10px;
   h3 {
-    color: #667eea;
+    color: #cc99ff;
     margin-bottom: 10px;
     font-size: 16px;
+    font-weight: bold;
   }
 `;
 
 export const ResultItem = styled.div`
   margin: 8px 0;
-  padding: 8px;
-  background: white;
-  border-radius: 5px;
-  border-left: 4px solid #667eea;
+  padding: 10px 12px;
+  background: #ffffff;
+  border-radius: 10px;
+  border-left: 4px solid #000000;
   strong {
-    color: #667eea;
+    color: #cc99ff;
     display: inline-block;
     min-width: 80px;
   }
@@ -569,26 +593,26 @@ export const RoutePath = styled.div<{ $variant?: "sncf" | "graph" }>`
   font-size: 16px;
   padding: 12px;
   background: ${({ $variant }) =>
-    $variant === "sncf"
-      ? "linear-gradient(135deg, #fff5e6 0%, #ffe8cc 100%)"
-      : "linear-gradient(135deg, #f0f4ff 0%, #e8f0ff 100%)"};
-  border-left: 4px solid
-    ${({ $variant }) => ($variant === "sncf" ? "#ff9800" : "#28a745")};
+    $variant === "sncf" ? "#ffcc33" : "#cc99ff"};
+  border: 2px solid #000000;
+  border-radius: 12px;
+  border-left: 4px solid #000000;
   text-align: center;
   strong {
-    color: #667eea;
+    color: #000000;
     padding: 4px 8px;
-    background: white;
-    border-radius: 4px;
+    background: #ffffff;
+    border-radius: 6px;
     margin: 0 2px;
     display: inline-block;
     min-width: auto;
+    border: 2px solid #000000;
   }
 `;
 
 export const RoutePathGraph = styled(RoutePath)`
-  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-  border-left-color: #4caf50;
+  background: #cc99ff;
+  border-left-color: #000000;
 `;
 
 export const RouteBadge = styled.span<{
@@ -602,32 +626,34 @@ export const RouteBadge = styled.span<{
   text-transform: uppercase;
   margin-left: 8px;
   vertical-align: middle;
+  border: 2px solid #000000;
   background: ${({ $kind }) =>
     $kind === "sncf"
-      ? "#ff9800"
+      ? "#ffcc33"
       : $kind === "graph"
-        ? "#4caf50"
+        ? "#cc99ff"
         : $kind === "dijkstra"
-          ? "#2196f3"
-          : "#9c27b0"};
-  color: white;
+          ? "#cc99ff"
+          : "#cc99ff"};
+  color: #000000;
 `;
 
 export const RouteSourceInfo = styled.div`
   margin-top: 8px;
-  padding: 8px;
-  background: rgba(0, 0, 0, 0.03);
-  border-radius: 6px;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 10px;
+  border: 2px solid #000000;
   font-size: 12px;
-  color: #666;
+  color: #000000;
 `;
 
 export const SncfSummary = styled.div`
-  background: #fff;
+  background: #ffffff;
   padding: 15px;
-  border-radius: 8px;
+  border-radius: 12px;
   margin-bottom: 10px;
-  border: 1px solid #e0e0e0;
+  border: 2px solid #000000;
 `;
 
 export const SncfSummaryItem = styled.div<{ $highlight?: boolean }>`
@@ -635,34 +661,38 @@ export const SncfSummaryItem = styled.div<{ $highlight?: boolean }>`
   align-items: center;
   margin: 8px 0;
   padding: 8px;
-  background: ${({ $highlight }) => ($highlight ? "#fff3cd" : "#f9f9f9")};
-  border-radius: 4px;
+  background: ${({ $highlight }) => ($highlight ? "#ffcc33" : "#ffffff")};
+  border-radius: 8px;
   border-left: ${({ $highlight }) =>
-    $highlight ? "3px solid #ff9800" : "none"};
+    $highlight ? "4px solid #000000" : "3px solid #000000"};
   strong {
     min-width: 120px;
-    color: #ff9800;
+    color: #000000;
   }
 `;
 
 export const SncfDetailsToggle = styled.button`
   margin-top: 15px;
   padding: 10px 15px;
-  background: #fff;
-  border: 2px solid #ff9800;
-  border-radius: 8px;
+  background: #cc99ff;
+  border: 2px solid #000000;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s;
+  transition:
+    background 0.2s,
+    transform 0.2s;
   font-weight: bold;
-  color: #ff9800;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   font-size: 14px;
   &:hover {
-    background: #fff5e6;
-    border-color: #f57c00;
+    background: #ffffff;
+    color: #cc99ff;
+    border-color: #000000;
+    transform: translateY(-1px);
   }
 `;
 
@@ -676,22 +706,25 @@ export const SncfDetailsContent = styled.div<{ $expanded: boolean }>`
 export const SncfSectionDetail = styled.div<{ $type: "train" | "transfer" }>`
   padding: 10px;
   margin: 8px 0;
-  background: ${({ $type }) => ($type === "train" ? "#fff5e6" : "#f5f5f5")};
-  border-left: 4px solid
-    ${({ $type }) => ($type === "train" ? "#ff9800" : "#999")};
-  border-radius: 4px;
+  background: ${({ $type }) => ($type === "train" ? "#ffcc33" : "#ffffff")};
+  border: 2px solid #000000;
+  border-left: 4px solid #000000;
+  border-radius: 8px;
   font-size: 13px;
-  color: ${({ $type }) => ($type === "transfer" ? "#666" : "inherit")};
+  color: #000000;
   font-style: ${({ $type }) => ($type === "transfer" ? "italic" : "normal")};
 `;
 
 export const ResultHr = styled.hr`
   margin: 10px 0;
   border: none;
-  border-top: 1px solid #e0e0e0;
+  border-top: 2px solid #000000;
 `;
 
 export const ResultMeta = styled.div`
   font-size: 12px;
-  color: #666;
+  color: #000000;
+  strong {
+    color: #cc99ff;
+  }
 `;

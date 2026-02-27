@@ -17,7 +17,7 @@ GET https://api.sncf.com/v1/coverage/sncf/journeys
 - **Password** : Laissez vide (`''`)
 - **Méthode** : Utiliser Basic Auth avec `requests` : `auth=(api_key, '')`
 - **Alternative** : Inclure directement dans l'URL (si supporté)
-- **Obtention** : Inscription sur https://www.sncf-connect.com/open-data/api
+- **Obtention** : Formulaire de demande sur le portail SNCF Numérique : https://numerique.sncf.com/startup/api/ ou sur https://data.sncf.com/api
 
 ### Paramètres principaux
 

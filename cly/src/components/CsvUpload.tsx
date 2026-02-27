@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useProcessCsvMutation } from "../api/processCsv";
 import {
@@ -29,7 +29,6 @@ export const CsvUpload = () => {
   const [resultContent, setResultContent] = useState<string | null>(null);
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
   const [downloadFilename, setDownloadFilename] = useState<string>("results.csv");
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const processCsv = useProcessCsvMutation();
 
@@ -61,10 +60,6 @@ export const CsvUpload = () => {
         err instanceof Error ? err.message : "Erreur lors du traitement";
       alert("Erreur lors du traitement: " + message);
     }
-  };
-
-  const handleLabelClick = () => {
-    fileInputRef.current?.click();
   };
 
   return (
@@ -115,9 +110,8 @@ export const CsvUpload = () => {
         <UploadSection>
           <UploadSectionTitle>📁 Sélectionner un fichier CSV</UploadSectionTitle>
           <FileUpload>
-            <FileInputLabel onClick={handleLabelClick}>
+            <FileInputLabel>
               <input
-                ref={fileInputRef}
                 type="file"
                 accept=".csv"
                 onChange={handleFileSelect}

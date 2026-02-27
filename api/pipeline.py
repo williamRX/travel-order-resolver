@@ -762,6 +762,17 @@ class TravelIntentPipeline:
                 except Exception as e:
                     print(f"⚠️  Erreur pathfinding: {e}")
             
+            # Déterminer correctement la source de l'itinéraire.
+            # Pour le mode SNCF, on considère qu'il s'agit d'un itinéraire SNCF
+            # dès qu'on a soit une route, soit des informations SNCF détaillées.
+            route_source = None
+            if current_route_mode == "sncf_api":
+                if route or sncf_info:
+                    route_source = "sncf_api"
+            elif current_route_mode == "graph":
+                if route:
+                    route_source = "graph"
+
             # Construire la réponse
             response = {
                 "valid": True,
@@ -771,7 +782,7 @@ class TravelIntentPipeline:
                 "route": route,
                 "route_distance": route_distance,
                 "route_time": route_time,
-                "route_source": current_route_mode if route else None,
+                "route_source": route_source,
                 "route_algorithm": current_algorithm if route and current_route_mode == "graph" else None
             }
             
@@ -871,6 +882,17 @@ class TravelIntentPipeline:
                 # En cas d'erreur, on continue sans pathfinding
                 print(f"⚠️  Erreur pathfinding: {e}")
         
+        # Déterminer correctement la source de l'itinéraire.
+        # Pour le mode SNCF, on considère qu'il s'agit d'un itinéraire SNCF
+        # dès qu'on a soit une route, soit des informations SNCF détaillées.
+        route_source = None
+        if current_route_mode == "sncf_api":
+            if route or sncf_info:
+                route_source = "sncf_api"
+        elif current_route_mode == "graph":
+            if route:
+                route_source = "graph"
+
         # Construire la réponse
         response = {
             "valid": True,
@@ -880,7 +902,7 @@ class TravelIntentPipeline:
             "route": route,
             "route_distance": route_distance,
             "route_time": route_time,
-            "route_source": current_route_mode if route else None,
+            "route_source": route_source,
             "route_algorithm": current_algorithm if route and current_route_mode == "graph" else None
         }
         

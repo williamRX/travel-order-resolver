@@ -1,4 +1,4 @@
-name: t-aia-911-lil3
+name: travel-order-resolver
 channels:
   - conda-forge
   - defaults

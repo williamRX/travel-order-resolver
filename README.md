@@ -1,4 +1,4 @@
-# T-AIA-911-LIL_3 - Système de Traitement NLP pour Phrases de Trajet
+# travel-order-resolver - Système de Traitement NLP pour Phrases de Trajet
 
 Projet en deux parties :
 1. **Classifieur de Validité** : Détecte si une phrase contient une intention de trajet valide
@@ -16,7 +16,7 @@ Projet en deux parties :
 conda env create -f environment.yml
 
 # 3. Activer l'environnement
-conda activate t-aia-911-lil3
+conda activate travel-order-resolver
 
 # 4. Lancer Jupyter
 jupyter notebook
@@ -92,7 +92,7 @@ Le notebook détectera automatiquement MPS et utilisera le GPU si disponible.
 Le projet est organisé par **domaine** pour faciliter la navigation :
 
 ```
-T-AIA-911-LIL_3/
+travel-order-resolver/
 ├── classifier/          # 🎯 Classifieur de Validité
 │   ├── models/         # Modèles entraînés
 │   ├── results/        # Résultats d'évaluation
@@ -264,7 +264,7 @@ Ce script vérifie :
 Assurez-vous d'avoir activé l'environnement virtuel :
 ```bash
 # Conda
-conda activate t-aia-911-lil3
+conda activate travel-order-resolver
 
 # venv
 source venv/bin/activate  # macOS/Linux

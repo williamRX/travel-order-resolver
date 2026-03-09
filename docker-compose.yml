@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: t-aia-911-lil3-jupyter
+    container_name: travel-order-resolver-jupyter
     ports:
       - "8888:8888"
     volumes:
@@ -35,7 +35,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: t-aia-911-lil3-api
+    container_name: travel-order-resolver-api
     ports:
       - "8000:8000"
     volumes:
@@ -55,7 +55,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: t-aia-911-lil3-frontend
+    container_name: travel-order-resolver-frontend
     ports:
       - "3000:3000"
     volumes:
@@ -73,7 +73,7 @@ services:
       dockerfile: Dockerfile
       args:
         VITE_API_URL: http://localhost:8000
-    container_name: t-aia-911-lil3-cly
+    container_name: travel-order-resolver-cly
     ports:
       - "5173:5173"
     restart: unless-stopped

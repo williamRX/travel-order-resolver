@@ -2,7 +2,7 @@
 FROM python:3.10-slim
 
 # Métadonnées
-LABEL maintainer="T-AIA-911-LIL_3"
+LABEL maintainer="Travel Order Resolver Team"
 LABEL description="Environnement Jupyter pour le projet de classification NLP"
 
 # Variables d'environnement
